@@ -1,44 +1,42 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public enum ColorName
 {
-    
-  Red,
-  Green,
-  Blue,
-  Cian
-   
+    Red,
+    Green,
+    Blue,
+    Cyan
 }
 
-public static class UIHelperTool 
-{
-    public static string GetColor(ColorName colorName)
+    
+
+    public static class UIHelperTool//오류가 있음 
     {
-        string colorcode;
-        
-        switch (colorName)
+        public static string GetColor(ColorName colorName)
         {
-            case ColorName.Red:
-                return colorcode ="#df0101";
-            case ColorName.Green:
-                return colorcode ="#29b62e";
-            case  ColorName.Blue:
-                return colorcode ="#432afc";
-            case ColorName.Cian:
-                return colorcode ="#01dfcc";
-                default :
-                return colorcode = "#FFFFFF";
+            string colorcode;
+
+            switch (colorName)
+            {
+                case ColorName.Red:
+                    return colorcode = "red";
+                case ColorName.Green:
+                    return colorcode = "#green";
+                case ColorName.Blue:
+                    return colorcode = "#blue";
+                case ColorName.Cyan:
+                    return colorcode = "#cyan";
+                default:
+                    return colorcode = "black";
+            }
         }
 
-       
+
+        public static string UIColorText(string text, ColorName colorName)
+        {
+            return $"<color={GetColor(colorName)}>{text}</color>";
+        }
     }
-
-
-    public static string ColorText(string text,ColorName colorName)
-    {
-        return $"<color={GetColor(colorName)}>+{text}</color>";
-
-    }
-}
