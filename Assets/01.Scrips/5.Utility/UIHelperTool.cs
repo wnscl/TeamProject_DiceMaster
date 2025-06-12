@@ -2,17 +2,43 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UIHelperTool : MonoBehaviour
+public enum ColorName
 {
-    // Start is called before the first frame update
-    void Start()
+    
+  Red,
+  Green,
+  Blue,
+  Cian
+   
+}
+
+public static class UIHelperTool 
+{
+    public static string GetColor(ColorName colorName)
     {
+        string colorcode;
         
+        switch (colorName)
+        {
+            case ColorName.Red:
+                return colorcode ="#df0101";
+            case ColorName.Green:
+                return colorcode ="#29b62e";
+            case  ColorName.Blue:
+                return colorcode ="#432afc";
+            case ColorName.Cian:
+                return colorcode ="#01dfcc";
+                default :
+                return colorcode = "#FFFFFF";
+        }
+
+       
     }
 
-    // Update is called once per frame
-    void Update()
+
+    public static string ColorText(string text,ColorName colorName)
     {
-        
+        return $"<color={GetColor(colorName)}>+{text}</color>";
+
     }
 }

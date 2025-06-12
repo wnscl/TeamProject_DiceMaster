@@ -11,7 +11,7 @@ public class Item
     public float stepDistance;
     public float insHp;
     public float insDefens;
-
+    
     public Item(ItemData data)
     {
         

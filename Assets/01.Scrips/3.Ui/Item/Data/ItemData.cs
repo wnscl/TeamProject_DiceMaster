@@ -9,7 +9,10 @@ public enum  ItemName
 
 public enum ItemType
 {
-   
+ Equipment,
+ Consumable,
+ Dice
+ 
    
 }
 
