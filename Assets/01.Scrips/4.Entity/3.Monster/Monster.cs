@@ -6,6 +6,8 @@ public interface IMonster
 {
     void ChangeState(MonsterState nextState);
     void StartState();
+
+    MonsterInfo GetMonsterInfo();
 }
 public enum MonsterState
 {
@@ -43,6 +45,9 @@ public class Monster : MonoBehaviour, IMonster
     {
         fsm.ActionState();
     }
-
+    public MonsterInfo GetMonsterInfo()
+    {
+        return monsterInfo;
+    }
 
 }
