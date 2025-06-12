@@ -28,4 +28,9 @@ public class MonsterInfo : MonoBehaviour
         dodge       =   data.Dodge;
     }
 
+    public void InitAnim()
+    {
+
+    }
+
 }
