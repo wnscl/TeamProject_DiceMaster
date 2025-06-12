@@ -14,14 +14,17 @@ public interface IBattleable
     void PlayerInfo()
     {
         // memo : 임시 데이터 ( 어떤 정보를 받아올 것인지 추후 컨벤션이 필요 )
-        int playerLevel;
+
     }
 
     /// <summary>
     /// 적의 정보를 가져오는 메소드
     /// 각 스테이터스, 보유 스킬, 보유 주사위, 아이템과 같은 정보를 취득한다
     /// </summary>
-    void EnemyInfo();
+    void EnemyInfo()
+    {
+        // memo : 임시 데이터 ( 어떤 정보를 받아올 것인지 추후 컨벤션이 필요 )
+    }
 }
 
 /*
@@ -88,5 +91,15 @@ public class Battle : MonoBehaviour
     public void EndBattle()
     {
         
+    }
+
+
+    /// <summary>
+    /// 공격 턴을 전환하는 메소드
+    /// 기존에 턴 플래그를 가지고 있는 유닛의 턴 플래그를 해제하고, 턴 플래그가 없는 유닛의 턴 플래그를 설정한다
+    /// </summary>
+    public void ChangeTurn()
+    {
+
     }
 }
