@@ -1,36 +1,34 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
+
+using JetBrains.Annotations;
+
 
 public enum ColorName
 {
-    Red,
-    Green,
-    Blue,
-    Cyan
+    red,
+    green,
+    blue,
+    cyan
 }
 
     
 
-    public static class UIHelperTool//오류가 있음 
+  [UsedImplicitly]  
+    public static class UIHelperTool
     {
         public static string GetColor(ColorName colorName)
         {
-            string colorcode;
-
             switch (colorName)
             {
-                case ColorName.Red:
-                    return colorcode = "red";
-                case ColorName.Green:
-                    return colorcode = "#green";
-                case ColorName.Blue:
-                    return colorcode = "#blue";
-                case ColorName.Cyan:
-                    return colorcode = "#cyan";
+                case ColorName.red:
+                    return  ColorName.red.ToString();
+                case ColorName.green:
+                    return  ColorName.green.ToString();
+                case ColorName.blue:
+                    return  ColorName.blue.ToString();
+                case ColorName.cyan:
+                    return ColorName.cyan.ToString(); ;
                 default:
-                    return colorcode = "black";
+                    return  "black";
             }
         }
 
