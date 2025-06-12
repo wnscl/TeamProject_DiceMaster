@@ -18,7 +18,6 @@ public class PlayerController : MonoBehaviour
         {
             Vector2 input = context.ReadValue<Vector2>().normalized;
             transform.position += new Vector3(input.x, input.y, 0f) * stepDistance;
-            
         }
     }
 }
