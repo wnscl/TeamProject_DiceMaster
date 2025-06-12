@@ -4,7 +4,7 @@ using UnityEngine;
 
 
 
-public class MonsterFsm : MonoBehaviour
+public class MonsterFsm
 {
     private BaseState currentState;
     private BaseState nextState;
