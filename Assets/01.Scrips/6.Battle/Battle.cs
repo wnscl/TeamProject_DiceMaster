@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 /*
@@ -24,6 +25,13 @@ using UnityEngine;
 4-2. 전투 : 2, 3 의 내용 참조
 4-3. 결과 : 승리, 패배에 따른 결과를 처리한다. 스토리 이벤트를 진행하거나 분기의 전환, 아이템 획득 등의 처리를 실행한다.
  */
+
+public interface IBattleable
+{
+    bool IsDead { get; }
+    int CurrentHp { get; set; }
+}
+
 public class Battle : MonoBehaviour
 {
     private Monster enemy;
@@ -47,9 +55,11 @@ public class Battle : MonoBehaviour
     /// <summary>
     /// 배틀 시작 전, 조우 단계에서 배틀을 준비하는 메소드
     /// </summary>
-    public void StartBattle()
+    public void Encounter()
     {
-        
+        BattleManager.Instance.IsBattleActive = true;
+
+
     }
 
     /// <summary>
@@ -65,7 +75,9 @@ public class Battle : MonoBehaviour
     /// </summary>
     public void EndBattle()
     {
-        
+        BattleManager.Instance.IsBattleActive = false;
+
+
     }
 
     /// <summary>
@@ -77,14 +89,59 @@ public class Battle : MonoBehaviour
 
     }
 
+    /// <summary>
+    /// 각 유닛이 선택한 행동에 대한 사전 처리를 하는 메소드
+    /// </summary>
+    public void ProcessAction()
+    {
 
+    }
+
+    /// <summary>
+    /// 유닛의 행동을 실행하는 메소드
+    /// </summary>
+    public void ExcuteAction()
+    {
+
+    }
 
     /// <summary>
     /// 공격 턴을 전환하는 메소드
     /// 기존에 턴 플래그를 가지고 있는 유닛의 턴 플래그를 해제하고, 턴 플래그가 없는 유닛의 턴 플래그를 설정한다
     /// </summary>
-    public void ChangeTurn()
+    public void TurnShift()
     {
+        
+    }
 
+    /// <summary>
+    /// 배틀 결과를 확인하는 메소드
+    /// </summary>
+    /// <returns></returns>
+    private void CheckBattleEnd()
+    {
+        // to do : 플레이어와 적의 체력을 체크하고, 어느 쪽의 체력이 0 이하가 되었는지 체크
+        // 플레이어가 체력이 0이 되었을 경우, 게임 오버 처리 혹은 배틀 패배 처리
+        // 모든 적의 체력이 0이 되었을 경우, 배틀 승리 처리
+        // 플레이어와 적 중 체력이 남은 유닛이 있을 경우, 턴 전환
+
+        if (BattleManager.Instance.Player.IsDead)
+        {
+            // to do : 패배 처리, 혹은 게임 오버 처리
+            BattleResult = false;
+
+            EndBattle();
+        }
+        else if (BattleManager.Instance.Enemies.All(e => e.IsDead))
+        {
+            // to do : 승리 처리, 아이템 드랍, 경험치 획득 등
+            BattleResult = true;
+
+            EndBattle();
+        }
+        else
+        {
+            TurnShift();
+        }
     }
 }
