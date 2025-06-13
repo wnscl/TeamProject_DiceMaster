@@ -12,6 +12,7 @@ public class MonsterDataSo : ScriptableObject
     [SerializeField] private int    maxHp;
     [SerializeField] private int    def;
     [SerializeField] private int    dodge;
+    [SerializeField] private int    magicDef;
 
     [SerializeField] private GameObject[] _skillPrefabs;
 
@@ -19,6 +20,7 @@ public class MonsterDataSo : ScriptableObject
     public int MaxHp    =>  maxHp;
     public int Def      =>  def;
     public int Dodge    =>  dodge;
+    public int MagicDef =>  magicDef;
     public GameObject[] _SkillPrefabs => _skillPrefabs;
 
 

@@ -34,7 +34,7 @@ public interface IBattleable
 
 public class Battle : MonoBehaviour
 {
-    private Monster enemy;
+    //private Monster enemy;
     private bool BattleResult;
 
     private void Awake()
