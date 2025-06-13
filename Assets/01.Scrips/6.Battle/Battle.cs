@@ -41,7 +41,7 @@ public interface IBattleEntity
 
 public class Battle : MonoBehaviour
 {
-    private Monster enemy;
+    //private Monster enemy;
     private bool BattleResult;
 
     private List<IBattleEntity> battleEntities; // 전투에 참가하는 유닛 컬렉션
