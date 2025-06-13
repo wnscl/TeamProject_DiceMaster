@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEditor.Build.Content;
 using UnityEngine;
 
 /*
@@ -43,10 +44,12 @@ public class Battle : MonoBehaviour
     private Monster enemy;
     private bool BattleResult;
 
-    private List<IBattleEntity> battleEntities; // 배틀이 시작되면 배틀에 참여하는 Player, enemeies를 받아와서 컬렉션에 추가 -> 
+    private List<IBattleEntity> battleEntities; // 전투에 참가하는 유닛 컬렉션
 
     private GameObject player;
     private List<GameObject> enemies;
+
+    BattlePhase battlePhase;
 
     private void Awake()
     {
@@ -68,13 +71,13 @@ public class Battle : MonoBehaviour
     /// </summary>
     public void GetEmenies()
     {
-        // List<IBattleEntity> enemis = MonsterManager.Instance.enemies.GetRandomEnemies();
+        // List<IBattleEntity> enemis = MonsterManager.Instance.enemies.GetEncounterEnemies();
     }
 
     public void GetPlayer()
     {
-        // Player player = PlayerManager.Instance.player;
-        // battleEntities.Add(player);
+        // player = PlayerManager.Instance.GetPlayer(); // 플레이어를 가져오는 메소드
+        // player.GetComponent<IBattleEntity>().ActionOnTurn(BattlePhase.Ready); // 플레이어의 행동을 준비 단계로 설정
     }
 
     /// <summary>
@@ -83,8 +86,6 @@ public class Battle : MonoBehaviour
     public void Encounter()
     {
         BattleManager.Instance.IsBattleActive = true;
-
-
     }
 
     /// <summary>
@@ -101,8 +102,6 @@ public class Battle : MonoBehaviour
     public void EndBattle()
     {
         BattleManager.Instance.IsBattleActive = false;
-
-
     }
 
     /// <summary>
@@ -149,24 +148,43 @@ public class Battle : MonoBehaviour
         // 플레이어가 체력이 0이 되었을 경우, 게임 오버 처리 혹은 배틀 패배 처리
         // 모든 적의 체력이 0이 되었을 경우, 배틀 승리 처리
         // 플레이어와 적 중 체력이 남은 유닛이 있을 경우, 턴 전환
+    }
 
-        if (true)
+    /*
+     * 전투 중, 각 Entity는 해당 메소드를 반복 실행한다
+     * 배틀이 실행중일 때, battlePhase에 따라 행동을 결정한다
+     * 
+     * Ready : 각 엔티티의 행동 결정
+     * 
+     * Action : 타겟을 정해 행동 실행
+     * 
+     * Result : 버프 혹은 디버프 적용, 배틀 종료 여부 확인, 턴 전환
+     * 
+     */
+    private IEnumerator TurnReapter()
+    {
+        while (BattleManager.Instance.IsBattleActive)
         {
-            // to do : 패배 처리, 혹은 게임 오버 처리
-            BattleResult = false;
+            switch (battlePhase)
+            {
+                case BattlePhase.Ready:
+                    yield return new WaitUntil(() => BattleManager.Instance.IsBattleActive == true);
+                    // yield return new WaitUntil(() => isStageRunning);
 
-            EndBattle();
-        }
-        else if (false)
-        {
-            // to do : 승리 처리, 아이템 드랍, 경험치 획득 등
-            BattleResult = true;
+                    battlePhase = BattlePhase.Action;   // 페이즈를 전환한다
+                    break;
 
-            EndBattle();
+                case BattlePhase.Action:
+                    // yield return new WaitUntil(() => StageEnd());
+                    // yield return new WaitUntil(() => isStageRunning);
+                    break;
+
+                case BattlePhase.Result:
+                    // yield return new WaitUntil(() => StageEnd());
+                    // yield return new WaitUntil(() => isStageRunning);
+                    break;
+            }
         }
-        else
-        {
-            TurnShift();
-        }
+        yield break;
     }
 }
