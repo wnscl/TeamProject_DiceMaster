@@ -42,6 +42,19 @@ public class MonsterController : MonoBehaviour, IBattleEntity
         mobCor = StartCoroutine(ActionOnTurn(testTurn));
     }
 
+    public IEnumerator test()
+    {
+        yield return DecideAction();
+
+
+        Debug.Log("a");
+    }
+
+
+
+
+
+
     public IEnumerator ActionOnTurn(BattlePhase nowTurn)
     {
         yield return _fsm[nowTurn];
@@ -51,7 +64,7 @@ public class MonsterController : MonoBehaviour, IBattleEntity
 
     private IEnumerator DecideAction() //어떤 행동할지 결정
     {
-        
+        ConditionCollection.instance.GetCondition(monsterInfo.mobType);
         yield break;
     }
     private IEnumerator DoAction() //결정된 행동을 실행
@@ -76,6 +89,8 @@ public class MonsterController : MonoBehaviour, IBattleEntity
 
         monsterInfo.currentHp = 
             Mathf.Clamp(monsterInfo.currentHp - dmg, 0, monsterInfo.maxHp);
+
+        if (monsterInfo.currentHp < (monsterInfo.maxHp / 3)) monsterInfo.mobState = MonsterState.Angry;
 
     }
 
