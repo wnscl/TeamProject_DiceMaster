@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class DiceItemData : ItemData
 {
-   public List<int> diceValues = new List<int>();
-   public int startValue;
-   public int endValue;
+  
+   public int startValue;//주사위 시작값
+   public int endValue;//끝값
 
 }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,7 +6,8 @@ using UnityEngine;
 public class ItemManager : MonoBehaviour
 {
     public static ItemManager Instance;
-    Dictionary<string, IItem> items = new Dictionary<string, IItem>();
+    List<IItem> allItems = new List<IItem>();
+    private int nextID = 0;
 
     private void Awake()
     {
@@ -19,16 +21,41 @@ public class ItemManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
-    
-    public void CreateItem(string itemID, ItemData data)
+
+    public int GetNextID()
     {
-       
-        
-        
-        
-        
-        
-        
-        
+        return nextID++;
     }
+
+    /*public IItem CreateItem( ItemData data)
+    { 
+        
+        IItem item;
+        
+        switch (data)
+        {
+            case EquipMentItemData:
+
+                item = new EquipItemInstance( data,nextID);
+                allItems.Add(item);
+                break;
+
+            case ConsumableItemData:
+
+                break;
+
+            case DiceItemData:
+
+                break;
+
+            default:
+
+                Debug.LogWarning($"잘못 된 Data가 연결된 듯?{data.itemName},{data.itemCode},{data.name}");
+                break;
+        }
+        
+        
+        GetNextID();
+        return item;
+    }*/
 }

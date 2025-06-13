@@ -4,5 +4,6 @@ using UnityEngine;
 
 public class EquipMentItemData : ItemData
 {
-    
+    public bool isEquipped;
+    public float valueAmount;
 }

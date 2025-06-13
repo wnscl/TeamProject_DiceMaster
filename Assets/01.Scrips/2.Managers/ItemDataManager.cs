@@ -27,13 +27,13 @@ public class ItemDataManager : MonoBehaviour
     {
         foreach (ItemData data in ItemDataSO)
         {
-            if (!ItemDatas.ContainsKey((data.itemID)))
+            if (!ItemDatas.ContainsKey((data.itemCode)))
             {
-                ItemDatas.Add(data.itemID, data);
+                ItemDatas.Add(data.itemCode, data);
             }
             else
             {
-                Debug.LogError("중복 아이템 ID: " + data.itemID);
+                Debug.LogError("중복 아이템 ID: " + data.itemCode);
             }
         }
     }
