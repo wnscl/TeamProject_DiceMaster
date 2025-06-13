@@ -26,16 +26,27 @@ using UnityEngine;
 4-3. 결과 : 승리, 패배에 따른 결과를 처리한다. 스토리 이벤트를 진행하거나 분기의 전환, 아이템 획득 등의 처리를 실행한다.
  */
 
-public interface IBattleable
+public enum BattlePhase
 {
-    bool IsDead { get; }
-    int CurrentHp { get; set; }
+    Ready,
+    Action,
+    Result
+}
+
+public interface IBattleEntity
+{
+    IEnumerator ActionOnTurn(BattlePhase phase);
 }
 
 public class Battle : MonoBehaviour
 {
     private Monster enemy;
     private bool BattleResult;
+
+    private List<IBattleEntity> battleEntities; // 배틀이 시작되면 배틀에 참여하는 Player, enemeies를 받아와서 컬렉션에 추가 -> 
+
+    private GameObject player;
+    private List<GameObject> enemies;
 
     private void Awake()
     {
@@ -50,6 +61,20 @@ public class Battle : MonoBehaviour
     void Update()
     {
         
+    }
+
+    /// <summary>
+    /// 전투에 참여할 적 몬스터를 가져오는 메소드
+    /// </summary>
+    public void GetEmenies()
+    {
+        // List<IBattleEntity> enemis = MonsterManager.Instance.enemies.GetRandomEnemies();
+    }
+
+    public void GetPlayer()
+    {
+        // Player player = PlayerManager.Instance.player;
+        // battleEntities.Add(player);
     }
 
     /// <summary>
@@ -125,14 +150,14 @@ public class Battle : MonoBehaviour
         // 모든 적의 체력이 0이 되었을 경우, 배틀 승리 처리
         // 플레이어와 적 중 체력이 남은 유닛이 있을 경우, 턴 전환
 
-        if (BattleManager.Instance.Player.IsDead)
+        if (true)
         {
             // to do : 패배 처리, 혹은 게임 오버 처리
             BattleResult = false;
 
             EndBattle();
         }
-        else if (BattleManager.Instance.Enemies.All(e => e.IsDead))
+        else if (false)
         {
             // to do : 승리 처리, 아이템 드랍, 경험치 획득 등
             BattleResult = true;
