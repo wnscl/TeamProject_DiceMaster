@@ -6,10 +6,15 @@ using UnityEngine;
 public enum StatType
 {
     Hp,
+    MaxHp,
     PhysicalDefense,
     MagicalDefense,
     Evasion,
-    MoveSpeed
+    MoveSpeed,
+    Money,
+    Level,
+    Exp,
+    RequireExp,
 }
 //메뉴에 스탯 테이터 ScriptableObject로 생성
 [CreateAssetMenu(fileName = "New StatData", menuName = "Stats/Chracter Stats")]

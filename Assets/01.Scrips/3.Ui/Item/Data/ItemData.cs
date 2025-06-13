@@ -12,13 +12,15 @@ interface IItem
 }
 
 /// <summary>
-/// 아이템 초기생성 기본 필드 중 공통필드 들고 있는 아이템 데이터 부모 클래스 
+/// 아이템 초기생성 기본 필드 중 공통필드 들고 있는 아이템 SO데이터 부모 클래스 
 /// </summary>
 public abstract class ItemData : ScriptableObject
 {
    public string itemID; //ItemDataManager에 키값으로 들어갈 아이템 종류 분류할 ID
    public string itemName;
    public string description;
+   public int requiredLevel;
+   public string grade;
    public Sprite itemIcon;
    public GameObject itemPrefab; 
 }
