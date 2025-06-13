@@ -90,6 +90,8 @@ public class Battle : MonoBehaviour
         // 전투 관련 필드 값 전환
         BattleManager.Instance.IsBattleActive = true;
         battlePhase = BattlePhase.Ready;
+
+        StartCoroutine(Combat());
     }
 
     /// <summary>
