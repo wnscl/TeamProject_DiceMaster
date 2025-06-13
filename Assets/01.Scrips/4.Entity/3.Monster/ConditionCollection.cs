@@ -22,7 +22,7 @@ public class ConditionCollection : MonoBehaviour
     {
         instance = this;
 
-        conditionBox = new Dictionary<MonsterType, Func<MonsterInfo, int>>
+        conditionBox = new Dictionary<MonsterType, Func<MonsterInfo, PlayerInfo, int>>
         {
             {MonsterType.Attacker, ConditionOfAttacker },
             {MonsterType.Tanker, ConditionOfTanker },
@@ -34,9 +34,10 @@ public class ConditionCollection : MonoBehaviour
 
 
 
-    private Dictionary<MonsterType, Func<MonsterInfo,int>> conditionBox;
+    private Dictionary<MonsterType, Func<MonsterInfo, PlayerInfo, int>> conditionBox;
     //PlayerInfo
     [SerializeField] private MonsterInfo monsterInfo;
+    [SerializeField] private PlayerInfo playerInfo; 
 
     //[SerializeField] private Pl
 
@@ -46,29 +47,32 @@ public class ConditionCollection : MonoBehaviour
     }
     public int GetCondition(MonsterType type)
     {
-        return conditionBox[type].Invoke(monsterInfo);
+        return conditionBox[type].Invoke(monsterInfo, playerInfo);
     }
 
-    private int ConditionOfAttacker(MonsterInfo info)
+    private int ConditionOfAttacker(MonsterInfo mobInfo, PlayerInfo playerInfo)
     {
         //만약 플레이어의 체력이 낮다면
         //만약 플레이어가 어떠한 스킬을 사용을 한다면
         //만약 내 체력이 플레이어보다 많다면
+
+
+        
         return 0;
     }
-    private int ConditionOfTanker(MonsterInfo info)
+    private int ConditionOfTanker(MonsterInfo mobInfo, PlayerInfo playerInfo)
     {
         return 0;
     }
-    private int ConditionOfSupporter(MonsterInfo info)
+    private int ConditionOfSupporter(MonsterInfo mobInfo, PlayerInfo playerInfo)
     {
         return 0;
     }
-    private int ConditionOfBruiser(MonsterInfo info)
+    private int ConditionOfBruiser(MonsterInfo mobInfo, PlayerInfo playerInfo)
     {
         return 0;
     }
-    private int ConditionOfAllrounder(MonsterInfo info)
+    private int ConditionOfAllrounder(MonsterInfo mobInfo, PlayerInfo playerInfo)
     {
         return 0;
     }

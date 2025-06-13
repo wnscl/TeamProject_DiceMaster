@@ -37,6 +37,7 @@ public enum BattlePhase
 public interface IBattleEntity
 {
     IEnumerator ActionOnTurn(BattlePhase phase);
+    void GetDamage(int dmg);
 }
 
 public class Battle : MonoBehaviour
