@@ -6,18 +6,20 @@ using UnityEngine;
 //몬스터들이 가질 자신만의 정보들을 저장하는 클래스
 public class MonsterInfo : MonoBehaviour
 {
-    public BaseState[] states;
 
-    public Animator anim;
-    public MonsterDataSo data;
+    public Animator         anim;
+    public MonsterDataSo    data;
 
-    public string name;
+    public string           name;
 
-    public int maxHp;
-    public int currentHp;
+    public int              maxHp;
+    public int              currentHp;
 
-    public int def;
-    public int dodge;
+    public int              def;
+    public int              dodge;
+    public int              magicDef;
+
+    public int              actionNum; //어떤 스킬 사용할지 결정
 
     private void Awake()
     {
@@ -26,11 +28,7 @@ public class MonsterInfo : MonoBehaviour
         currentHp   =   maxHp;
         def         =   data.Def;
         dodge       =   data.Dodge;
-    }
-
-    public void InitAnim()
-    {
-
+        magicDef    =   data.MagicDef;
     }
 
 }

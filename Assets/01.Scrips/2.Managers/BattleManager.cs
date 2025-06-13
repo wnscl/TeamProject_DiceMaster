@@ -15,6 +15,13 @@ public class BattleManager : MonoBehaviour
         set { battle = value; }
     }
 
+    private bool isBattleActive = false;    // 배틀 진행 여부를 나타내는 플래그
+    public bool IsBattleActive
+    {
+        get { return isBattleActive; }
+        set { isBattleActive = value; }
+    }
+
     private void Awake()
     {
         if (_instance == null)

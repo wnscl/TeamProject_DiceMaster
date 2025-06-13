@@ -1,28 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using UnityEditor.Build.Content;
 using UnityEngine;
-
-/// <summary>
-/// 전투를 시행하는 플레이어와 적이 상속받는 인터페이스
-/// </summary>
-public interface IBattleable
-{
-    /// <summary>
-    /// 플레이어의 정보를 가져오는 메소드
-    /// 각 스테이터스, 보유 스킬, 보유 주사위, 아이템과 같은 정보를 취득한다
-    /// </summary>
-    void PlayerInfo()
-    {
-        // memo : 임시 데이터 ( 어떤 정보를 받아올 것인지 추후 컨벤션이 필요 )
-        int playerLevel;
-    }
-
-    /// <summary>
-    /// 적의 정보를 가져오는 메소드
-    /// 각 스테이터스, 보유 스킬, 보유 주사위, 아이템과 같은 정보를 취득한다
-    /// </summary>
-    void EnemyInfo();
-}
 
 /*
 1. 전투는 [ 조우 ], [ 전투 ], [ 결과 ] 의 3단계로 나뉘어진다.
@@ -46,10 +26,30 @@ public interface IBattleable
 4-2. 전투 : 2, 3 의 내용 참조
 4-3. 결과 : 승리, 패배에 따른 결과를 처리한다. 스토리 이벤트를 진행하거나 분기의 전환, 아이템 획득 등의 처리를 실행한다.
  */
+
+public enum BattlePhase
+{
+    Ready,
+    Action,
+    Result
+}
+
+public interface IBattleEntity
+{
+    IEnumerator ActionOnTurn(BattlePhase phase);
+}
+
 public class Battle : MonoBehaviour
 {
-    private Monster enemy;
+    //private Monster enemy;
     private bool BattleResult;
+
+    private List<IBattleEntity> battleEntities; // 전투에 참가하는 유닛 컬렉션
+
+    private GameObject player;
+    private List<GameObject> enemies;
+
+    BattlePhase battlePhase;
 
     private void Awake()
     {
@@ -67,11 +67,25 @@ public class Battle : MonoBehaviour
     }
 
     /// <summary>
+    /// 전투에 참여할 적 몬스터를 가져오는 메소드
+    /// </summary>
+    public void GetEmenies()
+    {
+        // List<IBattleEntity> enemis = MonsterManager.Instance.enemies.GetEncounterEnemies();
+    }
+
+    public void GetPlayer()
+    {
+        // player = PlayerManager.Instance.GetPlayer(); // 플레이어를 가져오는 메소드
+        // player.GetComponent<IBattleEntity>().ActionOnTurn(BattlePhase.Ready); // 플레이어의 행동을 준비 단계로 설정
+    }
+
+    /// <summary>
     /// 배틀 시작 전, 조우 단계에서 배틀을 준비하는 메소드
     /// </summary>
-    public void StartBattle()
+    public void Encounter()
     {
-        
+        BattleManager.Instance.IsBattleActive = true;
     }
 
     /// <summary>
@@ -87,6 +101,90 @@ public class Battle : MonoBehaviour
     /// </summary>
     public void EndBattle()
     {
+        BattleManager.Instance.IsBattleActive = false;
+    }
+
+    /// <summary>
+    /// 유닛의 행동을 설정하는 메소드
+    /// </summary>
+    /// <param name="unit"></param>
+    public void SetAction()
+    {
+
+    }
+
+    /// <summary>
+    /// 각 유닛이 선택한 행동에 대한 사전 처리를 하는 메소드
+    /// </summary>
+    public void ProcessAction()
+    {
+
+    }
+
+    /// <summary>
+    /// 유닛의 행동을 실행하는 메소드
+    /// </summary>
+    public void ExcuteAction()
+    {
+
+    }
+
+    /// <summary>
+    /// 공격 턴을 전환하는 메소드
+    /// 기존에 턴 플래그를 가지고 있는 유닛의 턴 플래그를 해제하고, 턴 플래그가 없는 유닛의 턴 플래그를 설정한다
+    /// </summary>
+    public void TurnShift()
+    {
         
+    }
+
+    /// <summary>
+    /// 배틀 결과를 확인하는 메소드
+    /// </summary>
+    /// <returns></returns>
+    private void CheckBattleEnd()
+    {
+        // to do : 플레이어와 적의 체력을 체크하고, 어느 쪽의 체력이 0 이하가 되었는지 체크
+        // 플레이어가 체력이 0이 되었을 경우, 게임 오버 처리 혹은 배틀 패배 처리
+        // 모든 적의 체력이 0이 되었을 경우, 배틀 승리 처리
+        // 플레이어와 적 중 체력이 남은 유닛이 있을 경우, 턴 전환
+    }
+
+    /*
+     * 전투 중, 각 Entity는 해당 메소드를 반복 실행한다
+     * 배틀이 실행중일 때, battlePhase에 따라 행동을 결정한다
+     * 
+     * Ready : 각 엔티티의 행동 결정
+     * 
+     * Action : 타겟을 정해 행동 실행
+     * 
+     * Result : 버프 혹은 디버프 적용, 배틀 종료 여부 확인, 턴 전환
+     * 
+     */
+    private IEnumerator TurnReapter()
+    {
+        while (BattleManager.Instance.IsBattleActive)
+        {
+            switch (battlePhase)
+            {
+                case BattlePhase.Ready:
+                    yield return new WaitUntil(() => BattleManager.Instance.IsBattleActive == true);
+                    // yield return new WaitUntil(() => isStageRunning);
+
+                    battlePhase = BattlePhase.Action;   // 페이즈를 전환한다
+                    break;
+
+                case BattlePhase.Action:
+                    // yield return new WaitUntil(() => StageEnd());
+                    // yield return new WaitUntil(() => isStageRunning);
+                    break;
+
+                case BattlePhase.Result:
+                    // yield return new WaitUntil(() => StageEnd());
+                    // yield return new WaitUntil(() => isStageRunning);
+                    break;
+            }
+        }
+        yield break;
     }
 }
