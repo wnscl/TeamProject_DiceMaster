@@ -39,7 +39,7 @@ public class UIManager : MonoBehaviour
     public Image systemMessageImage;
     public TextMeshProUGUI systemText;
     private Coroutine systemMessageRoutine;
-    [SerializeField] private float systemMessageDelay;
+    
 
     private void Start()
     {
@@ -78,7 +78,7 @@ public class UIManager : MonoBehaviour
         return $"<color={GetColor(colorName)}>{text}</color>";
     }
 
-    public void SystemMessage(string text)
+    public void SystemMessage(string text,float delay)
     {
         if (string.IsNullOrWhiteSpace(text))
             return;
@@ -88,15 +88,15 @@ public class UIManager : MonoBehaviour
             StopCoroutine(systemMessageRoutine);
         }
 
-        systemMessageRoutine = StartCoroutine(SystemText(text));
+        systemMessageRoutine = StartCoroutine(SystemText(text,delay));
     }
 
-    private IEnumerator SystemText(string text)
+    private IEnumerator SystemText(string text, float delay = 1)
     {
         systemText.text = text;
         systemMessageImage.gameObject.SetActive(true);
 
-        yield return new WaitForSeconds(systemMessageDelay);
+        yield return new WaitForSeconds(delay);
 
         systemMessageImage.gameObject.SetActive(false);
         systemText.text = string.Empty;
