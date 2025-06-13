@@ -7,7 +7,7 @@ using UnityEngine;
 interface IItem
 { 
    ItemData data { get; }
-   int ID{get;}// 각 아이템이 종류 상관없이 생성 순서에 따라 ++하여 가져갈  고유ID값
+   int ID{get;  }// 각 아이템이 종류 상관없이 생성 순서에 따라 ++하여 가져갈  고유ID값
     
 }
 

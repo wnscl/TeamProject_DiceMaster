@@ -38,15 +38,5 @@ public class ItemDataManager : MonoBehaviour
         }
     }
 
-    public void CreateItem(string itemID, string itemName)
-    {
-       
-        
-        
-        
-        
-        
-        
-        
-    }
+    
 }

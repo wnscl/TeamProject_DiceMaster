@@ -4,21 +4,31 @@ using UnityEngine;
 
 public class ItemManager : MonoBehaviour
 {
-    private static ItemManager Instance;
+    public static ItemManager Instance;
     Dictionary<string, IItem> items = new Dictionary<string, IItem>();
 
     private void Awake()
     {
         if (Instance == null)
         {
-            Instance = this; 
+            Instance = this;
             DontDestroyOnLoad(gameObject);
         }
         else
         {
             Destroy(gameObject);
         }
-
+    }
+    
+    public void CreateItem(string itemID, ItemData data)
+    {
        
+        
+        
+        
+        
+        
+        
+        
     }
 }
