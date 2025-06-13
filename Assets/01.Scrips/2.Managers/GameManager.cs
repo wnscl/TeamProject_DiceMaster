@@ -7,7 +7,7 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
 
 
-    public IBattleEntity player;
+    public Player player;
     public IBattleEntity monster;
 
     private void Awake()

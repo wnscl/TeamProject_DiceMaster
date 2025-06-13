@@ -6,8 +6,16 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-  
+ public  StatHandler statHandler;
+public PlayerInfo playerInfo;
 
- //전역적으로 플레이어를 생성하거나 호출 할 수 있도록 초기화된 객체를 반환하는 메서드 
+  private void Awake()
+  {
+   statHandler = GetComponent<StatHandler>();
+   playerInfo = GetComponent<PlayerInfo>();
+  }
 
+
+ 
+ 
 }

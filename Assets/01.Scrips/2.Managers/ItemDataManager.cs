@@ -5,6 +5,7 @@ using UnityEngine;
 public class ItemDataManager : MonoBehaviour
 {
     public static ItemDataManager Instance { get; private set; }
+   
     public List<ItemData> ItemDataSO = new List<ItemData>();
     public Dictionary<string, ItemData> ItemDatas = new Dictionary<string, ItemData>();
 
