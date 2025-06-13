@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using NaughtyAttributes;
 using UnityEngine;
 
 /*
@@ -26,19 +27,6 @@ using UnityEngine;
 4-3. 결과 : 승리, 패배에 따른 결과를 처리한다. 스토리 이벤트를 진행하거나 분기의 전환, 아이템 획득 등의 처리를 실행한다.
  */
 
-public enum BattlePhase
-{
-    Ready,
-    Action,
-    Result
-}
-
-public interface IBattleEntity
-{
-    IEnumerator ActionOnTurn(BattlePhase phase);
-
-    void GetDamage(int dmg);
-}
 
 public class Battle : MonoBehaviour
 {
@@ -46,13 +34,19 @@ public class Battle : MonoBehaviour
     private bool BattleResult;
     private List<IBattleEntity> battleEntities; // 전투에 참가하는 유닛 컬렉션
     public IBattleEntity nowTurnEntity;
+
+
+    public IBattleEntity player;
+    public IBattleEntity monster; //테스트를 위한 몬스터와 플레이어 참조 필드
+
+
     private BattlePhase battlePhase;
     private int turnCount; // 현재 턴 수
 
-    private void Awake()
-    {
-        BattleManager.Instance.Battle = this;
-    }
+    //private void Awake()
+    //{
+    //    BattleManager.Instance.Battle = this;
+    //}
 
     void Start()
     {
@@ -85,6 +79,7 @@ public class Battle : MonoBehaviour
     /// <summary>
     /// 배틀 시작 전, 조우 단계에서 배틀을 준비하는 메소드
     /// </summary>
+    [Button]
     public void Encounter()
     {
         // 전투 관련 필드 값 전환
@@ -119,6 +114,8 @@ public class Battle : MonoBehaviour
                     // 설정한 행동 실행
                     foreach (IBattleEntity entity in battleEntities)
                     {
+                        nowTurnEntity = entity; // 현재 턴을 가진 유닛 설정
+
                         yield return entity.ActionOnTurn(battlePhase);
                     }
 

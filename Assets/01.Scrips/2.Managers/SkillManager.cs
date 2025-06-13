@@ -4,15 +4,28 @@ using UnityEngine;
 
 public class SkillManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public static SkillManager instance;
+
+    private void Awake()
     {
-        
+        instance = this;    
     }
 
-    // Update is called once per frame
-    void Update()
+
+
+
+
+
+
+    public int[] RollDice()
     {
-        
+        int[] dice = new int[3];
+
+        for (int i = 0; i < 3; i++)
+        {
+            dice[i] = UnityEngine.Random.Range(1, 7);    
+        }
+
+        return dice;
     }
 }
