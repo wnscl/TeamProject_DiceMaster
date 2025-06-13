@@ -14,7 +14,6 @@ public enum ColorName
     cyan
 }
 
-
 public class UIManager : MonoBehaviour
 {
     public static UIManager Instance;
@@ -39,7 +38,8 @@ public class UIManager : MonoBehaviour
     public Image systemMessageImage;
     public TextMeshProUGUI systemText;
     private Coroutine systemMessageRoutine;
-    
+    [SerializeField] private string dialogCall;
+
 
     private void Start()
     {
@@ -78,7 +78,7 @@ public class UIManager : MonoBehaviour
         return $"<color={GetColor(colorName)}>{text}</color>";
     }
 
-    public void SystemMessage(string text,float delay)
+    public void SystemMessage(string text, float delay = 1, bool isDialog=false)
     {
         if (string.IsNullOrWhiteSpace(text))
             return;
@@ -88,17 +88,26 @@ public class UIManager : MonoBehaviour
             StopCoroutine(systemMessageRoutine);
         }
 
-        systemMessageRoutine = StartCoroutine(SystemText(text,delay));
+        systemMessageRoutine = StartCoroutine(SystemText(text, delay, isDialog));
     }
 
-    private IEnumerator SystemText(string text, float delay = 1)
+    private IEnumerator
+        SystemText(string text, float delay = 1, bool isDialog = false) //대화용으로 쓰고 싶으면 "대화" 스트링 입력 이것은 의견에 따라 바꾸면 됩니다이 
     {
         systemText.text = text;
         systemMessageImage.gameObject.SetActive(true);
 
-        yield return new WaitForSeconds(delay);
+        if (!isDialog )
+        {
+            yield return new WaitForSeconds(delay);
+        }
+        else if (isDialog)
+        {
+            yield return new WaitUntil(() => Input.anyKeyDown);
+        }
 
         systemMessageImage.gameObject.SetActive(false);
+
         systemText.text = string.Empty;
 
         systemMessageRoutine = null;
