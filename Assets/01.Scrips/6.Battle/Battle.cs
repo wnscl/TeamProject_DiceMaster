@@ -2,31 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-/// <summary>
-/// 전투를 시행하는 플레이어와 적이 상속받는 인터페이스
-/// </summary>
-public interface IBattleable
-{
-    /// <summary>
-    /// 플레이어의 정보를 가져오는 메소드
-    /// 각 스테이터스, 보유 스킬, 보유 주사위, 아이템과 같은 정보를 취득한다
-    /// </summary>
-    void PlayerInfo()
-    {
-        // memo : 임시 데이터 ( 어떤 정보를 받아올 것인지 추후 컨벤션이 필요 )
-
-    }
-
-    /// <summary>
-    /// 적의 정보를 가져오는 메소드
-    /// 각 스테이터스, 보유 스킬, 보유 주사위, 아이템과 같은 정보를 취득한다
-    /// </summary>
-    void EnemyInfo()
-    {
-        // memo : 임시 데이터 ( 어떤 정보를 받아올 것인지 추후 컨벤션이 필요 )
-    }
-}
-
 /*
 1. 전투는 [ 조우 ], [ 전투 ], [ 결과 ] 의 3단계로 나뉘어진다.
 1-1. 전투 중의 이벤트를 상정, BattleEvent는 조우, 전투, 결과 어느 곳이던 나타날 수 있다
@@ -92,6 +67,16 @@ public class Battle : MonoBehaviour
     {
         
     }
+
+    /// <summary>
+    /// 유닛의 행동을 설정하는 메소드
+    /// </summary>
+    /// <param name="unit"></param>
+    public void SetAction()
+    {
+
+    }
+
 
 
     /// <summary>
