@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6834b9c56360b56408d1977fb0df99c9, type: 3}
   m_Name: BattlePlayer
   m_EditorClassIdentifier: 
-  name: 
-  maxHp: 0
-  def: 0
-  dodge: 0
-  magicDef: 0
+  name: Player
+  maxHp: 100
+  def: 5
+  dodge: 15
+  magicDef: 10
   mobType: 0
   _skillPrefabs: []

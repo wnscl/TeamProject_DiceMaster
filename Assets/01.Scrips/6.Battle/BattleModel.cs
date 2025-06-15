@@ -27,6 +27,7 @@ public class BattleModel : MonoBehaviour
 
     public IBattleEntity nowTurnEntity;
     public IBattleEntity player;
+    public IBattleEntity enemy;
 
     public BattlePhase battlePhase;
     public int turnCount; // 현재 턴 수
@@ -40,4 +41,5 @@ public class BattleModel : MonoBehaviour
 
         Debug.Log($"{info.name}");
     }
+
 }

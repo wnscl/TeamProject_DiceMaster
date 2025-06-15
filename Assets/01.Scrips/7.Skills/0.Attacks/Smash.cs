@@ -1,62 +1,75 @@
 using System.Collections;
 using System.Collections.Generic;
+using NaughtyAttributes;
 using UnityEngine;
 
 public class Smash : MonoBehaviour
 {
-    [SerializeField] private IBattleEntity requester;
+    [SerializeField] private SkillManager skillManager;
 
-    [SerializeField] private IBattleEntity target;
+    [SerializeField] private GameObject Effect;
+
+    IBattleEntity[] entitys;
 
     [SerializeField] private int[] diceNumber = new int[3];
 
-    //private void Awake()
-    //{
-    //    requester = BattleManager.Instance.Battle.nowTurnEntity;
-    //    diceNumber = SkillManager.instance.RollDice(); 
-    //}
-    //private void Start()
-    //{
-    //    //UseSkill();
-    //}
+    [SerializeField] float moveDuration;
 
-    //private void UseSkill()
-    //{
-    //    GameObject[] entitiys = GetTarget();
-    //    StartCoroutine(OnUseSkill(entitiys));
+    private void Awake()
+    {
+        //entitys = skillManager.SelectEntitys();
+        entitys = new IBattleEntity[2];
 
-    //}
-    //private GameObject[] GetTarget()
-    //{
-    //    GameObject requesterObj = requester.GetEntity();
+        entitys[0] = skillManager.TestMonster.GetComponent<IBattleEntity>();    
+        entitys[1] = skillManager.TestPlayer.GetComponent<IBattleEntity>();
 
-    //    if (requesterObj.CompareTag("Player")) target = BattleManager.Instance.Battle.monster;
-    //    else target = BattleManager.Instance.Battle.player;
+        Effect.SetActive(false);
+    }
 
-    //    GameObject[] entitys = new GameObject[] {requesterObj, target.GetEntity()};
+    [Button]
+    private void UseSkill()
+    {
+        diceNumber = skillManager.RollDice();
+        StartCoroutine(OnSkill());
+    }
+    private int MakeDamage(EntityInfo info)
+    {
+        int damage = 0;
+        int bounes = 1;
 
-    //    return entitys;
+        if (diceNumber[1] > 3) bounes = 2;
 
-    //}
+        if ((diceNumber[2] * 6) > info.dodge) bounes = 3;
 
-    //private IEnumerator OnUseSkill(GameObject[] entitys)
-    //{
-    //    yield return OnMoveTarget(entitys);
+        return damage = (diceNumber[0] * bounes);
+    }
+    private IEnumerator OnSkill()
+    {
+        EntityInfo info = entitys[0].GetEntityInfo();
+        Animator anim = info.anim;
+        anim.SetBool("isAction",true);
+        anim.SetTrigger("Move");
 
+        yield return skillManager.MoveToTarget(entitys, moveDuration);
 
-    //    yield break;
-    //}
+        anim.SetTrigger("Attack");
+        Effect.transform.position = entitys[1].GetEntityInfo().gameObject.transform.position;
 
-    //private IEnumerator OnMoveTarget(GameObject[] entitys)
-    //{
+        yield return new WaitForSeconds(0.6f);
+        Effect.SetActive(true);
+        entitys[1].GetDamage(MakeDamage(entitys[1].GetEntityInfo()));
+        yield return new WaitForSeconds(0.4f);
         
-    //    Vector3 direction = entitys[1].GetDirection(entitys[0]);
+        anim.SetBool("isAction", false);
+        skillManager.BackToPosition(entitys[0]);
+        Effect.SetActive(false);
 
+        yield break;
+    }
+    private void InitSkill()
+    {
 
-
-    //    yield break;
-    //}
-
+    }
 
 
 }
