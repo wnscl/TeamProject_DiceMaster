@@ -1,0 +1,48 @@
+{
+    "Normal": {
+        "Conversation": [
+            {
+                "Type": "Conversation",
+                "Message": "안녕하세요! 좋은 아침이네요"
+            },
+            {
+                "Type": "Conversation",
+                "Message": "슬슬 더워지네요.."
+            },
+            {
+                "Type": "Farewell",
+                "Message": "또 봐요."
+            }
+        ]
+    },
+    "Special": {
+        "Quest" : {
+            "TestQuest": [
+                {
+                    "Type": "Conversation",
+                    "Message": "테스트 퀘스트를 부탁드리고 싶어요."
+                },
+                {
+                    "Type": "Conversation",
+                    "Message": "이건 아주 어려운 퀘스트일지도 몰라요."
+                },
+                {
+                    "Type": "AskQuest",
+                    "Message": "부탁드려도 될까요?"
+                },
+                {
+                    "Type": "AcceptQuest",
+                    "Message": "잘 부탁드릴게요."
+                },
+                {
+                    "Type": "CompleteQuest",
+                    "Message": "퀘스트를 완료해주셨군요! 정말 감사해요."
+                }
+                {
+                    "Type": "IncompleteQuest",
+                    "Message": "급한일은 아니니까 천천히 해주세요."
+                }
+            ]
+        }
+    }
+}
