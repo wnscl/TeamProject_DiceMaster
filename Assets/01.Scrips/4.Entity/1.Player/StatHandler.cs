@@ -1,16 +1,19 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Security.Cryptography;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class StatHandler : MonoBehaviour,IBattleEntity
 {
     public StatData statData;
     private Dictionary<StatType, float> currentStats = new Dictionary<StatType, float>();
-
+    public Dictionary<StatType, float>  serializeStats = new Dictionary<StatType, float>();// 세이브용 스탯 저장할 딕셔너리
     private void Awake()
     {
         InitializeStats();
+        
     }
 
     private void InitializeStats()
@@ -50,6 +53,16 @@ public class StatHandler : MonoBehaviour,IBattleEntity
         if (!currentStats.ContainsKey(statType)) return;
 
         currentStats[statType] = setvalue;
+    }
+    
+    public Dictionary<string, float> ToStatDict()
+    {
+        var dict = new Dictionary<string, float>();
+        foreach (StatType stat in Enum.GetValues(typeof(StatType)))
+        {
+            dict[stat.ToString()] = GetStat(stat);
+        }
+        return dict;
     }
 /*============================================================================================*/
 

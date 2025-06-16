@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class EquipItemInstance : IItem
 {
-    public ItemData data { get; private set; }
+    public ItemData itemData { get; private set; }
     public int ID { get; private set; }
 
     public EquipItemInstance(ItemData data,int id)
     {
-        this.data = data;
+        this.itemData = data;
         this.ID = id;
     }
 }

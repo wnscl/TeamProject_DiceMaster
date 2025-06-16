@@ -6,7 +6,7 @@ using UnityEngine;
 /// </summary>
 public interface IItem
 { 
-   ItemData data { get; }
+   ItemData itemData { get; }
    int ID{get;  }// 각 아이템이 종류 상관없이 생성 순서에 따라 ++하여 가져갈  고유ID값
     
 }
@@ -18,7 +18,6 @@ public interface IItem
 public abstract class ItemData : ScriptableObject
 {
    public string itemCode; //ItemDataManager에 키값으로 들어갈 아이템 종류 분류할 ID
-  
    public string itemName;
    public string description;
    public int requiredLevel;

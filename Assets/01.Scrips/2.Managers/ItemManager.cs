@@ -34,7 +34,7 @@ public class ItemManager : MonoBehaviour
 // 종류가 많아지면 수정 힘들어짐
 //제네릭을 이용하면 좋음
 
-        if (data is EquipMentItemData ED)
+        if (data is EquipmentItemData ED)
         {
             item = new EquipItemInstance(ED, nextID);
         }
@@ -52,7 +52,7 @@ public class ItemManager : MonoBehaviour
             return null;
         }
 
-        Debug.Log($"아이템 : {item.data.itemCode} 아이템 코드 {item.data.itemName}생성");
+        Debug.Log($"아이템 : {item.itemData.itemCode} 아이템 코드 {item.itemData.itemName}생성");
         allItems.Add(item);
         GetNextID();
         return item;
