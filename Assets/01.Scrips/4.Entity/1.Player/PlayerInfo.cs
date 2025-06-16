@@ -52,14 +52,14 @@ public class PlayerInfo : EntityInfo
 [Button]
     public void TestMinusHP()//테스트용 매서드
     {
-       Gm.GetDamage(5);
+     
         UIManager.Instance.battleWindow.SetHPBar();
         
     }
 [Button]
     public void TestPlusHP()
     {
-        Gm.GetDamage(-5);
+        
         UIManager.Instance.battleWindow.SetHPBar();
     }
 

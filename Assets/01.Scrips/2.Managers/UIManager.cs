@@ -121,16 +121,16 @@ public class UIManager : MonoBehaviour
 
     public void OnSettingWindow()
     {
-        if (this.gameObject.activeInHierarchy)
+        if (playerSettingWindow.activeInHierarchy)
         {
-            playerSettingWindow.gameObject.SetActive(false);
+            playerSettingWindow.SetActive(false);
         
 
           
         }
-        else if (!this.gameObject.activeInHierarchy)
+        else 
         {
-            playerSettingWindow.gameObject.SetActive(true);
+            playerSettingWindow.SetActive(true);
 
        
         }
