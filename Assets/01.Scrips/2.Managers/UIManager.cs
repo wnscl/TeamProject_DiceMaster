@@ -32,7 +32,9 @@ public class UIManager : MonoBehaviour
     }
 
     public Inventory inventory;
-
+    public StatusPanel statusPanel;
+    public SkillInfo skillInfo;
+    public ItemInfo itemInfo;
 
     //시스템 메세지용 필드
     public Image systemMessageImage;
@@ -43,6 +45,10 @@ public class UIManager : MonoBehaviour
 
     private void Start()
     {
+        inventory = GetComponentInChildren<Inventory>();
+        itemInfo = GetComponentInChildren<ItemInfo>();
+        skillInfo = GetComponentInChildren<SkillInfo>();
+        statusPanel = GetComponentInChildren<StatusPanel>();
     }
 
 
@@ -78,7 +84,7 @@ public class UIManager : MonoBehaviour
         return $"<color={GetColor(colorName)}>{text}</color>";
     }
 
-    public void SystemMessage(string text, float delay = 1, bool isDialog=false)
+    public void SystemMessage(string text, float delay = 1, bool isDialog = false)
     {
         if (string.IsNullOrWhiteSpace(text))
             return;
@@ -97,7 +103,7 @@ public class UIManager : MonoBehaviour
         systemText.text = text;
         systemMessageImage.gameObject.SetActive(true);
 
-        if (!isDialog )
+        if (!isDialog)
         {
             yield return new WaitForSeconds(delay);
         }

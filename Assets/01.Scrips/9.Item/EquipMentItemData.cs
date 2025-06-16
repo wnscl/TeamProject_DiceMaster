@@ -1,8 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public class EquipMentItemData : ItemData
+[CreateAssetMenu(fileName = "EquipmentItemData", menuName = "ItemData/EquipmentItem")]
+public class EquipmentItemData : ItemData
 {
     public bool isEquipped;
     public float valueAmount;
