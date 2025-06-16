@@ -480,8 +480,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1413337721}
-  - component: {fileID: 1413337720}
-  - component: {fileID: 1413337719}
+  - component: {fileID: 1413337723}
+  - component: {fileID: 1413337722}
   m_Layer: 0
   m_Name: AudioManager
   m_TagString: Untagged
@@ -489,7 +489,27 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1413337719
+--- !u!4 &1413337721
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1413337717}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1847672284}
+  - {fileID: 626111988}
+  - {fileID: 1279145831}
+  - {fileID: 1898060808}
+  - {fileID: 2095806627}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1413337722
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -498,24 +518,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1413337717}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: af95d2ba1d4cb124181c509d416ad372, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  audioSource: {fileID: 2095806626}
-  battleAudioSource: {fileID: 1279145830}
-  reactAudioSource: {fileID: 1898060807}
-  backgroundAudioSource1: {fileID: 1847672283}
-  backgroundAudioSource2: {fileID: 626111987}
---- !u!114 &1413337720
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1413337717}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 288985ed10ae4e84ab012ec00ace273e, type: 3}
+  m_Script: {fileID: 11500000, guid: 0e6ec5b5d7dbac543833a1ca950044d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   MagicSFXClips:
@@ -537,7 +540,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 566d2ea6240b489479a6e9fd608c2621, type: 3}
   UISFXClips:
   - {fileID: 8300000, guid: c5cb2ac29e89dbf43a9b644caaad45e6, type: 3}
-  - {fileID: 8300000, guid: 1ed8fb76fc64e4e46847348138782234, type: 3}
+  - {fileID: 8300000, guid: 7cc057bed53baf34799f52aab3c84800, type: 3}
   - {fileID: 8300000, guid: ba39bf8baf6d13046889b2d64822381a, type: 3}
   - {fileID: 8300000, guid: 490bfbc72255342408984f60044487de, type: 3}
   - {fileID: 8300000, guid: 78ad99fd0a0a5144280b07bbdba84815, type: 3}
@@ -551,30 +554,27 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 59aa635d34d7ec54a9452e0b56e1aa12, type: 3}
   - {fileID: 8300000, guid: 06a54ed11635ae24bbd17a4937edfbfe, type: 3}
   Stage2Audio:
-  - {fileID: 8300000, guid: feb4677bed7c73b4ea14f77569dab333, type: 3}
   - {fileID: 8300000, guid: f3ee1a1312fec124788ae7ac752587cb, type: 3}
-  - {fileID: 8300000, guid: add707478eb946f42ad27fe9499c2ca1, type: 3}
+  - {fileID: 8300000, guid: cd1035904226cd04097e9f035812aba5, type: 3}
+  - {fileID: 8300000, guid: feb4677bed7c73b4ea14f77569dab333, type: 3}
   - {fileID: 8300000, guid: e17eb874ef32c1945b7aa165164a8b7e, type: 3}
---- !u!4 &1413337721
-Transform:
+--- !u!114 &1413337723
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1413337717}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1847672284}
-  - {fileID: 626111988}
-  - {fileID: 1279145831}
-  - {fileID: 1898060808}
-  - {fileID: 2095806627}
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ea046ac9d168274eba722dbad814b86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioSource: {fileID: 2095806626}
+  battleAudioSource: {fileID: 1279145830}
+  reactAudioSource: {fileID: 1898060807}
+  backgroundAudioSource1: {fileID: 1847672283}
+  backgroundAudioSource2: {fileID: 626111987}
 --- !u!1 &1847672282
 GameObject:
   m_ObjectHideFlags: 0
