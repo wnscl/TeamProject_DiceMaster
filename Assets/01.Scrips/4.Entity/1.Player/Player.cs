@@ -51,7 +51,7 @@ public PlayerInfo playerInfo;
 
   public EntityInfo GetEntityInfo()
   {
-      throw new NotImplementedException();
+      return playerInfo;
   }
 
  
