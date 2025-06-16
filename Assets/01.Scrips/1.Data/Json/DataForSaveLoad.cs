@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class DataForSaveLoad : MonoBehaviour
 {
-    [SerializeField] Dictionary<StatType, float> playerStats;
+    [SerializeField] Dictionary<StatType, int> playerStats;
 
     public DataForSaveLoad GetSaveData()
     {
@@ -15,7 +15,7 @@ public class DataForSaveLoad : MonoBehaviour
 
     public void GetLoadData(string jsonString)
     {
-        //GameManager.Instance.player.statHandler.serializeStats = JsonConvert.DeserializeObject<Dictionary<StatType,float>>(jsonString); ////방법 2
+        //GameManager.Instance.player.statHandler.serializeStats = JsonConvert.DeserializeObject<Dictionary<StatType,int>>(jsonString); ////방법 2
 
         JObject root = JObject.Parse(jsonString); //방법 1
 
@@ -31,7 +31,7 @@ public class DataForSaveLoad : MonoBehaviour
         foreach(JProperty jj in Data)
         {
             StatType statType = (StatType)i;
-            GameManager.Instance.player.statHandler.serializeStats[statType] = (float)jj.Value;
+            GameManager.Instance.player.statHandler.serializeStats[statType] = (int)jj.Value;
             i++;
         }
 

@@ -57,9 +57,9 @@ public class StatHandler : MonoBehaviour,IBattleEntity
         currentStats[statType] = setvalue;
     }
     
-    public Dictionary<StatType, float> ToStatDict()
+    public Dictionary<StatType, int> ToStatDict()
     {
-        var dict = new Dictionary<StatType, float>();
+        var dict = new Dictionary<StatType, int>();
         foreach (StatType stat in Enum.GetValues(typeof(StatType)))
         {
             dict[stat] = GetStat(stat);
@@ -69,7 +69,7 @@ public class StatHandler : MonoBehaviour,IBattleEntity
 
     public void LoadStatsToCurrent()
     {
-        foreach(KeyValuePair<StatType, float> items in serializeStats)
+        foreach(KeyValuePair<StatType, int> items in serializeStats)
         {
             currentStats[items.Key] = items.Value;
         }
