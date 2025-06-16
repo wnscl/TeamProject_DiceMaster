@@ -9,7 +9,6 @@ public class ItemSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     public IItem item;
 
-    
 
     public Image icon;
     public Image selectMask;
@@ -29,18 +28,31 @@ public class ItemSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
             return;
         }
 
-        if (UIManager.Instance.itemInfo.gameObject.activeInHierarchy && UIManager.Instance.itemInfo.itemSlot.item.ID != item.ID)
+        if (UIManager.Instance.itemInfo.gameObject.activeInHierarchy &&
+            UIManager.Instance.itemInfo.itemSlot.item.ID != item.ID)
         {
             Debug.Log("다른 슬롯 클릭 정보 갱신");
-            UIManager.Instance. itemInfo.itemSlot = this;
+            UIManager.Instance.itemInfo.itemSlot = this;
             UIManager.Instance.itemInfo.InitSetInfo();
-            return;
+            
+            
         }
-
-        UIManager.Instance. itemInfo.itemSlot = this;
-        UIManager.Instance. itemInfo.InfoWIndowOnAndOff();
+        
+        UIManager.Instance.itemInfo.itemSlot = this;
         Debug.Log("여기로 나오니?");
+        UIManager.Instance.itemInfo.InfoWIndowOnAndOff();
+        return;
+        
+          
+       
     }
+    //이놈이 문제임
+    /*private static void ExecuteTasks()
+    {
+        if (!(SynchronizationContext.Current is UnitySynchronizationContext current))
+            return;
+        current.Exec();
+    }*/
 
     public void SetSlot(IItem item)
     {
@@ -95,6 +107,15 @@ public class ItemSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
                 return;
             }
         }
+        if (item.itemData is DiceItemData DI)
+        {
+            if (DI.isEquipped)
+            {
+                Debug.Log("아이템 장착을 해제하쇼");
+                UIManager.Instance.SystemMessage("먼저 아이템 장착을 해제하세요");
+                return;
+            }
+        }
 
         UIManager.Instance.itemInfo.InfoWIndowOnAndOff();
         ResetSlot();
@@ -120,11 +141,5 @@ public class ItemSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     public void OnPointerExit(PointerEventData eventData)
     {
         selectMask.gameObject.SetActive(false);
-    }
-
-    public void OnPointerClick(PointerEventData eventData)
-    {
-        Debug.Log("아이템 슬롯 눌렸음");
-        OnClickInfo();
     }
 }

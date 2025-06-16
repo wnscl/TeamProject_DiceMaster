@@ -125,7 +125,13 @@ public class UIManager : MonoBehaviour
         if (playerSettingWindow.activeInHierarchy)
         {
             playerSettingWindow.SetActive(false);
-        
+            
+            
+        inventory.gameObject.SetActive(true);
+        statusPanel.gameObject.SetActive(false);
+        skillPanel.gameObject.SetActive(false);
+        itemInfo.gameObject.SetActive(false);
+        itemInfo.ResetInfo();
 
           
         }

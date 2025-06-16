@@ -57,7 +57,10 @@ public class Inventory : MonoBehaviour
   public void RemoveItem()
   {
     FindOpenSlot();
-
+    var itemComponent = slot.GetComponent<ItemSlot>();
+    items.Remove(itemComponent.item);    
+    ItemManager.Instance.allItems.Remove(itemComponent.item);
+    
     slot.GetComponent<ItemSlot>().ONDestroySlot();
 
     SetDefaultSlotCount();

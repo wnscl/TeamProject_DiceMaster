@@ -6,7 +6,7 @@ using UnityEngine;
 public class ItemManager : MonoBehaviour
 {
     public static ItemManager Instance;
-    List<IItem> allItems = new List<IItem>();
+   public List<IItem> allItems = new List<IItem>();
     private int nextID = 0;
 
     private void Awake()
@@ -61,6 +61,7 @@ public class ItemManager : MonoBehaviour
         return item;
     }
 
+  
 
     /*void AddItem(IItem item)
     {

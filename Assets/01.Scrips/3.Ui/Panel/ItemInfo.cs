@@ -22,10 +22,10 @@ public class ItemInfo : MonoBehaviour
     public Image equipMark;
 
     public void InfoWIndowOnAndOff()
-    {  
-        
+    {
         if (this.gameObject.activeInHierarchy)
         {
+            Debug.Log("끈다");
             this.gameObject.SetActive(false);
             ResetInfo();
 
@@ -33,26 +33,23 @@ public class ItemInfo : MonoBehaviour
         }
         else if (!this.gameObject.activeInHierarchy)
         {
-            
-              InitSetInfo();
-              this.gameObject.SetActive(true);
-
-          
+            InitSetInfo();
+            this.gameObject.SetActive(true);
         }
     }
 
 
-
-
     public void ResetInfo()
-    {Debug.Log("슬롯 리셋");
+    {
+        Debug.Log("슬롯 리셋");
         itemIcon.sprite = null;
         itemName.text = string.Empty;
         itemDescription.text = string.Empty;
     }
 
-   public void InitSetInfo()
-    {  Debug.Log($"슬롯 정보 셋팅 :{itemSlot.item.ID}");
+    public void InitSetInfo()
+    {
+        Debug.Log($"슬롯 정보 셋팅 :{itemSlot.item.ID}");
         var iData = itemSlot.item.itemData;
         itemIcon.sprite = iData.itemIcon;
         itemName.text = iData.itemName;
