@@ -1,17 +1,17 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Security.Cryptography;
-using UnityEngine;
-using Random = UnityEngine.Random;
 
-public class StatHandler : MonoBehaviour,IBattleEntity
+using UnityEngine;
+
+
+public class StatHandler : MonoBehaviour
 {
     public StatData statData;
     private Dictionary<StatType, int> currentStats = new Dictionary<StatType, int>();
     public Dictionary<string, string>  serializeStats = new Dictionary<string, string>();// 세이브용 스탯 저장할 딕셔너리
     
-    public PlayerInfo playerInfo;
+   
     private void Awake()
     {
         InitializeStats();
@@ -74,38 +74,5 @@ public class StatHandler : MonoBehaviour,IBattleEntity
     
 /*============================================================================================*/
 
-    public IEnumerator ActionOnTurn(BattlePhase phase)
-    {
-        return null;
-    }
-
-    public void GetDamage(int dmg)
-    { 
-        int Rd = Random.Range(0, 100);
-
-        if (GetStat(StatType.Evasion) > Rd)
-        {
-           UIManager.Instance.SystemMessage("공격을 회피했습니다."); 
-            return;
-        }
-        
-       playerInfo.currentHp -= dmg;
-        Die();
-    }
-
-    public bool isDead { get; private set; }
-
-    void Die()
-    {
-        if (playerInfo.currentHp<=0)
-        {
-            isDead = true;
-        };
-
-    }
-
-    public EntityInfo GetEntityInfo()
-    {
-        throw new NotImplementedException();
-    }
+   
 }
