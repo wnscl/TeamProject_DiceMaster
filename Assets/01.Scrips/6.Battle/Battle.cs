@@ -64,7 +64,6 @@ public class Battle : MonoBehaviour
     public void GetPlayer()
     {
         IBattleEntity player = GameManager.Instance.player as IBattleEntity;
-
         if (player != null)
         {
             Model.battleEntities.Add(player);
@@ -96,8 +95,8 @@ public class Battle : MonoBehaviour
     public void Encounter()
     {
         // 너티 어트리뷰트 버튼을 통한 테스트용 battleEntities 초기화
-        GetPlayer();
-        GetEmenies();
+        //GetPlayer();
+        //GetEmenies();
 
         // 전투 관련 필드 값 전환
         BattleManager.Instance.IsBattleActive = true;
