@@ -5,23 +5,8 @@ using UnityEngine;
 
 public class PlayerInfo : EntityInfo
 {
-StatHandler Gm = GameManager.Instance.player.statHandler;
+    //StatHandler Gm = GameManager.Instance.player.statHandler;
    
-
- public string name;
-
-    public float maxHp;
-    public float currentHp;
-
-    public float def;
-    public float mDef;
-    public float dodge;
-
-    public int actionNum; //?–´?–¤ ?Š¤?‚¬ ?‚¬?š©?• ì§? ê²°ì •
-
-    void Awake()
-    {
-    }
 
     public float exp;
 
@@ -36,16 +21,16 @@ StatHandler Gm = GameManager.Instance.player.statHandler;
         exp = 0;
     }
 
-   public void SetInfo()
-    {
-        name = Gm.statData.characterName;
-        maxHp = Gm.GetStat(StatType.MaxHp);
-        currentHp = Gm.GetStat(StatType.Hp);
-        def = Gm.GetStat(StatType.PhysicalDefense);
-        mDef = Gm.GetStat(StatType.MagicalDefense);
-        dodge = Gm.GetStat(StatType.Evasion);
+   //public void SetInfo()
+   // {
+   //     name = Gm.statData.characterName;
+   //     maxHp = Gm.GetStat(StatType.MaxHp);
+   //     currentHp = Gm.GetStat(StatType.Hp);
+   //     def = Gm.GetStat(StatType.PhysicalDefense);
+   //     mDef = Gm.GetStat(StatType.MagicalDefense);
+   //     dodge = Gm.GetStat(StatType.Evasion);
 
-    }
+   // }
     
     
 }
