@@ -73,20 +73,28 @@ public class Inventory : MonoBehaviour
       slots.Add(newSlot);
     }
   }
-[Button]
-  public void TestItem()
-  {
-    ItemData item = ItemDataManager.Instance.ItemDatas["0_TestEquipment"];
-   IItem newItem = ItemManager.Instance.CreateItem(item);
-   AddItem(newItem);
-    
+  
+  
+  
 
-  }
 
   public void GetItem(String code)
   {
     ItemData item = ItemDataManager.Instance.ItemDatas[code];
     IItem newItem = ItemManager.Instance.CreateItem(item);
     AddItem(newItem);
+  }
+  
+  
+  
+  //테스트 아이템 생성용
+  [Button]
+  public void TestItem()
+  {
+    ItemData item = ItemDataManager.Instance.ItemDatas["0_TestEquipment"];
+    IItem newItem = ItemManager.Instance.CreateItem(item);
+    AddItem(newItem);
+    
+
   }
 }

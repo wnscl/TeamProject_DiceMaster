@@ -27,9 +27,8 @@ public class ItemManager : MonoBehaviour
         return nextID++;
     }
 
-    public IItem CreateItem( ItemData data)
-    { 
-        
+    public IItem CreateItem(ItemData data)
+    {
         IItem item = null;
 // 종류가 많아지면 수정 힘들어짐
 //제네릭을 이용하면 좋음
@@ -46,6 +45,10 @@ public class ItemManager : MonoBehaviour
         {
             item = new DiceItemInstance(DD, nextID);
         }
+        else if (data is QuestItemData QD)
+        {
+            item = new QuestItemInstance(QD, nextID);
+        }
         else
         {
             Debug.LogWarning($"잘못 된 Data가 연결된 듯? {data.itemName}, {data.name}");
@@ -59,18 +62,17 @@ public class ItemManager : MonoBehaviour
     }
 
 
-    void AddItem(IItem item)
+    /*void AddItem(IItem item)
     {
         // 인벤토리에 들어갈 함수
-        
     }
 
     void InstanceItem(string code, ItemData data)
     {
         //사용할 곳에서 아이템 데이터매니져 캐싱해서 데이터 딕셔너리에서 꺼내기? 
-      IItem a =  CreateItem(data);
-      AddItem(a);
-    }
+        IItem a = CreateItem(data);
+        AddItem(a);
+    }*/
 }
 
 //코드는 int 선호 
