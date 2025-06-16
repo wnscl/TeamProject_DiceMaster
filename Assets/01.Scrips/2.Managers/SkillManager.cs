@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -19,6 +20,18 @@ public class SkillManager : MonoBehaviour
 
     public Vector3 firstPos;
 
+    public event Action skillEvent; //필요한 스킬만 담아서 사용할 이벤트
+
+    public void UseSkill(bool init) //이벤트를 사용
+    {
+        if (init)
+        {
+            skillEvent = null;
+            return;
+        }
+
+        skillEvent?.Invoke();
+    }
 
     public IBattleEntity[] SelectEntitys()
     {
@@ -27,13 +40,12 @@ public class SkillManager : MonoBehaviour
         
         EntityInfo info = battleModel.nowTurnEntity.GetEntityInfo();
 
-        if (info.name == "Player")
+        if (info.name == "BattlePlayer")
             entitys[1] = battleModel.enemy;
         else
             entitys[1] = battleModel.player;
 
         return entitys;
-
     }
 
     public int[] RollDice()

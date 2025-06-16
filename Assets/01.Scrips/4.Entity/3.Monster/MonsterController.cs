@@ -52,17 +52,12 @@ public class MonsterController : MonoBehaviour, IBattleEntity
 
     private IEnumerator DecideAction() //상태에 따라 어떤 행동을 할지 결정
     {
-        monsterInfo.actionNum = ConditionCollection.instance.GetCondition(monsterInfo.mobType);
+        
         yield break;
     }
     private IEnumerator DoAction() //결정된 행동을 실행
     {
-        monsterInfo.anim.SetBool("isAction", true);
 
-        //몬스터 마다 스킬 프리팹은 3개 
-        Instantiate(
-            monsterInfo.data._SkillPrefabs[monsterInfo.actionNum], 
-            transform.position, Quaternion.identity, this.transform);
 
         yield break;
     }

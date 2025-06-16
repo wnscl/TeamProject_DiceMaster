@@ -22,21 +22,15 @@ public class PlayerInfo : EntityInfo
         exp = 0;
     }
 
-  protected override void Awake()
+    protected override void Awake()
     {
         SetInfo();
     }
-
-    void Start()
-    {
-        SetInfo();
-    }
-
 
 
     public void SetInfo()
      {
-        name = Gm.statData.characterName;
+        name = data.name;
         maxHp = Gm.GetStat(StatType.MaxHp);
         currentHp = Gm.GetStat(StatType.Hp);
         def = Gm.GetStat(StatType.PhysicalDefense);

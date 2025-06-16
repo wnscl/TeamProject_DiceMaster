@@ -3,41 +3,17 @@ using System.Collections.Generic;
 using NaughtyAttributes;
 using UnityEngine;
 
-public class Smash : MonoBehaviour
+public class Smash : BaseSkill
 {
-    [SerializeField] private SkillManager skillManager;
+    [SerializeField] private float moveDuration;
 
-    [SerializeField] private GameObject Effect;
-
-    IBattleEntity[] entitys;
-
-    [SerializeField] private int[] diceNumber = new int[3];
-
-    [SerializeField] float moveDuration;
-
-    private void Awake()
-    {
-        //entitys = skillManager.SelectEntitys();
-        entitys = new IBattleEntity[2];
-
-        entitys[1] = skillManager.TestMonster.GetComponent<IBattleEntity>();    
-        entitys[0] = skillManager.TestPlayer.GetComponent<IBattleEntity>();
-
-        Effect.SetActive(false);
-    }
 
     [Button]
     private void UseSkill()
     {
         diceNumber = skillManager.RollDice();
+        SetDirection();
         StartCoroutine(OnSkill());
-    }
-    private void SetDirection()
-    {
-        EntityInfo info = entitys[0].GetEntityInfo();
-        if (info.name != "Player") return;
-
-        Effect.transform.rotation = Quaternion.Euler(0, 180, 0);
     }
     private int MakeDamage(EntityInfo info)
     {
@@ -53,6 +29,7 @@ public class Smash : MonoBehaviour
     private IEnumerator OnSkill()
     {
         EntityInfo info = entitys[0].GetEntityInfo();
+        EntityInfo targetinfo = entitys[1].GetEntityInfo(); 
         Animator anim = info.anim;
         anim.SetBool("isAction",true);
         anim.SetTrigger("Move");
@@ -60,24 +37,21 @@ public class Smash : MonoBehaviour
         yield return skillManager.MoveToTarget(entitys, moveDuration);
 
         anim.SetTrigger("Attack");
-        Effect.transform.position = entitys[1].GetEntityInfo().gameObject.transform.position;
+        effect[0].transform.position = entitys[1].GetEntityInfo().gameObject.transform.position;
 
         yield return new WaitForSeconds(0.6f);
-        Effect.SetActive(true);
-        SetDirection();
+        effect[0].SetActive(true);
+        targetinfo.anim.SetBool("isHit", true);
+        targetinfo.anim.SetTrigger("Hit");
         entitys[1].GetDamage(MakeDamage(entitys[1].GetEntityInfo()));
         yield return new WaitForSeconds(0.4f);
-        
+        targetinfo.anim.SetBool("isHit", false);
+
         anim.SetBool("isAction", false);
         skillManager.BackToPosition(entitys[0]);
-        Effect.transform.rotation = Quaternion.identity;
-        Effect.SetActive(false);
+        effect[0].SetActive(false);
 
         yield break;
-    }
-    private void InitSkill()
-    {
-
     }
 
 

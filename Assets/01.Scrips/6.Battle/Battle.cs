@@ -33,28 +33,23 @@ public class Battle : MonoBehaviour
 
     private BattleModel model;
 
+    public BattleModel Model
+    {
+        get
+        {
+            if (model == null)
+            {
+                model = GetComponent<BattleModel>();
+            }
 
-    ////private Monster enemy;
-    //private bool BattleResult;
-    //private List<IBattleEntity> battleEntities; // 전투에 참가하는 유닛 컬렉션
-    //public IBattleEntity nowTurnEntity;
-
-
-    //public IBattleEntity player;
-    //public IBattleEntity monster; //테스트를 위한 몬스터와 플레이어 참조 필드
-
-
-    //private BattlePhase battlePhase;
-    //private int turnCount; // 현재 턴 수
-
-    //private void Awake()
-    //{
-    //    BattleManager.Instance.Battle = this;
-    //}
+            return model;
+        }
+        set => model = value;
+    }
 
     void Start()
     {
-        
+        model = GetComponent<BattleModel>();
     }
 
     void Update()
@@ -62,6 +57,25 @@ public class Battle : MonoBehaviour
         
     }
 
+    [Button]
+    /// <summary>
+    /// 전투에 참여할 플레이어를 가져오는 메소드
+    /// </summary>
+    public void GetPlayer()
+    {
+        IBattleEntity player = GameManager.Instance.player as IBattleEntity;
+        if (player != null)
+        {
+            Model.battleEntities.Add(player);
+            // model.PlayerInfo = player.GetEntityInfo() as PlayerInfo;
+        }
+        else
+        {
+            Debug.LogWarning("플레이어 인스턴스 취득에 실패하였습니다.");
+        }
+    }
+
+    [Button]
     /// <summary>
     /// 전투에 참여할 적 몬스터를 가져오는 메소드
     /// </summary>
@@ -70,14 +84,8 @@ public class Battle : MonoBehaviour
         // to do : 게임 사양 상 추후 리스트로 받아와야 할 것이다
         IBattleEntity enemies = GameManager.Instance.monster;
 
-        model.battleEntities.Add(enemies);
-    }
-
-    public void GetPlayer()
-    {
-        IBattleEntity player = model.player;
-
-        model.battleEntities.Add(player);
+        Model.battleEntities.Add(enemies);
+        // model.EnemyInfo = enemies.GetEntityInfo() as MonsterInfo;
     }
 
     /// <summary>
@@ -86,9 +94,13 @@ public class Battle : MonoBehaviour
     [Button]
     public void Encounter()
     {
+        // 너티 어트리뷰트 버튼을 통한 테스트용 battleEntities 초기화
+        //GetPlayer();
+        //GetEmenies();
+
         // 전투 관련 필드 값 전환
         BattleManager.Instance.IsBattleActive = true;
-        model.battlePhase = BattlePhase.Ready;
+        Model.battlePhase = BattlePhase.Ready;
 
         StartCoroutine(Combat());
     }
@@ -101,39 +113,45 @@ public class Battle : MonoBehaviour
         // 전투 참여 중인 각 유닛의 배틀 상태를 활성화
         while (BattleManager.Instance.IsBattleActive == true)
         {
-            switch (model.battlePhase)
+            switch (Model.battlePhase)
             {
                 case BattlePhase.Ready:
                     // 각 유닛의 행동을 설정
-                    foreach (IBattleEntity entity in model.battleEntities)
+                    foreach (IBattleEntity entity in Model.battleEntities)
                     {
-                        model.nowTurnEntity = entity; // 현재 턴을 가진 유닛 설정
+                        Model.nowTurnEntity = entity; // 현재 턴을 가진 유닛 설정
 
-                        yield return entity.ActionOnTurn(model.battlePhase);
+                        yield return entity.ActionOnTurn(Model.battlePhase);
                     }
 
-                    model.battlePhase = BattlePhase.Action;
+                    Model.battlePhase = BattlePhase.Action;
+
+                    Debug.Log("End Ready Phase");
                     break;
                 case BattlePhase.Action:
                     // 설정한 행동 실행
-                    foreach (IBattleEntity entity in model.battleEntities)
+                    foreach (IBattleEntity entity in Model.battleEntities)
                     {
-                        model.nowTurnEntity = entity; // 현재 턴을 가진 유닛 설정
+                        Model.nowTurnEntity = entity; // 현재 턴을 가진 유닛 설정
 
-                        yield return entity.ActionOnTurn(model.battlePhase);
+                        yield return entity.ActionOnTurn(Model.battlePhase);
                     }
 
-                    model.battlePhase = BattlePhase.Result;
+                    Model.battlePhase = BattlePhase.Result;
+
+                    Debug.Log("End Action Phase");
                     break;
                 case BattlePhase.Result:
                     // 턴 종료 시의 처리
-                    foreach (IBattleEntity entity in model.battleEntities)
+                    foreach (IBattleEntity entity in Model.battleEntities)
                     {
-                        yield return entity.ActionOnTurn(model.battlePhase);
+                        yield return entity.ActionOnTurn(Model.battlePhase);
                     }
 
                     // 각 유닛의 행동 결과를 처리하고, 배틀 종료 여부를 확인
                     CheckBattleEnd();
+
+                    Debug.Log("End Result Phase");
                     break;
             }
         }
@@ -190,16 +208,28 @@ public class Battle : MonoBehaviour
         // to do : 리스트에 플레이어가 없다면 게임 오버시키는 감지 기능을 고려해두자
         // 배틀에 참여한 유닛 리스트에 플레이어만 남아있을 경우, 배틀을 플레이어의 승리로 처리하고 배틀을 종료한다
 
-        if (model.battleEntities.Count == 0 || model.battleEntities.All(entity => entity is Player))
+        if (Model.battleEntities.Count == 0 || Model.battleEntities.All(entity => entity is Player))
         {
-            model.BattleResult = true; // 플레이어 승리
+            Model.BattleResult = true; // 플레이어 승리
             EndBattle();
         }
         else
         {
             // 배틀이 계속 진행 중인 경우, 다음 턴으로 넘어간다
-            model.battlePhase = BattlePhase.Ready;
-            model.turnCount++;
+            RotateTurn();
         }
+    }
+
+    private void RotateTurn()
+    {
+        Model.battlePhase = BattlePhase.Ready;
+        Model.turnCount++;
+
+        var first = Model.battleEntities[0];    // 턴 반복문에서 가장 먼저 실행되는 ( 현재 턴을 잡고 있는 ) 엔티티를 가장 하위 턴을 잡도록 리스트를 섞는다
+
+        Model.battleEntities.RemoveAt(0);
+        Model.battleEntities.Add(first);
+
+        Debug.Log($"Turn {Model.turnCount} 시작");
     }
 }
