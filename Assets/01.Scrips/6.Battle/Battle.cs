@@ -75,7 +75,7 @@ public class Battle : MonoBehaviour
 
     public void GetPlayer()
     {
-        IBattleEntity player = GameManager.Instance.player;
+        IBattleEntity player = model.player;
 
         model.battleEntities.Add(player);
     }
