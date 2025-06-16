@@ -4,6 +4,7 @@ using NaughtyAttributes;
 using Unity.Collections.LowLevel.Unsafe;
 using UnityEngine;
 using UnityEngine.Rendering.VirtualTexturing;
+using UnityEngine.UIElements;
 
 public class Scratch : MonoBehaviour
 {
@@ -44,14 +45,22 @@ public class Scratch : MonoBehaviour
 
         return result;
     }
-    private void HealEntity(int Amount)
+    private void SetDirection()
     {
+        EntityInfo info = entitys[0].GetEntityInfo();
+        if (info.name != "Player") return;
 
+        for (int i = 0; i < effects.Length; i++)
+        {
+            effects[i].transform.rotation = Quaternion.Euler(0, 180, 0);
+        }
     }
+
     [Button]
     private void UseSkill()
     {
         SetNums();
+        SetDirection();
         StartCoroutine(OnSkill());
     }
     private IEnumerator OnSkill()
