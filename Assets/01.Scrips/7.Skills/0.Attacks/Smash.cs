@@ -20,8 +20,8 @@ public class Smash : MonoBehaviour
         //entitys = skillManager.SelectEntitys();
         entitys = new IBattleEntity[2];
 
-        entitys[0] = skillManager.TestMonster.GetComponent<IBattleEntity>();    
-        entitys[1] = skillManager.TestPlayer.GetComponent<IBattleEntity>();
+        entitys[1] = skillManager.TestMonster.GetComponent<IBattleEntity>();    
+        entitys[0] = skillManager.TestPlayer.GetComponent<IBattleEntity>();
 
         Effect.SetActive(false);
     }
