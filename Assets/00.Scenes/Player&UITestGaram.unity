@@ -683,10 +683,10 @@ RectTransform:
   - {fileID: 130394620}
   m_Father: {fileID: 6677819040122554711}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 580, y: -100}
-  m_SizeDelta: {x: 150, y: 150}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &228973541
 MonoBehaviour:
@@ -2331,7 +2331,19 @@ MonoBehaviour:
     m_ActionId: 59fc0cc6-aa7f-497e-bdc4-1c2f41d7705d
     m_ActionName: Player/Inventoy[/Keyboard/i]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7289858284825138558}
+        m_TargetAssemblyTypeName: SkillShortCut, Assembly-CSharp
+        m_MethodName: OnClickUpDown
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 1fd94a15-1e2e-4af4-9b87-a44e4fd6c72e
     m_ActionName: Player/SkillWindow[/Keyboard/s]
   - m_PersistentCalls:
@@ -2884,10 +2896,10 @@ RectTransform:
   - {fileID: 1899599025}
   m_Father: {fileID: 6677819040122554711}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 740, y: -100}
-  m_SizeDelta: {x: 150, y: 150}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &744057295
 MonoBehaviour:
@@ -4456,10 +4468,10 @@ RectTransform:
   - {fileID: 813974260}
   m_Father: {fileID: 6677819040122554711}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 420, y: -100}
-  m_SizeDelta: {x: 150, y: 150}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1467241009
 MonoBehaviour:
@@ -4834,10 +4846,10 @@ RectTransform:
   - {fileID: 2102702924}
   m_Father: {fileID: 6677819040122554711}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 260, y: -100}
-  m_SizeDelta: {x: 150, y: 150}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1586300355
 MonoBehaviour:
@@ -4910,10 +4922,10 @@ RectTransform:
   - {fileID: 124095056}
   m_Father: {fileID: 6677819040122554711}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 900, y: -100}
-  m_SizeDelta: {x: 150, y: 150}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1613580522
 MonoBehaviour:
@@ -8271,10 +8283,10 @@ RectTransform:
   - {fileID: 1275877178}
   m_Father: {fileID: 6677819040122554711}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 100, y: -100}
-  m_SizeDelta: {x: 150, y: 150}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &3434488139133000456
 MonoBehaviour:
@@ -8549,11 +8561,11 @@ RectTransform:
   - {fileID: 6677819040122554711}
   m_Father: {fileID: 551416149203751529}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0}
-  m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: -389}
   m_SizeDelta: {x: 1920, y: 300}
-  m_Pivot: {x: 0.5, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &4082651621835019127
 RectTransform:
   m_ObjectHideFlags: 0
@@ -9381,13 +9393,27 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4029192170477630580}
+  - component: {fileID: 7289858284825138558}
   m_Layer: 5
   m_Name: SkillShortcutWindow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
+--- !u!114 &7289858284825138558
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7289858284825138557}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6facd59d99bc00b4494b19ed4229c404, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShortCut: {fileID: 7289858284825138557}
 --- !u!224 &7538820145635071316
 RectTransform:
   m_ObjectHideFlags: 0

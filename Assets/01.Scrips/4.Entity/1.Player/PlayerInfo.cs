@@ -22,7 +22,7 @@ public class PlayerInfo : EntityInfo
         exp = 0;
     }
 
-    private protected void Awake()
+  protected override void Awake()
     {
         SetInfo();
     }
