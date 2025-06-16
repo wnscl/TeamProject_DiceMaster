@@ -60,7 +60,7 @@ public class SkillManager : MonoBehaviour
         Vector3 startPos = requester.transform.position;
         Vector3 endPos = target.transform.position;
 
-        if (direction.x < 0) endPos.x += 2f;
+        if (direction.x < 30) endPos.x += 2f;
         else endPos.x -= 2f;
 
         float timer = 0;
