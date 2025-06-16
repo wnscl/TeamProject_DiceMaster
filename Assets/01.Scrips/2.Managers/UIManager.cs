@@ -33,6 +33,7 @@ public class UIManager : MonoBehaviour
     public GameObject playerSettingWindow;
     public Inventory inventory;
     public StatusPanel statusPanel;
+   public SkillPanel skillPanel;
     public SkillInfo skillInfo;
     public ItemInfo itemInfo;
     public BattleWindow battleWindow;
