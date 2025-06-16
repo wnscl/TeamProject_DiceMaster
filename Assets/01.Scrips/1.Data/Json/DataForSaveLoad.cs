@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class DataForSaveLoad : MonoBehaviour
 {
-    [SerializeField] Dictionary<StatType, int> playerStats;
+    [SerializeField] Dictionary<string, string> playerStats;
 
     public DataForSaveLoad GetSaveData()
     {
@@ -30,8 +30,7 @@ public class DataForSaveLoad : MonoBehaviour
         int i = 0;
         foreach(JProperty jj in Data)
         {
-            StatType statType = (StatType)i;
-            GameManager.Instance.player.statHandler.serializeStats[statType] = (int)jj.Value;
+            GameManager.Instance.player.statHandler.serializeStats[jj.Name] = jj.Value.ToString();
             i++;
         }
 

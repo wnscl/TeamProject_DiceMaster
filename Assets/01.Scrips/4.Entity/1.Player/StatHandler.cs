@@ -71,8 +71,19 @@ public class StatHandler : MonoBehaviour
         }
         return dict;
     }
-    
-/*============================================================================================*/
 
-   
+    public void LoadStatsToCurrent()
+    {
+        int i = 0;
+        StatType key;
+        foreach (KeyValuePair<string, string> items in serializeStats)
+        {
+            key = (StatType)i;
+            currentStats[key] = int.Parse(items.Value);
+            i++;
+        }
+    }
+    /*============================================================================================*/
+
+
 }
