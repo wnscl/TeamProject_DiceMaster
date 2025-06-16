@@ -32,6 +32,13 @@ public class Smash : MonoBehaviour
         diceNumber = skillManager.RollDice();
         StartCoroutine(OnSkill());
     }
+    private void SetDirection()
+    {
+        EntityInfo info = entitys[0].GetEntityInfo();
+        if (info.name != "Player") return;
+
+        Effect.transform.rotation = Quaternion.Euler(0, 180, 0);
+    }
     private int MakeDamage(EntityInfo info)
     {
         int damage = 0;
@@ -57,11 +64,13 @@ public class Smash : MonoBehaviour
 
         yield return new WaitForSeconds(0.6f);
         Effect.SetActive(true);
+        SetDirection();
         entitys[1].GetDamage(MakeDamage(entitys[1].GetEntityInfo()));
         yield return new WaitForSeconds(0.4f);
         
         anim.SetBool("isAction", false);
         skillManager.BackToPosition(entitys[0]);
+        Effect.transform.rotation = Quaternion.identity;
         Effect.SetActive(false);
 
         yield break;
