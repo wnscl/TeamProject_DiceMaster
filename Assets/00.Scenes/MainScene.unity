@@ -344,8 +344,8 @@ Transform:
   m_Children:
   - {fileID: 1972671180}
   - {fileID: 1490851568}
-  - {fileID: 625337853}
   - {fileID: 742448346}
+  - {fileID: 625337853}
   - {fileID: 1407360857}
   m_Father: {fileID: 305337646}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -361,6 +361,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b00e969cc72efe4e9077c236c9e8824, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  baseSkill:
+  - {fileID: 1972671181}
+  - {fileID: 1490851569}
+  - {fileID: 742448347}
+  - {fileID: 625337854}
+  - {fileID: 1407360858}
   battleModel: {fileID: 289589937}
   TestPlayer: {fileID: 1189122529}
   TestMonster: {fileID: 1212770171}
@@ -701,6 +707,18 @@ PrefabInstance:
     - target: {fileID: 7639302688918898884, guid: a48b1b05b7775a74b9e9b3b6ed59172b, type: 3}
       propertyPath: m_Name
       value: BlackWarrior
+      objectReference: {fileID: 0}
+    - target: {fileID: 9190002645830046791, guid: a48b1b05b7775a74b9e9b3b6ed59172b, type: 3}
+      propertyPath: skillNumbers.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 9190002645830046791, guid: a48b1b05b7775a74b9e9b3b6ed59172b, type: 3}
+      propertyPath: skillNumbers.Array.data[1]
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9190002645830046791, guid: a48b1b05b7775a74b9e9b3b6ed59172b, type: 3}
+      propertyPath: skillNumbers.Array.data[2]
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

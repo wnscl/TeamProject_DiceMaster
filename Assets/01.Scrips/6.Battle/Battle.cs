@@ -95,8 +95,8 @@ public class Battle : MonoBehaviour
     public void Encounter()
     {
         // 너티 어트리뷰트 버튼을 통한 테스트용 battleEntities 초기화
-        //GetPlayer();
-        //GetEmenies();
+        GetPlayer();
+        GetEmenies();
 
         // 전투 관련 필드 값 전환
         BattleManager.Instance.IsBattleActive = true;
@@ -120,7 +120,7 @@ public class Battle : MonoBehaviour
                     foreach (IBattleEntity entity in Model.battleEntities)
                     {
                         Model.nowTurnEntity = entity; // 현재 턴을 가진 유닛 설정
-
+                        Debug.Log($"Ready Phase {entity}");
                         yield return entity.ActionOnTurn(Model.battlePhase);
                     }
 

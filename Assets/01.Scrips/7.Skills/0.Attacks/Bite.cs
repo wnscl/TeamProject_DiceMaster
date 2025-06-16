@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using NaughtyAttributes;
 using UnityEngine;
 
-public class Bite : BaseSkill
+public class Bite : BaseSkill, IUseableSkill
 {
     [Button]
     private void UseSkill()
     {
         diceNumber = skillManager.RollDice();
         SetDirection();
-        StartCoroutine(OnSkill());
+        StartCoroutine(OnUse());
     }
     private void MakeDamage(EntityInfo requester, IBattleEntity target)
     {
@@ -19,8 +19,12 @@ public class Bite : BaseSkill
         requester.currentHp = Mathf.Clamp(requester.currentHp + diceNumber[1], 0, requester.maxHp);
         target.GetDamage(damage);
     }
-    private IEnumerator OnSkill()
+    public override IEnumerator OnUse()
     {
+        diceNumber = skillManager.RollDice();
+        SetDirection();
+
+
         EntityInfo requesterInfo = entitys[0].GetEntityInfo();
         EntityInfo targetInfo = entitys[1].GetEntityInfo();
 

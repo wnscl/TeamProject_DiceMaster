@@ -47,18 +47,17 @@ public class MonsterController : MonoBehaviour, IBattleEntity
     {
         yield return _fsm[nowTurn];
 
-        yield break;
+        //yield break;
     }
 
     private IEnumerator DecideAction() //상태에 따라 어떤 행동을 할지 결정
     {
-        
+        monsterInfo.actionNum = UnityEngine.Random.Range(0, 3);
         yield break;
     }
     private IEnumerator DoAction() //결정된 행동을 실행
     {
-
-
+        yield return SkillManager.instance.skills[monsterInfo.skillNumbers[monsterInfo.actionNum]].OnUse(); 
         yield break;
     }
     private IEnumerator GetResult() //몬스터는 버프 디버프에 따른 계산 후 자신의 상태를 바꿈

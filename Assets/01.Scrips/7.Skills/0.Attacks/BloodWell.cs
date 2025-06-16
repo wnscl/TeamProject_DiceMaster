@@ -11,7 +11,7 @@ public class BloodWell : BaseSkill
     {
         SetDice();
         SetDirection();
-        StartCoroutine(OnSkill());
+        StartCoroutine(OnUse());
     }
     private void SetDice()
     {
@@ -21,8 +21,12 @@ public class BloodWell : BaseSkill
         else attackCount = 3f;
 
     }
-    private IEnumerator OnSkill()
+    public override IEnumerator OnUse()
     {
+        SetDice();
+        SetDirection();
+
+
         EntityInfo requesterInfo = entitys[0].GetEntityInfo();
         EntityInfo targetInfo = entitys[1].GetEntityInfo();
 

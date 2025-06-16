@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using NaughtyAttributes;
 using Unity.IO.LowLevel.Unsafe;
 using Unity.VisualScripting;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
-public class SwordFlow : BaseSkill
+public class SwordFlow : BaseSkill, IUseableSkill
 {
     [SerializeField] private GameObject[] swords;
 
@@ -20,6 +21,9 @@ public class SwordFlow : BaseSkill
 
         entitys[0] = skillManager.TestMonster.GetComponent<IBattleEntity>();
         entitys[1] = skillManager.TestPlayer.GetComponent<IBattleEntity>();
+
+        skill = this.GetComponent<IUseableSkill>();
+        Debug.Log($"{this.name}ÀÇ GetComponent<IUseableSkill>() °á°ú: {skill}");
 
         for (int i = 0; i < effect.Length; i++)
         {
@@ -42,10 +46,12 @@ public class SwordFlow : BaseSkill
     private void UseSkill()
     {
         SetNums();
-        StartCoroutine(OnSkill());
+        StartCoroutine(OnUse());
     }
-    private IEnumerator OnSkill()
+    public override IEnumerator OnUse()
     {
+        SetNums();
+
         EntityInfo info = entitys[0].GetEntityInfo();
         EntityInfo target = entitys[1].GetEntityInfo();
 
