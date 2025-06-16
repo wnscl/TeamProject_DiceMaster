@@ -12,8 +12,9 @@ public class PlayerInfo : EntityInfo
 
     public void GetExp()
     {
-        exp += exp; //ëª¬ìŠ¤?„°ê°? ê°?ì§? expê°??
-        
+        exp += exp; //ëª¬ìŠ¤?ï¿½ï¿½ï¿½? ï¿½?ï¿½? expï¿½??
+        float currentHp;
+        float maxHp;
     }
 
     public void ResetExp()

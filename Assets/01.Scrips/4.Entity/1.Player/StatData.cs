@@ -28,6 +28,6 @@ public class StatData : ScriptableObject
 public class StatEntry
 {
     public StatType statType;
-    public float baseValue;
+    public int baseValue;
 }
 
