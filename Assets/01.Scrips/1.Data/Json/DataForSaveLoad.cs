@@ -1,53 +1,40 @@
-using System;
-using UnityEngine;
+﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using System.Collections.Generic;
+using UnityEngine;
 
 public class DataForSaveLoad : MonoBehaviour
 {
-    [SerializeField] PlayerSaveData player;
-
+    [SerializeField] Dictionary<StatType, float> playerStats;
 
     public DataForSaveLoad GetSaveData()
     {
-        player = new PlayerSaveData();
-
-        return new DataForSaveLoad();
+        playerStats = GameManager.Instance.player.statHandler.ToStatDict();
+        return this;
     }
 
     public void GetLoadData(string jsonString)
     {
-        JObject root = JObject.Parse(jsonString);
+        //GameManager.Instance.player.statHandler.serializeStats = JsonConvert.DeserializeObject<Dictionary<StatType,float>>(jsonString); ////방법 2
 
-        JToken player = root["player"];
-        JToken inven = root["inventory"]; //�Ƹ� �̷���?
+        JObject root = JObject.Parse(jsonString); //방법 1
+
+        JToken player = root["playerStats"];
+        LoadPlayer(player);
+
+        JToken inven = root["inventory"]; //아마 이런식?
     }
-}
 
-[Serializable]
-public class PlayerSaveData
-{
-    string name;
-    float level;
-    float currentExp;
-    float money;
-    float maxHP;
-    float currentHP;
-    float def;
-    float mDef;
-    float dodge;
-    float moveSpeed;
-
-    public PlayerSaveData()
+    public void LoadPlayer(JToken Data)
     {
-        name = GameManager.Instance.player.name;
-        level = GameManager.Instance.player.statHandler.GetStat(StatType.Level);
-        maxHP = GameManager.Instance.player.statHandler.GetStat(StatType.MaxHp);
-        currentHP = GameManager.Instance.player.statHandler.GetStat(StatType.Hp);
-        def = GameManager.Instance.player.statHandler.GetStat(StatType.PhysicalDefense);
-        mDef = GameManager.Instance.player.statHandler.GetStat(StatType.MagicalDefense); ;
-        dodge = GameManager.Instance.player.statHandler.GetStat(StatType.Evasion); ;
-        currentExp = GameManager.Instance.player.statHandler.GetStat(StatType.Exp);
-        money = GameManager.Instance.player.statHandler.GetStat(StatType.Money);
-        moveSpeed = GameManager.Instance.player.statHandler.GetStat(StatType.MoveSpeed);
+        int i = 0;
+        foreach(JProperty jj in Data)
+        {
+            StatType statType = (StatType)i;
+            GameManager.Instance.player.statHandler.serializeStats[statType] = (float)jj.Value;
+            i++;
+        }
+
+        GameManager.Instance.player.statHandler.LoadStatsToCurrent();
     }
 }

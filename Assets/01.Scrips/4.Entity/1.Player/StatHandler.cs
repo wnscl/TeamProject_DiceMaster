@@ -1,7 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Security.Cryptography;
+using System.Linq;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -55,14 +55,22 @@ public class StatHandler : MonoBehaviour,IBattleEntity
         currentStats[statType] = setvalue;
     }
     
-    public Dictionary<string, float> ToStatDict()
+    public Dictionary<StatType, float> ToStatDict()
     {
-        var dict = new Dictionary<string, float>();
+        var dict = new Dictionary<StatType, float>();
         foreach (StatType stat in Enum.GetValues(typeof(StatType)))
         {
-            dict[stat.ToString()] = GetStat(stat);
+            dict[stat] = GetStat(stat);
         }
         return dict;
+    }
+
+    public void LoadStatsToCurrent()
+    {
+        foreach(KeyValuePair<StatType, float> items in serializeStats)
+        {
+            currentStats[items.Key] = items.Value;
+        }
     }
 /*============================================================================================*/
 
