@@ -621,6 +621,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43e3c92b722dcbd42b23bc010d22a005, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Model: {fileID: 289589937}
 --- !u!1 &305337645
 GameObject:
   m_ObjectHideFlags: 0
@@ -3184,7 +3185,7 @@ MonoBehaviour:
   - {fileID: 1797700804}
   diceNumber: 000000000000000000000000
   TestSelectNum: 0
-  moveDuration: 0
+  moveDuration: 1
 --- !u!1 &1972682095
 GameObject:
   m_ObjectHideFlags: 0

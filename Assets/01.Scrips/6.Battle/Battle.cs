@@ -31,25 +31,25 @@ using UnityEngine;
 public class Battle : MonoBehaviour
 {
 
-    private BattleModel model;
+    [SerializeField] private BattleModel Model;
 
-    public BattleModel Model
-    {
-        get
-        {
-            if (model == null)
-            {
-                model = GetComponent<BattleModel>();
-            }
+    //public BattleModel Model
+    //{
+    //    get
+    //    {
+    //        if (model == null)
+    //        {
+    //            model = GetComponent<BattleModel>();
+    //        }
 
-            return model;
-        }
-        set => model = value;
-    }
+    //        return model;
+    //    }
+    //    set => model = value;
+    //}
 
     void Start()
     {
-        model = GetComponent<BattleModel>();
+        //model = GetComponent<BattleModel>();
     }
 
     void Update()
@@ -64,9 +64,12 @@ public class Battle : MonoBehaviour
     public void GetPlayer()
     {
         IBattleEntity player = GameManager.Instance.player as IBattleEntity;
+
+
         if (player != null)
         {
             Model.battleEntities.Add(player);
+
             // model.PlayerInfo = player.GetEntityInfo() as PlayerInfo;
         }
         else
@@ -82,7 +85,7 @@ public class Battle : MonoBehaviour
     public void GetEmenies()
     {
         // to do : 게임 사양 상 추후 리스트로 받아와야 할 것이다
-        IBattleEntity enemies = GameManager.Instance.monster;
+        IBattleEntity enemies = SkillManager.instance.TestMonster.GetComponent<IBattleEntity>();
 
         Model.battleEntities.Add(enemies);
         // model.EnemyInfo = enemies.GetEntityInfo() as MonsterInfo;

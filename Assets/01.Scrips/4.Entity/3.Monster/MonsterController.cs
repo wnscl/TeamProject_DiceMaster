@@ -45,7 +45,22 @@ public class MonsterController : MonoBehaviour, IBattleEntity
 
     public IEnumerator ActionOnTurn(BattlePhase nowTurn)
     {
-        yield return _fsm[nowTurn];
+        //yield return _fsm[nowTurn];
+
+        switch (nowTurn)
+        {
+            case BattlePhase.Ready:
+                yield return DecideAction();
+                break;
+
+            case BattlePhase.Action:
+                yield return DoAction();
+                break;
+
+            case BattlePhase.Result:
+                yield return GetResult();
+                break;
+        }
 
         //yield break;
     }
@@ -57,7 +72,8 @@ public class MonsterController : MonoBehaviour, IBattleEntity
     }
     private IEnumerator DoAction() //결정된 행동을 실행
     {
-        yield return SkillManager.instance.skills[monsterInfo.skillNumbers[monsterInfo.actionNum]].OnUse(); 
+        //yield return SkillManager.instance.skills[monsterInfo.skillNumbers[monsterInfo.actionNum]].OnUse(); 
+        yield return SkillManager.instance.skills[0].OnUse();
         yield break;
     }
     private IEnumerator GetResult() //몬스터는 버프 디버프에 따른 계산 후 자신의 상태를 바꿈
