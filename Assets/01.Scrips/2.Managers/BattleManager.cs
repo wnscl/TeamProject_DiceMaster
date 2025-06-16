@@ -34,6 +34,7 @@ public class BattleManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        battle = GetComponentInChildren<Battle>();
     }
     void Start()
     {

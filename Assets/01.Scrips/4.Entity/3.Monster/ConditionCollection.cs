@@ -9,13 +9,12 @@ public enum MonsterType
     Attacker,
     Tanker,
     Supporter,
-    Bruiser,
     Allrounder
 }
 
 public class ConditionCollection : MonoBehaviour
 {
-    public ConditionCollection instance;
+    public static ConditionCollection instance;
 
 
     private void Awake()
@@ -27,12 +26,9 @@ public class ConditionCollection : MonoBehaviour
             {MonsterType.Attacker, ConditionOfAttacker },
             {MonsterType.Tanker, ConditionOfTanker },
             {MonsterType.Supporter, ConditionOfSupporter },
-            {MonsterType.Bruiser, ConditionOfBruiser },
             {MonsterType.Allrounder, ConditionOfAllrounder }
         };
     }
-
-
 
     private Dictionary<MonsterType, Func<MonsterInfo, PlayerInfo, int>> conditionBox;
     //PlayerInfo
@@ -49,32 +45,54 @@ public class ConditionCollection : MonoBehaviour
     {
         return conditionBox[type].Invoke(monsterInfo, playerInfo);
     }
+    private int GetActionNumber(MonsterState state)
+    {
+        int actionNumber = 0; 
+        switch (monsterInfo.mobState)
+        {
+            case MonsterState.Normal:
+                actionNumber = UnityEngine.Random.Range(0, 2); // 0 1 일반스킬 둘 중 하나
+                return actionNumber;
 
+            case MonsterState.Happy:
+                actionNumber = UnityEngine.Random.Range(0, 3); // 0 1 2 완전 랜덤 스킬
+                return actionNumber;
+
+            case MonsterState.Angry:
+                actionNumber = UnityEngine.Random.Range(1, 3); // 2 반드시 특수스킬
+                return actionNumber;
+
+            case MonsterState.Sad:
+                actionNumber = UnityEngine.Random.Range(0, 1); // 0 기본스킬
+                return actionNumber;
+
+            default:
+                actionNumber = UnityEngine.Random.Range(0, 3); //방어로직
+                return actionNumber;
+        }
+    }
     private int ConditionOfAttacker(MonsterInfo mobInfo, PlayerInfo playerInfo)
     {
-        //만약 플레이어의 체력이 낮다면
-        //만약 플레이어가 어떠한 스킬을 사용을 한다면
-        //만약 내 체력이 플레이어보다 많다면
-
-
-        
-        return 0;
+        //좀 더 위협적인 패턴을 많이쓰게 해야함
+        return GetActionNumber(mobInfo.mobState);
     }
+
     private int ConditionOfTanker(MonsterInfo mobInfo, PlayerInfo playerInfo)
     {
-        return 0;
+        //아군을 잘 지킬 수 있는 패턴을 많이 쓰게 해야함
+        return GetActionNumber(mobInfo.mobState);
     }
+
     private int ConditionOfSupporter(MonsterInfo mobInfo, PlayerInfo playerInfo)
     {
-        return 0;
+        //아군이 위험할 때 버프를 많이 걸어야함
+        return GetActionNumber(mobInfo.mobState);
     }
-    private int ConditionOfBruiser(MonsterInfo mobInfo, PlayerInfo playerInfo)
-    {
-        return 0;
-    }
+
     private int ConditionOfAllrounder(MonsterInfo mobInfo, PlayerInfo playerInfo)
     {
-        return 0;
+        //플레이어를 괴롭혀야함 
+        return GetActionNumber(mobInfo.mobState);
     }
 
 

@@ -42,6 +42,7 @@ public class MonsterController : MonoBehaviour, IBattleEntity
         mobCor = StartCoroutine(ActionOnTurn(testTurn));
     }
 
+
     public IEnumerator ActionOnTurn(BattlePhase nowTurn)
     {
         yield return _fsm[nowTurn];
@@ -49,18 +50,23 @@ public class MonsterController : MonoBehaviour, IBattleEntity
         yield break;
     }
 
-    private IEnumerator DecideAction() //어떤 행동할지 결정
+    private IEnumerator DecideAction() //상태에 따라 어떤 행동을 할지 결정
     {
-        
+        monsterInfo.actionNum = ConditionCollection.instance.GetCondition(monsterInfo.mobType);
         yield break;
     }
     private IEnumerator DoAction() //결정된 행동을 실행
     {
         monsterInfo.anim.SetBool("isAction", true);
 
+        //몬스터 마다 스킬 프리팹은 3개 
+        Instantiate(
+            monsterInfo.data._SkillPrefabs[monsterInfo.actionNum], 
+            transform.position, Quaternion.identity, this.transform);
+
         yield break;
     }
-    private IEnumerator GetResult() //버프 디버프를 받음
+    private IEnumerator GetResult() //몬스터는 버프 디버프에 따른 계산 후 자신의 상태를 바꿈
     {
 
         yield break;
@@ -79,5 +85,9 @@ public class MonsterController : MonoBehaviour, IBattleEntity
 
     }
 
-
+    public EntityInfo GetEntityInfo()
+    {
+        return monsterInfo;
+    }
 }
+//        if (monsterInfo.currentHp < (monsterInfo.maxHp / 3)) monsterInfo.mobState = MonsterState.Angry;
