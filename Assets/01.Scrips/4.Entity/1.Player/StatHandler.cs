@@ -96,4 +96,8 @@ public class StatHandler : MonoBehaviour,IBattleEntity
 
     }
 
+    public EntityInfo GetEntityInfo()
+    {
+        throw new NotImplementedException();
+    }
 }
