@@ -40,6 +40,7 @@ public class BattleModel : MonoBehaviour
     private void Awake()
     {
         player = SkillManager.instance.TestPlayer.GetComponent<IBattleEntity>();
+        enemy = SkillManager.instance.TestMonster.GetComponent<IBattleEntity>();
     }
 
 }

@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.Rendering.VirtualTexturing;
 using UnityEngine.UIElements;
 
-public class Scratch : BaseSkill
+public class Scratch : BaseSkill, IUseableSkill
 {
     private int attackCount;
 
@@ -31,10 +31,14 @@ public class Scratch : BaseSkill
     {
         SetNums();
         SetDirection();
-        StartCoroutine(OnSkill());
+        StartCoroutine(OnUse());
     }
-    private IEnumerator OnSkill()
+    public override IEnumerator OnUse()
     {
+        SetNums();
+        SetDirection();
+
+
         EntityInfo requesterInfo = entitys[0].GetEntityInfo();
         EntityInfo targetInfo = entitys[1].GetEntityInfo();
         Animator anim = requesterInfo.anim;
