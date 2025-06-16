@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using NaughtyAttributes;
 using UnityEngine;
 
 public class Inventory : MonoBehaviour
@@ -72,6 +73,20 @@ public class Inventory : MonoBehaviour
       slots.Add(newSlot);
     }
   }
-  
-  
+[Button]
+  public void TestItem()
+  {
+    ItemData item = ItemDataManager.Instance.ItemDatas["0_TestEquipment"];
+   IItem newItem = ItemManager.Instance.CreateItem(item);
+   AddItem(newItem);
+    
+
+  }
+
+  public void GetItem(String code)
+  {
+    ItemData item = ItemDataManager.Instance.ItemDatas[code];
+    IItem newItem = ItemManager.Instance.CreateItem(item);
+    AddItem(newItem);
+  }
 }

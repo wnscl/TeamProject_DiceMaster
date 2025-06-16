@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+[CreateAssetMenu(fileName = "ConsumableItemData", menuName = "ItemData/ConsumableItem")]
 public class ConsumableItemData : ItemData
 {
     public float valueAmount; // 회복이나 버프에 사용할 값 
