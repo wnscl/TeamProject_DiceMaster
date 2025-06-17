@@ -35,6 +35,7 @@ public class Scratch : BaseSkill, IUseableSkill
     }
     public override IEnumerator OnUse()
     {
+        entitys = skillManager.SelectEntitys();
         SetNums();
         SetDirection();
 
@@ -60,6 +61,7 @@ public class Scratch : BaseSkill, IUseableSkill
             anim.SetTrigger("Attack");
             targetInfo.anim.SetTrigger("Hit");
             BuffManager.instance.AddBuffToList(BuffType.Bleeding, entitys[1]);
+            AudioManager.Instance.PlayAudioOnce(PyhsicsSFXEnum.Slash);
             yield return new WaitForSeconds(((float)1 / (float)attackCount));
             OnOffEffect(false);
             entitys[1].GetDamage(diceNumber[0]);

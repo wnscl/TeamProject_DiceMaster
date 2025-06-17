@@ -23,6 +23,7 @@ public class BloodWell : BaseSkill
     }
     public override IEnumerator OnUse()
     {
+        entitys = skillManager.SelectEntitys();
         SetDice();
         SetDirection();
 
@@ -38,6 +39,7 @@ public class BloodWell : BaseSkill
         requesterInfo.anim.SetTrigger("Attack");
         targetInfo.anim.SetBool("isHit", true);
         targetInfo.anim.SetTrigger("Hit");
+        AudioManager.Instance.PlayAudioOnce(MagicSFXEnum.Wind);
         yield return new WaitForSeconds(1f);
         targetInfo.anim.SetTrigger("Hit");
         requesterInfo.anim.SetBool("isAction", false);

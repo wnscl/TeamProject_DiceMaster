@@ -6,7 +6,16 @@ using UnityEngine;
 public class CameraController : MonoBehaviour
 {
     [SerializeField] private GameObject[] camAncher;
-    int camAncherIndex = 0;
+    int camAncherIndex = 1;
+
+    private void Awake()
+    {
+        ChangeCam();
+    }
+    private void Start()
+    {
+        GameManager.Instance.battleEvent += ChangeCam;
+    }
 
     [Button]
     private void ChangeCam()

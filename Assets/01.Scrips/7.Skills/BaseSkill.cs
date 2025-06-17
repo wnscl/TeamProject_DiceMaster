@@ -29,8 +29,8 @@ public abstract class BaseSkill : MonoBehaviour, IUseableSkill
     {
         //entitys = skillManager.SelectEntitys();
         entitys = new IBattleEntity[2];
-        entitys[0] = skillManager.TestMonster.GetComponent<IBattleEntity>();
-        entitys[1] = skillManager.TestPlayer.GetComponent<IBattleEntity>();
+        //entitys[0] = skillManager.TestMonster.GetComponent<IBattleEntity>();
+        //entitys[1] = skillManager.TestPlayer.GetComponent<IBattleEntity>();
 
         skill = this.GetComponent<IUseableSkill>();
         Debug.Log($"{this.name}ÀÇ GetComponent<IUseableSkill>() °á°ú: {skill}");

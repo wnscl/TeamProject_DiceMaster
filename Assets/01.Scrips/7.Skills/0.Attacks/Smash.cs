@@ -28,6 +28,8 @@ public class Smash : BaseSkill, IUseableSkill
     }
     public override IEnumerator OnUse()
     {
+        entitys = skillManager.SelectEntitys();
+
         diceNumber = skillManager.RollDice();
         SetDirection();
 
@@ -42,12 +44,14 @@ public class Smash : BaseSkill, IUseableSkill
 
         anim.SetTrigger("Attack");
         effect[0].transform.position = entitys[1].GetEntityInfo().gameObject.transform.position;
+        AudioManager.Instance.PlayAudioOnce(PyhsicsSFXEnum.Bite);
 
         yield return new WaitForSeconds(0.6f);
         effect[0].SetActive(true);
         targetinfo.anim.SetBool("isHit", true);
         targetinfo.anim.SetTrigger("Hit");
         entitys[1].GetDamage(MakeDamage(entitys[1].GetEntityInfo()));
+        
         yield return new WaitForSeconds(0.4f);
         targetinfo.anim.SetBool("isHit", false);
 

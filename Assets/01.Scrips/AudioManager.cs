@@ -69,6 +69,11 @@ public class AudioManager : MonoBehaviour
     {
         audioSource.PlayOneShot(audioPool.UISFXClips[(int)enumSFX]);
     }
+
+    public void PlayAudioOnce(Car enumSFX)
+    {
+        audioSource.PlayOneShot(audioPool.CarSFX[(int)enumSFX]);
+    }
     #endregion
 
     public void PlayBackGroundAudioOnStart(int stage) //배경음악이 처음 시작할때 혹은 정지됐다 다시 시작할때
@@ -148,5 +153,28 @@ public class AudioManager : MonoBehaviour
         }
 
         originalAudioSource.Stop();
+    }
+
+    public void StartCarScene()
+    {
+        IEnumerator carScene = CarScene();
+        StartCoroutine(CarScene());
+    }
+
+    public void StopCarScene()
+    {
+        StopCoroutine(CarScene());
+        audioSource.Stop();
+    }
+
+    IEnumerator CarScene()
+    {
+        PlayAudioOnce(Car.door);
+        yield return audioSource.isPlaying;
+
+        PlayAudioOnce(Car.engine);
+        yield return audioSource.isPlaying;
+
+        PlayAudioOnce(Car.drive);
     }
 }

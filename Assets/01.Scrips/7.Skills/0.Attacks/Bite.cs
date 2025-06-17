@@ -21,6 +21,7 @@ public class Bite : BaseSkill, IUseableSkill
     }
     public override IEnumerator OnUse()
     {
+        entitys = skillManager.SelectEntitys();
         diceNumber = skillManager.RollDice();
         SetDirection();
 
@@ -48,6 +49,7 @@ public class Bite : BaseSkill, IUseableSkill
         requesterInfo.anim.SetBool("isAction", true);
         requesterInfo.anim.SetTrigger("Attack");
         requesterInfo.gameObject.transform.position = new Vector3(pos[1].x + (-x / 2), pos[1].y, 0);
+        AudioManager.Instance.PlayAudioOnce(PyhsicsSFXEnum.Bite);
         effect[1].SetActive(true);
         targetInfo.anim.SetBool("isHit", true);
         targetInfo.anim.SetTrigger("Hit");
@@ -58,7 +60,7 @@ public class Bite : BaseSkill, IUseableSkill
         yield return new WaitForSeconds(1f);
 
         MakeDamage(requesterInfo, entitys[1]);
-            
+
         requesterInfo.anim.SetBool("isAction", false);
         TurnOffSkill();
         requesterInfo.gameObject.transform.position = pos[0];

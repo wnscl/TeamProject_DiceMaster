@@ -20,6 +20,7 @@ public class OneCut : BaseSkill
     }
     public override IEnumerator OnUse()
     {
+        entitys = skillManager.SelectEntitys();
         diceNumber = skillManager.RollDice();
         SetDirection();
 
@@ -39,6 +40,7 @@ public class OneCut : BaseSkill
         effect[0].transform.position = startPos[0];
         requesterInfo.anim.SetBool("isAction", true);
         requesterInfo.anim.SetTrigger("Attack");
+        AudioManager.Instance.PlayAudioOnce(PyhsicsSFXEnum.Slash);
         yield return new WaitForSeconds(1f);
         requesterInfo.gameObject.transform.position = new Vector3(30, 20, 0);
         effect[0].transform.position = Vector3.Lerp(

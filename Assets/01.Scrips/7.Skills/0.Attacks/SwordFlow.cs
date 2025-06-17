@@ -50,6 +50,8 @@ public class SwordFlow : BaseSkill, IUseableSkill
     }
     public override IEnumerator OnUse()
     {
+        entitys = skillManager.SelectEntitys();
+
         SetNums();
 
         EntityInfo info = entitys[0].GetEntityInfo();
@@ -57,6 +59,7 @@ public class SwordFlow : BaseSkill, IUseableSkill
 
         info.anim.SetBool("isAction", true);
         info.anim.SetTrigger("Attack");
+        AudioManager.Instance.PlayAudioOnce(PyhsicsSFXEnum.Slash);
         effect[0].SetActive(true);
         effect[0].transform.position = entitys[1].GetEntityInfo().gameObject.transform.position;
         yield return new WaitForSeconds(0.5f);
@@ -67,6 +70,7 @@ public class SwordFlow : BaseSkill, IUseableSkill
         target.anim.SetBool("isHit", true);
         target.anim.SetTrigger("Hit");
         effectAnim[0].SetTrigger("Explode");
+        AudioManager.Instance.PlayAudioOnce(MagicSFXEnum.Fire);
         yield return new WaitForSeconds(1f);
         TurnOffSkill();
         target.anim.SetBool("isHit", false);
