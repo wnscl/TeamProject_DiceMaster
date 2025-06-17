@@ -3,35 +3,45 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public interface IUseableSkill
+{
+    IEnumerator OnUse();
+}
+
 public class SkillManager : MonoBehaviour
 {
     public static SkillManager instance;
+    [SerializeField] private BaseSkill[] baseSkill;
 
     private void Awake()
     {
-        instance = this;    
+        instance = this;
+
+        //for (int i = 0; i < baseSkill.Length; i++)
+        //{
+        //    skills[i] = baseSkill[i].GetSkill();
+        //}
+    }
+    private void Start()
+    {
+        skills = new IUseableSkill[baseSkill.Length];
+        for (int i = 0; i < baseSkill.Length; i++)
+        {
+            skills[i] = baseSkill[i].GetSkill();
+        }
     }
 
 
     [SerializeField] private BattleModel battleModel;
+
+    public IUseableSkill[] skills;
+    public SkillDataSo[] skillDatas;
 
     public GameObject TestPlayer;
     public GameObject TestMonster;
 
     public Vector3 firstPos;
 
-    public event Action skillEvent; //필요한 스킬만 담아서 사용할 이벤트
-
-    public void UseSkill(bool init) //이벤트를 사용
-    {
-        if (init)
-        {
-            skillEvent = null;
-            return;
-        }
-
-        skillEvent?.Invoke();
-    }
 
     public IBattleEntity[] SelectEntitys()
     {

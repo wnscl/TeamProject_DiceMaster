@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using NaughtyAttributes;
 using UnityEngine;
 
-public class Smash : BaseSkill
+public class Smash : BaseSkill, IUseableSkill
 {
     [SerializeField] private float moveDuration;
 
@@ -13,7 +13,7 @@ public class Smash : BaseSkill
     {
         diceNumber = skillManager.RollDice();
         SetDirection();
-        StartCoroutine(OnSkill());
+        StartCoroutine(OnUse());
     }
     private int MakeDamage(EntityInfo info)
     {
@@ -22,12 +22,16 @@ public class Smash : BaseSkill
 
         if (diceNumber[1] > 3) bounes = 2;
 
-        if ((diceNumber[2] * 6) > info.dodge) bounes = 3;
+        if ((diceNumber[2] * 6) > info.def) bounes = 3;
 
         return damage = (diceNumber[0] * bounes);
     }
-    private IEnumerator OnSkill()
+    public override IEnumerator OnUse()
     {
+        diceNumber = skillManager.RollDice();
+        SetDirection();
+
+
         EntityInfo info = entitys[0].GetEntityInfo();
         EntityInfo targetinfo = entitys[1].GetEntityInfo(); 
         Animator anim = info.anim;
@@ -49,7 +53,7 @@ public class Smash : BaseSkill
 
         anim.SetBool("isAction", false);
         skillManager.BackToPosition(entitys[0]);
-        effect[0].SetActive(false);
+        TurnOffSkill();
 
         yield break;
     }

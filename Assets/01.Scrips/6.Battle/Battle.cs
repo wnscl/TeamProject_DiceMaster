@@ -31,25 +31,25 @@ using UnityEngine;
 public class Battle : MonoBehaviour
 {
 
-    private BattleModel model;
+    [SerializeField] private BattleModel Model;
 
-    public BattleModel Model
-    {
-        get
-        {
-            if (model == null)
-            {
-                model = GetComponent<BattleModel>();
-            }
+    //public BattleModel Model
+    //{
+    //    get
+    //    {
+    //        if (model == null)
+    //        {
+    //            model = GetComponent<BattleModel>();
+    //        }
 
-            return model;
-        }
-        set => model = value;
-    }
+    //        return model;
+    //    }
+    //    set => model = value;
+    //}
 
     void Start()
     {
-        model = GetComponent<BattleModel>();
+        //model = GetComponent<BattleModel>();
     }
 
     void Update()
@@ -64,9 +64,12 @@ public class Battle : MonoBehaviour
     public void GetPlayer()
     {
         IBattleEntity player = GameManager.Instance.player as IBattleEntity;
+
+
         if (player != null)
         {
             Model.battleEntities.Add(player);
+
             // model.PlayerInfo = player.GetEntityInfo() as PlayerInfo;
         }
         else
@@ -82,7 +85,7 @@ public class Battle : MonoBehaviour
     public void GetEmenies()
     {
         // to do : 게임 사양 상 추후 리스트로 받아와야 할 것이다
-        IBattleEntity enemies = GameManager.Instance.monster;
+        IBattleEntity enemies = SkillManager.instance.TestMonster.GetComponent<IBattleEntity>();
 
         Model.battleEntities.Add(enemies);
         // model.EnemyInfo = enemies.GetEntityInfo() as MonsterInfo;
@@ -95,13 +98,14 @@ public class Battle : MonoBehaviour
     public void Encounter()
     {
         // 너티 어트리뷰트 버튼을 통한 테스트용 battleEntities 초기화
-        //GetPlayer();
-        //GetEmenies();
+        GetPlayer();
+        GetEmenies();
 
         // 전투 관련 필드 값 전환
         BattleManager.Instance.IsBattleActive = true;
         Model.battlePhase = BattlePhase.Ready;
 
+        AudioManager.Instance.ChangeAudio(AudioManager.Instance.audioPool.battleAudio, 2);
         StartCoroutine(Combat());
     }
 
@@ -120,7 +124,6 @@ public class Battle : MonoBehaviour
                     foreach (IBattleEntity entity in Model.battleEntities)
                     {
                         Model.nowTurnEntity = entity; // 현재 턴을 가진 유닛 설정
-
                         yield return entity.ActionOnTurn(Model.battlePhase);
                     }
 
@@ -162,6 +165,7 @@ public class Battle : MonoBehaviour
     /// </summary>
     public void EndBattle()
     {
+        AudioManager.Instance.ChangeAudio(AudioManager.Instance.audioPool.BackGroundAudio[StageManager.Instance.currentStage]);
         BattleManager.Instance.IsBattleActive = false;
     }
 
