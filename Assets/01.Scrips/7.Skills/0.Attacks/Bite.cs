@@ -58,10 +58,9 @@ public class Bite : BaseSkill, IUseableSkill
         yield return new WaitForSeconds(1f);
 
         MakeDamage(requesterInfo, entitys[1]);
-
+            
         requesterInfo.anim.SetBool("isAction", false);
-        effect[0].SetActive(false);
-        effect[1].SetActive(false);
+        TurnOffSkill();
         requesterInfo.gameObject.transform.position = pos[0];
         SpriteRenderer sprite = effect[0].GetComponent<SpriteRenderer>();
         sprite.color = Color.white;

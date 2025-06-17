@@ -53,7 +53,7 @@ public class Smash : BaseSkill, IUseableSkill
 
         anim.SetBool("isAction", false);
         skillManager.BackToPosition(entitys[0]);
-        effect[0].SetActive(false);
+        TurnOffSkill();
 
         yield break;
     }

@@ -67,5 +67,13 @@ public abstract class BaseSkill : MonoBehaviour, IUseableSkill
         }
     }
 
+    protected void TurnOffSkill()
+    {
+        foreach (GameObject obj in effect)
+        {
+            obj.SetActive(false);
+        }
+    }
+
 
 }
