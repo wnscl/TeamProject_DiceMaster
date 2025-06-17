@@ -123,7 +123,6 @@ public class Battle : MonoBehaviour
                     foreach (IBattleEntity entity in Model.battleEntities)
                     {
                         Model.nowTurnEntity = entity; // 현재 턴을 가진 유닛 설정
-                        Debug.Log($"Ready Phase {entity}");
                         yield return entity.ActionOnTurn(Model.battlePhase);
                     }
 

@@ -368,6 +368,12 @@ MonoBehaviour:
   - {fileID: 625337854}
   - {fileID: 1407360858}
   battleModel: {fileID: 289589937}
+  skillDatas:
+  - {fileID: 11400000, guid: 3253117ba1e18b340a1de847928c48ea, type: 2}
+  - {fileID: 11400000, guid: 9e162d7a46c33674ea133fefe2fbe422, type: 2}
+  - {fileID: 11400000, guid: 03ae0eb1effa96d42a18af4105cc2354, type: 2}
+  - {fileID: 11400000, guid: 5b608d6a9d390b7429db48cbcc19cf5e, type: 2}
+  - {fileID: 11400000, guid: 125dac0ca080dd840b3879228c026807, type: 2}
   TestPlayer: {fileID: 1189122529}
   TestMonster: {fileID: 1212770171}
   firstPos: {x: 0, y: 0, z: 0}
@@ -2349,7 +2355,7 @@ MonoBehaviour:
   - {fileID: 1049361389}
   effectAnim:
   - {fileID: 1049361391}
-  diceNumber: 000000000000000000000000
+  diceNumber: 050000000200000003000000
   TestSelectNum: 0
 --- !u!1 &1448201168
 GameObject:
