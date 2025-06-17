@@ -38,6 +38,7 @@ public class LightningShot : BaseSkill
         effect[0].transform.position = startPos[1];
         anim.SetBool("isAction", true);
         anim.SetTrigger("Buff");
+        AudioManager.Instance.PlayAudioOnce(MagicSFXEnum.Thunder);
         yield return new WaitForSeconds(1f);
         anim.SetBool("isAction", false);
         effect[0].transform.position = Vector2.Lerp(startPos[0], startPos[1], 0.5f);

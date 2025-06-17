@@ -36,6 +36,7 @@ public class BloodWell : BaseSkill
         effect[0].SetActive(true);
         requesterInfo.anim.SetBool("isAction", true);
         requesterInfo.anim.SetTrigger("Attack");
+        AudioManager.Instance.PlayAudioOnce(MagicSFXEnum.Wind);
         yield return new WaitForSeconds(1f);
 
         requesterInfo.anim.SetBool("isAction", false);

@@ -86,13 +86,17 @@ public class MonsterController : MonoBehaviour, IBattleEntity
     {
         int chance = UnityEngine.Random.Range(0, 100);  //99퍼까지
 
-        if (monsterInfo.dodge > chance) return; //회피
+        if (monsterInfo.dodge > chance)
+        {
+            AudioManager.Instance.PlayAudioOnce(ReactSFXEnum.Evade);
+            return;
+        }//회피
 
         dmg = Mathf.Abs(dmg); //데미지는 절대값으로 
 
         monsterInfo.currentHp = 
             Mathf.Clamp(monsterInfo.currentHp - dmg, 0, monsterInfo.maxHp);
-
+        AudioManager.Instance.PlayAudioOnce(ReactSFXEnum.Hit);
     }
 
     public EntityInfo GetEntityInfo()

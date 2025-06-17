@@ -16,7 +16,7 @@ public class Healing : IBuff
         int healRatio = diceNum.Sum() * 2;
         
         info.currentHp = Mathf.Clamp(info.currentHp + (info.currentHp * healRatio), 0, info.maxHp);
-
+        AudioManager.Instance.PlayAudioOnce(BuffSFXEnum.Heal);
         return true;
     }
 

@@ -23,7 +23,7 @@ public class RussianRoulette : BaseSkill, IUseableSkill
 
         info.anim.SetBool("isHit", true);
         info.anim.SetTrigger("Hit");
-
+        
         entity.GetDamage(info.currentHp / 2);
 
         yield return new WaitForSeconds(0.4f);
