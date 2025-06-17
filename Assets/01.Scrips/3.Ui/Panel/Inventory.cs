@@ -17,6 +17,12 @@ public class Inventory : MonoBehaviour
   {
     SetDefaultSlotCount();
   }
+
+  private void Start()
+  {
+    GetItem("301_DefaultDice");
+  }
+
   public void AddItem(IItem item)
   {
     items.Add(item);
@@ -57,7 +63,10 @@ public class Inventory : MonoBehaviour
   public void RemoveItem()
   {
     FindOpenSlot();
-
+    var itemComponent = slot.GetComponent<ItemSlot>();
+    items.Remove(itemComponent.item);    
+    ItemManager.Instance.allItems.Remove(itemComponent.item);
+    
     slot.GetComponent<ItemSlot>().ONDestroySlot();
 
     SetDefaultSlotCount();
@@ -73,20 +82,28 @@ public class Inventory : MonoBehaviour
       slots.Add(newSlot);
     }
   }
-[Button]
-  public void TestItem()
-  {
-    ItemData item = ItemDataManager.Instance.ItemDatas["0_TestEquipment"];
-   IItem newItem = ItemManager.Instance.CreateItem(item);
-   AddItem(newItem);
-    
+  
+  
+  
 
-  }
 
   public void GetItem(String code)
   {
     ItemData item = ItemDataManager.Instance.ItemDatas[code];
     IItem newItem = ItemManager.Instance.CreateItem(item);
     AddItem(newItem);
+  }
+  
+  
+  
+  //테스트 아이템 생성용
+  [Button]
+  public void TestItem()
+  {
+    ItemData item = ItemDataManager.Instance.ItemDatas["0_TestEquipment"];
+    IItem newItem = ItemManager.Instance.CreateItem(item);
+    AddItem(newItem);
+    
+
   }
 }
