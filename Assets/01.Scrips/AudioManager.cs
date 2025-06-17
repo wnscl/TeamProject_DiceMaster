@@ -159,6 +159,13 @@ public class AudioManager : MonoBehaviour
         IEnumerator carScene = CarScene();
         StartCoroutine(CarScene());
     }
+
+    public void StopCarScene()
+    {
+        StopCoroutine(CarScene());
+        audioSource.Stop();
+    }
+
     IEnumerator CarScene()
     {
         PlayAudioOnce(Car.door);
