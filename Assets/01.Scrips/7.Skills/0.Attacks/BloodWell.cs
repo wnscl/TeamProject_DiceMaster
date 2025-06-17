@@ -17,7 +17,7 @@ public class BloodWell : BaseSkill
     {
         diceNumber = skillManager.RollDice();
 
-        if ((diceNumber[0] + diceNumber[1] + diceNumber[2]) > 15) attackCount = 4f;
+        if ((diceNumber[0] + diceNumber[1] + diceNumber[2]) >= 12) attackCount = 4f;
         else attackCount = 3f;
 
     }

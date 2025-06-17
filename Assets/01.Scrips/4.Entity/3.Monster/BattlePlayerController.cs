@@ -7,24 +7,12 @@ using UnityEngine;
 public class BattlePlayerController : MonoBehaviour, IBattleEntity
 {
 
-    private Dictionary<BattlePhase, Func<IEnumerator>> _fsm;
-
     [SerializeField] private PlayerInfo playerInfo;
 
     public Coroutine playerCor;
 
     public bool isSelectAction = false;
 
-    private void Awake()
-    {
-        _fsm = new Dictionary<BattlePhase, Func<IEnumerator>>
-        {
-            {BattlePhase.Ready, DecideAction },
-            {BattlePhase.Action, DoAction },
-            {BattlePhase.Result, GetResult }
-        };
-        //���� ��ųʸ��� 3���� ���� �ִ� ���̴�.
-    }
 
 
     [Button]
@@ -38,13 +26,27 @@ public class BattlePlayerController : MonoBehaviour, IBattleEntity
 
     public IEnumerator ActionOnTurn(BattlePhase nowTurn)
     {
-        yield return _fsm[nowTurn];
+        switch (nowTurn)
+        {
+            case BattlePhase.Ready:
+                yield return DecideAction();
+                break;
+
+            case BattlePhase.Action:
+                yield return DoAction();
+                break;
+
+            case BattlePhase.Result:
+                yield return GetResult();
+                break;
+        }
         yield break;
     }
 
     private IEnumerator DecideAction() //���¿� ���� � �ൿ�� ���� ����
     {
-        playerInfo.actionNum = UnityEngine.Random.Range(0, 3);
+        playerInfo.actionNum = UnityEngine.Random.Range(0, 3); //actionNum�� ������ ���ϴ� ��ų�� ���
+        //actionNum�� skillNumbers�� �ε�����
         yield break;
     }
     private IEnumerator DoAction() //������ �ൿ�� ����
