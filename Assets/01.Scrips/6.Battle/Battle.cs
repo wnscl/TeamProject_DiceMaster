@@ -33,6 +33,8 @@ public class Battle : MonoBehaviour
 
     [SerializeField] private BattleModel Model;
 
+    Coroutine myCor;
+
     //public BattleModel Model
     //{
     //    get
@@ -63,7 +65,7 @@ public class Battle : MonoBehaviour
     /// </summary>
     public void GetPlayer()
     {
-        IBattleEntity player = GameManager.Instance.player as IBattleEntity;
+        IBattleEntity player = SkillManager.instance.TestPlayer.GetComponent<IBattleEntity>();
 
 
         if (player != null)
@@ -101,12 +103,21 @@ public class Battle : MonoBehaviour
         GetPlayer();
         GetEmenies();
 
+        GameManager.Instance.ActionPlayer();
+
         // 전투 관련 필드 값 전환
         BattleManager.Instance.IsBattleActive = true;
         Model.battlePhase = BattlePhase.Ready;
 
         AudioManager.Instance.ChangeAudio(AudioManager.Instance.audioPool.battleAudio, 2);
-        StartCoroutine(Combat());
+
+        if (myCor != null)
+        {
+            Debug.Log("코루틴 중첩");
+            return;
+        }
+
+        myCor = StartCoroutine(Combat());
     }
 
     /// <summary>
@@ -125,6 +136,7 @@ public class Battle : MonoBehaviour
                     {
                         Model.nowTurnEntity = entity; // 현재 턴을 가진 유닛 설정
                         yield return entity.ActionOnTurn(Model.battlePhase);
+                        yield return new WaitForSeconds(2f);
                     }
 
                     Model.battlePhase = BattlePhase.Action;
@@ -138,6 +150,7 @@ public class Battle : MonoBehaviour
                         Model.nowTurnEntity = entity; // 현재 턴을 가진 유닛 설정
 
                         yield return entity.ActionOnTurn(Model.battlePhase);
+                        yield return new WaitForSeconds(2f);
                     }
 
                     Model.battlePhase = BattlePhase.Result;
@@ -149,6 +162,7 @@ public class Battle : MonoBehaviour
                     foreach (IBattleEntity entity in Model.battleEntities)
                     {
                         yield return entity.ActionOnTurn(Model.battlePhase);
+                        yield return new WaitForSeconds(2f);
                     }
 
                     // 각 유닛의 행동 결과를 처리하고, 배틀 종료 여부를 확인

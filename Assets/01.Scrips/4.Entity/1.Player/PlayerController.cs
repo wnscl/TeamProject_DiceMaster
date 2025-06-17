@@ -14,6 +14,8 @@ public class PlayerController : MonoBehaviour
 
     public void OnMove(InputAction.CallbackContext context)
     {
+        if(BattleManager.Instance.IsBattleActive)
+        {  return;}
         
         if (context.phase == InputActionPhase.Started)
         {

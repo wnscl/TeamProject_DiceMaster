@@ -5903,7 +5903,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -7331,18 +7331,30 @@ MonoBehaviour:
     m_ActionId: 59fc0cc6-aa7f-497e-bdc4-1c2f41d7705d
     m_ActionName: Player/Inventoy[/Keyboard/i]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 320671317}
+        m_TargetAssemblyTypeName: SkillShortCut, Assembly-CSharp
+        m_MethodName: OnClickUpDown
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 1fd94a15-1e2e-4af4-9b87-a44e4fd6c72e
     m_ActionName: Player/SkillWindow[/Keyboard/s]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 320671315}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 1
+      - m_Target: {fileID: 320671317}
+        m_TargetAssemblyTypeName: SkillShortCut, Assembly-CSharp
+        m_MethodName: OnUsingSkill
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -8626,7 +8638,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 1
-  m_Pitch: 1
+  m_Pitch: 0.5
   Loop: 0
   Mute: 0
   Spatialize: 0
@@ -10851,7 +10863,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 1
-  m_Pitch: 1
+  m_Pitch: 0.5
   Loop: 0
   Mute: 0
   Spatialize: 0
@@ -11919,7 +11931,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -13733,7 +13745,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6303b4e8b18ae442925b6a46177ec21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillManager: {fileID: 0}
+  skillManager: {fileID: 242156008}
   skillSOData: []
   skillPrefabs: []
   skillSlot: []
@@ -14515,7 +14527,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -14823,7 +14835,31 @@ PrefabInstance:
       objectReference: {fileID: 1119392084}
     - target: {fileID: 4714684622921803808, guid: ee7c3535893a39546989f37b82408fdf, type: 3}
       propertyPath: skillNumbers.Array.size
-      value: 0
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4714684622921803808, guid: ee7c3535893a39546989f37b82408fdf, type: 3}
+      propertyPath: skillNumbers.Array.data[0]
+      value: 999
+      objectReference: {fileID: 0}
+    - target: {fileID: 4714684622921803808, guid: ee7c3535893a39546989f37b82408fdf, type: 3}
+      propertyPath: skillNumbers.Array.data[1]
+      value: 999
+      objectReference: {fileID: 0}
+    - target: {fileID: 4714684622921803808, guid: ee7c3535893a39546989f37b82408fdf, type: 3}
+      propertyPath: skillNumbers.Array.data[2]
+      value: 999
+      objectReference: {fileID: 0}
+    - target: {fileID: 4714684622921803808, guid: ee7c3535893a39546989f37b82408fdf, type: 3}
+      propertyPath: skillNumbers.Array.data[3]
+      value: 999
+      objectReference: {fileID: 0}
+    - target: {fileID: 4714684622921803808, guid: ee7c3535893a39546989f37b82408fdf, type: 3}
+      propertyPath: skillNumbers.Array.data[4]
+      value: 999
+      objectReference: {fileID: 0}
+    - target: {fileID: 4714684622921803808, guid: ee7c3535893a39546989f37b82408fdf, type: 3}
+      propertyPath: skillNumbers.Array.data[5]
+      value: 999
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

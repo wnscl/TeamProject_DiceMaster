@@ -40,13 +40,26 @@ public class BattlePlayerController : MonoBehaviour, IBattleEntity
                 yield return GetResult();
                 break;
         }
-        yield break;
+
     }
 
     private IEnumerator DecideAction() //���¿� ���� � �ൿ�� ���� ����
     {
-        playerInfo.actionNum = UnityEngine.Random.Range(0, 3); //actionNum�� ������ ���ϴ� ��ų�� ���
-        //actionNum�� skillNumbers�� �ε�����
+        bool isSelect = false;
+
+        Debug.Log(isSelect);
+
+        while (!isSelect)
+        {
+            if (Input.GetKeyDown(KeyCode.J))
+            {
+                Debug.Log("입력감지되었음");
+                playerInfo.actionNum = 0;
+                isSelect = true;
+            }
+            yield return null;
+        }
+
         yield break;
     }
     private IEnumerator DoAction() //������ �ൿ�� ����
