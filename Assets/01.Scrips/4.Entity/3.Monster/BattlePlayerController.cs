@@ -42,7 +42,41 @@ public class BattlePlayerController : MonoBehaviour, IBattleEntity
         }
 
     }
+    private bool SelectSkill()
+    {
+        if (Input.GetKeyDown("1"))
+        {
+            playerInfo.actionNum = 0;
+            return true;
+        }
+        if (Input.GetKeyDown("2"))
+        {
+            playerInfo.actionNum = 1;
+            return true;
+        }
+        if (Input.GetKeyDown("3"))
+        {
+            playerInfo.actionNum = 2;
+            return true;
+        }
+        if (Input.GetKeyDown("4"))
+        {
+            playerInfo.actionNum = 3;
+            return true;
+        }
+        if (Input.GetKeyDown("5"))
+        {
+            playerInfo.actionNum = 4;
+            return true;
+        }
+        if (Input.GetKeyDown("6"))
+        {
+            playerInfo.actionNum = 5;
+            return true;
+        }
 
+        return false;
+    }
     private IEnumerator DecideAction() //���¿� ���� � �ൿ�� ���� ����
     {
         bool isSelect = false;
@@ -51,12 +85,9 @@ public class BattlePlayerController : MonoBehaviour, IBattleEntity
 
         while (!isSelect)
         {
-            if (Input.GetKeyDown(KeyCode.J))
-            {
-                Debug.Log("입력감지되었음");
-                playerInfo.actionNum = 0;
-                isSelect = true;
-            }
+            isSelect = SelectSkill();
+            if (playerInfo.skillNumbers[playerInfo.actionNum] == 999) isSelect = false;
+
             yield return null;
         }
 

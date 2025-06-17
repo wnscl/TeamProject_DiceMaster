@@ -17,6 +17,16 @@ public class SkillShortcutSlot : MonoBehaviour, IDropHandler, IPointerEnterHandl
     {
         skillIcon.sprite = skillData.Icon;
         isSkillOnSlot = true;
+
+        List<GameObject> slots = UIManager.Instance.skillShortcut.slots;
+
+        for (int i = 0; i < slots.Count; i++)
+        {
+            if (slots[i].GetComponent<SkillShortcutSlot>().skillData != null)
+            {
+                GameManager.Instance.player.playerInfo.skillNumbers[i] = slots[i].GetComponent<SkillShortcutSlot>().skillData.SkillNumber;
+            }
+        }
     }
 
     void ResetShortCut()
