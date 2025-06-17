@@ -1,53 +1,58 @@
-using System;
-using UnityEngine;
+ï»¿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using System.Collections.Generic;
+using System.Linq;
+using UnityEngine;
 
-public class DataForSaveLoad : MonoBehaviour
+public class DataForSaveLoad
 {
-    [SerializeField] PlayerSaveData player;
-
-
+    [SerializeField] Dictionary<string, string> playerStats;
+    [SerializeField] List<IItem> InventoryData;
+    [SerializeField] List<QuestData>[] questData = new List<QuestData>[2];
+    
     public DataForSaveLoad GetSaveData()
     {
-        player = new PlayerSaveData();
+        playerStats = GameManager.Instance.player.statHandler.ToStatDict();
+        InventoryData = UIManager.Instance.inventory.items.ToList();
+        questData[0] = QuestManager.Instance.PlayerQuests.ToList();
+        questData[1] = QuestManager.Instance.CompletedQuests.ToList();       
 
-        return new DataForSaveLoad();
+        return this;
     }
 
     public void GetLoadData(string jsonString)
     {
-        JObject root = JObject.Parse(jsonString);
+        JObject root = JObject.Parse(jsonString); //ë°©ë²• 1
 
-        JToken player = root["player"];
-        JToken inven = root["inventory"]; //¾Æ¸¶ ÀÌ·±½Ä?
+        JToken player = root["playerStats"];
+        LoadPlayer(player);
+
+        JToken inven = root["InventoryData"];
+        LoadInventory(inven);
+
+        JToken quest = root["questData"];
+        LoadQuest(quest);
     }
-}
 
-[Serializable]
-public class PlayerSaveData
-{
-    string name;
-    float level;
-    float currentExp;
-    float money;
-    float maxHP;
-    float currentHP;
-    float def;
-    float mDef;
-    float dodge;
-    float moveSpeed;
-
-    public PlayerSaveData()
+    private void LoadPlayer(JToken Data)
     {
-        name = GameManager.Instance.player.name;
-        level = GameManager.Instance.player.statHandler.GetStat(StatType.Level);
-        maxHP = GameManager.Instance.player.statHandler.GetStat(StatType.MaxHp);
-        currentHP = GameManager.Instance.player.statHandler.GetStat(StatType.Hp);
-        def = GameManager.Instance.player.statHandler.GetStat(StatType.PhysicalDefense);
-        mDef = GameManager.Instance.player.statHandler.GetStat(StatType.MagicalDefense); ;
-        dodge = GameManager.Instance.player.statHandler.GetStat(StatType.Evasion); ;
-        currentExp = GameManager.Instance.player.statHandler.GetStat(StatType.Exp);
-        money = GameManager.Instance.player.statHandler.GetStat(StatType.Money);
-        moveSpeed = GameManager.Instance.player.statHandler.GetStat(StatType.MoveSpeed);
+        //GameManager.Instance.player.statHandler.serializeStats = JsonConvert.DeserializeObject<Dictionary<string,string>>(Data.ToString()); ////ë°©ë²• 2
+        foreach(JProperty jj in Data)
+        {
+            GameManager.Instance.player.statHandler.serializeStats[jj.Name] = jj.Value.ToString();
+        }
+
+        GameManager.Instance.player.statHandler.LoadStatsToCurrent();
+    }
+
+    private void LoadInventory(JToken Data)
+    {
+        UIManager.Instance.inventory.items = JsonConvert.DeserializeObject<List<IItem>>(Data.ToString()).ToList();        
+    }
+
+    private void LoadQuest(JToken Data)
+    {
+        QuestManager.Instance.PlayerQuests = JsonConvert.DeserializeObject<List<QuestData>>(Data[0].ToString()).ToList();
+        QuestManager.Instance.CompletedQuests = JsonConvert.DeserializeObject<List<QuestData>>(Data[1].ToString()).ToList();
     }
 }
