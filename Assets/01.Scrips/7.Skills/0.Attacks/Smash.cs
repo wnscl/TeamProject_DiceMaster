@@ -28,6 +28,8 @@ public class Smash : BaseSkill, IUseableSkill
     }
     public override IEnumerator OnUse()
     {
+        entitys = skillManager.SelectEntitys();
+
         diceNumber = skillManager.RollDice();
         SetDirection();
 

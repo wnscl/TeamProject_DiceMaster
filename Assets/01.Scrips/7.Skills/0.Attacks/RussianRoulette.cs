@@ -13,6 +13,8 @@ public class RussianRoulette : BaseSkill, IUseableSkill
 
     public override IEnumerator OnUse()
     {
+        entitys = skillManager.SelectEntitys();
+
         EntityInfo[] entityInfo = new EntityInfo[] 
         {entitys[0].GetEntityInfo(), entitys[1].GetEntityInfo()};
 

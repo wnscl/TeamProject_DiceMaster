@@ -23,6 +23,7 @@ public class BloodWell : BaseSkill
     }
     public override IEnumerator OnUse()
     {
+        entitys = skillManager.SelectEntitys();
         SetDice();
         SetDirection();
 

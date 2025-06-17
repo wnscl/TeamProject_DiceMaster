@@ -35,6 +35,7 @@ public class Scratch : BaseSkill, IUseableSkill
     }
     public override IEnumerator OnUse()
     {
+        entitys = skillManager.SelectEntitys();
         SetNums();
         SetDirection();
 

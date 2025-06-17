@@ -8,7 +8,11 @@ public class MonsterFactory : MonoBehaviour
 
     [SerializeField] private GameObject monsterPivot;
 
-    public void CreateMonster(int index)
+    private void Start()
+    {
+        GameManager.Instance.battleEvent += CreateMonster;
+    }
+    public void CreateMonster()
     {
         GameObject newMonster = Instantiate(monsters[0]);
         SetMonsterToSkillManager(newMonster);
@@ -21,5 +25,6 @@ public class MonsterFactory : MonoBehaviour
     private void SetMonsterPosition(GameObject newMonster)
     {
         newMonster.transform.parent = monsterPivot.transform;
+        newMonster.transform.position = monsterPivot.transform.position;
     }
 }

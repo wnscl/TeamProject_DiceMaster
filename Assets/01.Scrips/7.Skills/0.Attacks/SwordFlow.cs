@@ -50,6 +50,8 @@ public class SwordFlow : BaseSkill, IUseableSkill
     }
     public override IEnumerator OnUse()
     {
+        entitys = skillManager.SelectEntitys();
+
         SetNums();
 
         EntityInfo info = entitys[0].GetEntityInfo();
