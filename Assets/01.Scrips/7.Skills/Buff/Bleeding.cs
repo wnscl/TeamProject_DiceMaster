@@ -27,6 +27,7 @@ public class Bleeding : IBuff
         EntityInfo info = entity.GetEntityInfo();
 
         info.currentHp = Mathf.Clamp(info.currentHp - damage, 0, info.maxHp);
+        AudioManager.Instance.PlayAudioOnce(BuffSFXEnum.Debuff);
         return true;
     }
     public IBuff Clone()

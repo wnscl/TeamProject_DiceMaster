@@ -65,13 +65,17 @@ public class BattlePlayerController : MonoBehaviour, IBattleEntity
     {
         int chance = UnityEngine.Random.Range(0, 100);  //99�۱���
 
-        if (playerInfo.dodge > chance) return; //ȸ��
+        if (playerInfo.dodge > chance)
+        {
+            AudioManager.Instance.PlayAudioOnce(ReactSFXEnum.Evade);
+            return;
+        } //ȸ��
 
         dmg = Mathf.Abs(dmg); //�������� ���밪���� 
 
         playerInfo.currentHp =
             Mathf.Clamp(playerInfo.currentHp - dmg, 0, playerInfo.maxHp);
-
+        AudioManager.Instance.PlayAudioOnce(ReactSFXEnum.Hit);
     }
 
     public EntityInfo GetEntityInfo()
