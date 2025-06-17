@@ -68,7 +68,7 @@ public class SwordFlow : BaseSkill, IUseableSkill
         target.anim.SetTrigger("Hit");
         effectAnim[0].SetTrigger("Explode");
         yield return new WaitForSeconds(1f);
-        effect[0].SetActive(false);
+        TurnOffSkill();
         target.anim.SetBool("isHit", false);
         
         for (int i = 0; i < swordCount; i++)

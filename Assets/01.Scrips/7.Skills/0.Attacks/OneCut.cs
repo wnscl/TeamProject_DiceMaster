@@ -64,7 +64,7 @@ public class OneCut : BaseSkill
         MakeDamage(requesterInfo, entitys[1]);
 
         requesterInfo.gameObject.transform.position = startPos[0];
-        effect[0].SetActive(false);
+        TurnOffSkill();
         yield break;
     }
 }

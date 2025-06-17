@@ -40,7 +40,7 @@ public class BloodWell : BaseSkill
 
         requesterInfo.anim.SetBool("isAction", false);
         yield return new WaitForSeconds(attackCount - 1);
-        effect[0].SetActive(false);
+        TurnOffSkill();
         entitys[1].GetDamage((int)attackCount * 10);
         targetInfo.anim.SetBool("isHit", true);
         targetInfo.anim.SetTrigger("Hit");

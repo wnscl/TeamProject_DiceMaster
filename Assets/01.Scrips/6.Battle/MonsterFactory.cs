@@ -6,19 +6,20 @@ public class MonsterFactory : MonoBehaviour
 {
     [SerializeField] private GameObject[] monsters;
 
+    [SerializeField] private GameObject monsterPivot;
+
     public void CreateMonster(int index)
     {
-        //Instantiate(monsters[0])
-
-        SetMonsterToSkillManager(index);
-        SetMonsterPosition(index);
+        GameObject newMonster = Instantiate(monsters[0]);
+        SetMonsterToSkillManager(newMonster);
+        SetMonsterPosition(newMonster);
     }
-    private void SetMonsterToSkillManager(int index)
+    private void SetMonsterToSkillManager(GameObject newMonster)
     {
-
+        SkillManager.instance.TestMonster = newMonster;
     }
-    private void SetMonsterPosition(int index)
+    private void SetMonsterPosition(GameObject newMonster)
     {
-
+        newMonster.transform.parent = monsterPivot.transform;
     }
 }

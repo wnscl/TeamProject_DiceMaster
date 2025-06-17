@@ -47,7 +47,7 @@ public class LightningShot : BaseSkill
         effect[0].transform.position = startPos[1];
         yield return new WaitForSeconds(1f);
         anim.SetBool("isAction", false);
-        effect[0].SetActive(false);
+        TurnOffSkill();
         yield break;
     }
 }
