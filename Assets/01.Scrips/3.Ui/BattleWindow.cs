@@ -22,7 +22,7 @@ public class BattleWindow : MonoBehaviour
     {
         
         monsterInfo =FindObjectOfType<MonsterInfo>().GetComponent<MonsterInfo>();
-        playerInfo =FindObjectOfType<PlayerInfo>().GetComponent<PlayerInfo>();
+        playerInfo =FindObjectOfType<BattlePlayerController>().GetComponent<PlayerInfo>();
         
         
         playerInput = GameManager.Instance.player.GetComponent<PlayerInput>();
