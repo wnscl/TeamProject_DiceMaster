@@ -36,14 +36,28 @@ public class BloodWell : BaseSkill
         effect[0].SetActive(true);
         requesterInfo.anim.SetBool("isAction", true);
         requesterInfo.anim.SetTrigger("Attack");
-        yield return new WaitForSeconds(1f);
-
-        requesterInfo.anim.SetBool("isAction", false);
-        yield return new WaitForSeconds(attackCount - 1);
-        effect[0].SetActive(false);
-        entitys[1].GetDamage((int)attackCount * 10);
         targetInfo.anim.SetBool("isHit", true);
         targetInfo.anim.SetTrigger("Hit");
+        yield return new WaitForSeconds(1f);
+        targetInfo.anim.SetTrigger("Hit");
+        requesterInfo.anim.SetBool("isAction", false);
+        yield return new WaitForSeconds(1f);
+        targetInfo.anim.SetTrigger("Hit");
+        effect[0].transform.position = new Vector3(targetInfo.gameObject.transform.position.x, targetInfo.gameObject.transform.position.y + 0.5f, 0);
+        yield return new WaitForSeconds(1f);
+
+        if (attackCount == 4)
+        {
+            requesterInfo.anim.SetBool("isAction", true);
+            requesterInfo.anim.SetTrigger("Attack");
+            targetInfo.anim.SetTrigger("Hit");
+            yield return new WaitForSeconds(1f);
+            requesterInfo.anim.SetBool("isAction", false);
+        }
+        targetInfo.anim.SetBool("isHit", false);
+
+        TurnOffSkill();
+        entitys[1].GetDamage((int)attackCount * 10);
         yield return new WaitForSeconds(0.5f);
 
         SpriteRenderer sprite = effect[0].GetComponent<SpriteRenderer>();
