@@ -33,12 +33,14 @@ public class UIManager : MonoBehaviour
     public GameObject playerSettingWindow;
     public Inventory inventory;
     public StatusPanel statusPanel;
+   public SkillPanel skillPanel;
     public SkillInfo skillInfo;
     public ItemInfo itemInfo;
     public BattleWindow battleWindow;
     //시스템 메세지용 필드
     public Image systemMessageImage;
     public TextMeshProUGUI systemText;
+    
     private Coroutine systemMessageRoutine;
     [SerializeField] private string dialogCall;
 
@@ -124,7 +126,13 @@ public class UIManager : MonoBehaviour
         if (playerSettingWindow.activeInHierarchy)
         {
             playerSettingWindow.SetActive(false);
-        
+            
+            
+        inventory.gameObject.SetActive(true);
+        statusPanel.gameObject.SetActive(false);
+        skillPanel.gameObject.SetActive(false);
+        itemInfo.gameObject.SetActive(false);
+        itemInfo.ResetInfo();
 
           
         }

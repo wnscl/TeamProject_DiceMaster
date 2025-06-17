@@ -43,18 +43,18 @@ public class BattlePlayerController : MonoBehaviour, IBattleEntity
         yield break;
     }
 
-    private IEnumerator DecideAction() //»óÅÂ¿¡ µû¶ó ¾î¶² Çàµ¿À» ÇÒÁö °áÁ¤
+    private IEnumerator DecideAction() //ï¿½ï¿½ï¿½Â¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½î¶² ï¿½àµ¿ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     {
-        playerInfo.actionNum = UnityEngine.Random.Range(0, 3); //actionNumÀ» ÁöÁ¤ÇØ ¿øÇÏ´Â ½ºÅ³À» »ç¿ë
-        //actionNumÀº skillNumbersÀÇ ÀÎµ¦½º°ª
+        playerInfo.actionNum = UnityEngine.Random.Range(0, 3); //actionNumï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½Å³ï¿½ï¿½ ï¿½ï¿½ï¿½
+        //actionNumï¿½ï¿½ skillNumbersï¿½ï¿½ ï¿½Îµï¿½ï¿½ï¿½ï¿½ï¿½
         yield break;
     }
-    private IEnumerator DoAction() //°áÁ¤µÈ Çàµ¿À» ½ÇÇà
+    private IEnumerator DoAction() //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½àµ¿ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     {
         yield return SkillManager.instance.skills[playerInfo.skillNumbers[playerInfo.actionNum]].OnUse();
         yield break;
     }
-    private IEnumerator GetResult() //¸ó½ºÅÍ´Â ¹öÇÁ µð¹öÇÁ¿¡ µû¸¥ °è»ê ÈÄ ÀÚ½ÅÀÇ »óÅÂ¸¦ ¹Ù²Þ
+    private IEnumerator GetResult() //ï¿½ï¿½ï¿½Í´ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ú½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Â¸ï¿½ ï¿½Ù²ï¿½
     {
         yield return BuffManager.instance.UseBuff(this);
         yield break;
@@ -63,11 +63,11 @@ public class BattlePlayerController : MonoBehaviour, IBattleEntity
 
     public void GetDamage(int dmg)
     {
-        int chance = UnityEngine.Random.Range(0, 100);  //99ÆÛ±îÁö
+        int chance = UnityEngine.Random.Range(0, 100);  //99ï¿½Û±ï¿½ï¿½ï¿½
 
-        if (playerInfo.dodge > chance) return; //È¸ÇÇ
+        if (playerInfo.dodge > chance) return; //È¸ï¿½ï¿½
 
-        dmg = Mathf.Abs(dmg); //µ¥¹ÌÁö´Â Àý´ë°ªÀ¸·Î 
+        dmg = Mathf.Abs(dmg); //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ë°ªï¿½ï¿½ï¿½ï¿½ 
 
         playerInfo.currentHp =
             Mathf.Clamp(playerInfo.currentHp - dmg, 0, playerInfo.maxHp);
