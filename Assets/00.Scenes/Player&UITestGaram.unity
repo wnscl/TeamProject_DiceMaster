@@ -1300,7 +1300,7 @@ MonoBehaviour:
   equipBtnText: {fileID: 277334301}
   useBtn: {fileID: 601417048}
   throwBtn: {fileID: 1024439567}
-  equipMark: {fileID: 297589709}
+  equipMark: {fileID: 1760011464}
 --- !u!114 &297589709
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6295,7 +6295,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Press Any Key
+  m_text: Press Mouse Button
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a920f7eb40d0f9046b83173455e1431a, type: 2}
   m_sharedMaterial: {fileID: -5186458206488468716, guid: a920f7eb40d0f9046b83173455e1431a, type: 2}

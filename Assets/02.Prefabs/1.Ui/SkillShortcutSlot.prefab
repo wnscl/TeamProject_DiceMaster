@@ -167,7 +167,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   icon: {fileID: 5123914074561552045}
-  SkillIcon: {fileID: 6744608706108447957}
+  skillIcon: {fileID: 6744608706108447957}
   selectMask: {fileID: 1848006101055743344}
 --- !u!1 &6366130389805721473
 GameObject:
