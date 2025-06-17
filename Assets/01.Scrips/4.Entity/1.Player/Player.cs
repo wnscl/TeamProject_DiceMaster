@@ -14,7 +14,6 @@ public class Player : MonoBehaviour,IBattleEntity
     private void Awake()
     {
         statHandler = GetComponent<StatHandler>();
-        playerInfo = GetComponent<PlayerInfo>();
     }
     public IEnumerator ActionOnTurn(BattlePhase phase)
     {

@@ -136,7 +136,6 @@ public class Battle : MonoBehaviour
                     {
                         Model.nowTurnEntity = entity; // 현재 턴을 가진 유닛 설정
                         yield return entity.ActionOnTurn(Model.battlePhase);
-                        yield return new WaitForSeconds(2f);
                     }
 
                     Model.battlePhase = BattlePhase.Action;
@@ -150,7 +149,6 @@ public class Battle : MonoBehaviour
                         Model.nowTurnEntity = entity; // 현재 턴을 가진 유닛 설정
 
                         yield return entity.ActionOnTurn(Model.battlePhase);
-                        yield return new WaitForSeconds(2f);
                     }
 
                     Model.battlePhase = BattlePhase.Result;
@@ -162,7 +160,6 @@ public class Battle : MonoBehaviour
                     foreach (IBattleEntity entity in Model.battleEntities)
                     {
                         yield return entity.ActionOnTurn(Model.battlePhase);
-                        yield return new WaitForSeconds(2f);
                     }
 
                     // 각 유닛의 행동 결과를 처리하고, 배틀 종료 여부를 확인
