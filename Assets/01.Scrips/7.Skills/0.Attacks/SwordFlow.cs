@@ -1,26 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using NaughtyAttributes;
+using Unity.IO.LowLevel.Unsafe;
 using Unity.VisualScripting;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
-public class SwordFlow : MonoBehaviour
+public class SwordFlow : BaseSkill, IUseableSkill
 {
-    [SerializeField] private SkillManager skillManager;
-
-    [SerializeField] private GameObject effect;
-    [SerializeField] private Animator effectAnim;
-
     [SerializeField] private GameObject[] swords;
 
-    IBattleEntity[] entitys;
-
-    [SerializeField] private int[] diceNumber = new int[3];
     private int swordCount;
 
-    [SerializeField] float moveDuration;
+    [SerializeField] private float moveDuration;
 
-    private void Awake()
+    protected override void Awake()
     {
         //entitys = skillManager.SelectEntitys();
         entitys = new IBattleEntity[2];
@@ -28,7 +22,13 @@ public class SwordFlow : MonoBehaviour
         entitys[0] = skillManager.TestMonster.GetComponent<IBattleEntity>();
         entitys[1] = skillManager.TestPlayer.GetComponent<IBattleEntity>();
 
-        effect.SetActive(false);
+        skill = this.GetComponent<IUseableSkill>();
+        Debug.Log($"{this.name}ÀÇ GetComponent<IUseableSkill>() °á°ú: {skill}");
+
+        for (int i = 0; i < effect.Length; i++)
+        {
+            effect[i].SetActive(false);
+        }
 
         for (int i = 0; i < swords.Length; i++)
         {
@@ -46,23 +46,30 @@ public class SwordFlow : MonoBehaviour
     private void UseSkill()
     {
         SetNums();
-        StartCoroutine(OnSkill());
+        StartCoroutine(OnUse());
     }
-    private IEnumerator OnSkill()
+    public override IEnumerator OnUse()
     {
+        SetNums();
+
         EntityInfo info = entitys[0].GetEntityInfo();
+        EntityInfo target = entitys[1].GetEntityInfo();
 
         info.anim.SetBool("isAction", true);
         info.anim.SetTrigger("Attack");
-        effect.SetActive(true);
-        effect.transform.position = entitys[1].GetEntityInfo().gameObject.transform.position;
+        effect[0].SetActive(true);
+        effect[0].transform.position = entitys[1].GetEntityInfo().gameObject.transform.position;
         yield return new WaitForSeconds(0.5f);
+        info.anim.SetBool("isAction", false);
         yield return SetPositionOfSword();
         yield return OnMoveSword();
-        effect.SetActive(true);
-        effectAnim.SetTrigger("Explode");
+        effect[0].SetActive(true);
+        target.anim.SetBool("isHit", true);
+        target.anim.SetTrigger("Hit");
+        effectAnim[0].SetTrigger("Explode");
         yield return new WaitForSeconds(1f);
-        effect.SetActive(false);
+        TurnOffSkill();
+        target.anim.SetBool("isHit", false);
         
         for (int i = 0; i < swordCount; i++)
         {
@@ -90,14 +97,14 @@ public class SwordFlow : MonoBehaviour
             float swordAngle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
             swords[i].transform.rotation = Quaternion.Euler(0, 0, swordAngle);
 
-            effect.transform.position = swordPos;
-            effectAnim.SetTrigger("Spawn");
+            effect[0].transform.position = swordPos;
+            effectAnim[0].SetTrigger("Spawn");
 
             angle += (360 / swordCount); 
             yield return new WaitForSeconds(0.3f);
         }
-        effect.transform.position = target;
-        effect.SetActive(false);
+        effect[0].transform.position = target;
+        effect[0].SetActive(false);
     }
     private IEnumerator OnMoveSword()
     {

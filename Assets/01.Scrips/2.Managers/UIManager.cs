@@ -30,25 +30,25 @@ public class UIManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
-
+    public GameObject playerSettingWindow;
     public Inventory inventory;
     public StatusPanel statusPanel;
+   public SkillPanel skillPanel;
     public SkillInfo skillInfo;
     public ItemInfo itemInfo;
-
+    public BattleWindow battleWindow;
     //시스템 메세지용 필드
     public Image systemMessageImage;
     public TextMeshProUGUI systemText;
+    
     private Coroutine systemMessageRoutine;
     [SerializeField] private string dialogCall;
 
 
     private void Start()
     {
-        inventory = GetComponentInChildren<Inventory>();
-        itemInfo = GetComponentInChildren<ItemInfo>();
-        skillInfo = GetComponentInChildren<SkillInfo>();
-        statusPanel = GetComponentInChildren<StatusPanel>();
+
+       
     }
 
 
@@ -117,5 +117,32 @@ public class UIManager : MonoBehaviour
         systemText.text = string.Empty;
 
         systemMessageRoutine = null;
+    }
+
+
+
+    public void OnSettingWindow()
+    {
+        if (playerSettingWindow.activeInHierarchy)
+        {
+            playerSettingWindow.SetActive(false);
+            
+            
+        inventory.gameObject.SetActive(true);
+        statusPanel.gameObject.SetActive(false);
+        skillPanel.gameObject.SetActive(false);
+        itemInfo.gameObject.SetActive(false);
+        itemInfo.ResetInfo();
+
+          
+        }
+        else 
+        {
+            playerSettingWindow.SetActive(true);
+
+       
+        }
+        
+        
     }
 }

@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ca4502e08a4dda4294edcfe70d311cf, type: 3}
+  m_Name: 401_BrokenDice
+  m_EditorClassIdentifier: 
+  itemCode: 401_BrokenDice
+  itemName: "\uAE68\uC9C4 \uC8FC\uC0AC\uC704"
+  description: "\uAE68\uC838 \uC788\uB2E4.\uC190\uC744 \uB2E4\uCE60 \uAC83 \uAC19\uB2E4."
+  requiredLevel: 0
+  grade: "\uD018\uC2A4\uD2B8"
+  itemIcon: {fileID: 21300000, guid: f7ae0e667d2fc114ca224b45dcd78aad, type: 3}
+  itemPrefab: {fileID: 0}

@@ -27,7 +27,7 @@ public class StageManager : MonoBehaviour
     {
         if (currentStage < stageSceneNames.Length)
         {
-            isLoadingNextStage = true;
+            isLoadingNextStage = true;            
             SceneManager.LoadScene("LoadingScene");
         }
         else
@@ -42,6 +42,7 @@ public class StageManager : MonoBehaviour
         if (isLoadingNextStage && currentStage < stageSceneNames.Length)
         {
             SceneManager.LoadScene(stageSceneNames[currentStage]);
+            AudioManager.Instance.PlayBackGroundAudioOnStart(currentStage);
             currentStage++;
             isLoadingNextStage = false;
         }

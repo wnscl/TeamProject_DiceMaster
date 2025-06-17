@@ -7,24 +7,12 @@ using UnityEngine;
 public class BattlePlayerController : MonoBehaviour, IBattleEntity
 {
 
-    private Dictionary<BattlePhase, Func<IEnumerator>> _fsm;
-
     [SerializeField] private PlayerInfo playerInfo;
 
     public Coroutine playerCor;
 
     public bool isSelectAction = false;
 
-    private void Awake()
-    {
-        _fsm = new Dictionary<BattlePhase, Func<IEnumerator>>
-        {
-            {BattlePhase.Ready, DecideAction },
-            {BattlePhase.Action, DoAction },
-            {BattlePhase.Result, GetResult }
-        };
-        //Áö±Ý µñ¼Å³Ê¸®´Â 3°³ÀÇ °ªÀÌ ÀÖ´Â °ÍÀÌ´Ù.
-    }
 
 
     [Button]
@@ -32,49 +20,54 @@ public class BattlePlayerController : MonoBehaviour, IBattleEntity
     {
         isSelectAction = true;
 
-        playerInfo.actionNum = 0;
+        //playerInfo.actionNum = 0;
     }
 
 
     public IEnumerator ActionOnTurn(BattlePhase nowTurn)
     {
-        yield return _fsm[nowTurn];
-        yield break;
-    }
-
-    private IEnumerator DecideAction() //»óÅÂ¿¡ µû¶ó ¾î¶² Çàµ¿À» ÇÒÁö °áÁ¤
-    {
-        while (!isSelectAction)
+        switch (nowTurn)
         {
-            yield return null;
+            case BattlePhase.Ready:
+                yield return DecideAction();
+                break;
+
+            case BattlePhase.Action:
+                yield return DoAction();
+                break;
+
+            case BattlePhase.Result:
+                yield return GetResult();
+                break;
         }
         yield break;
     }
-    private IEnumerator DoAction() //°áÁ¤µÈ Çàµ¿À» ½ÇÇà
+
+    private IEnumerator DecideAction() //ï¿½ï¿½ï¿½Â¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½î¶² ï¿½àµ¿ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     {
-        isSelectAction = false;
-        playerInfo.anim.SetBool("isAction", true);
-
-        //¸ó½ºÅÍ ¸¶´Ù ½ºÅ³ ÇÁ¸®ÆÕÀº 3°³ 
-        Instantiate(
-            playerInfo.data._SkillPrefabs[playerInfo.actionNum],
-            transform.position, Quaternion.identity, this.transform);
-
+        playerInfo.actionNum = UnityEngine.Random.Range(0, 3); //actionNumï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½Å³ï¿½ï¿½ ï¿½ï¿½ï¿½
+        //actionNumï¿½ï¿½ skillNumbersï¿½ï¿½ ï¿½Îµï¿½ï¿½ï¿½ï¿½ï¿½
         yield break;
     }
-    private IEnumerator GetResult() //¸ó½ºÅÍ´Â ¹öÇÁ µð¹öÇÁ¿¡ µû¸¥ °è»ê ÈÄ ÀÚ½ÅÀÇ »óÅÂ¸¦ ¹Ù²Þ
+    private IEnumerator DoAction() //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½àµ¿ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     {
-
+        yield return SkillManager.instance.skills[playerInfo.skillNumbers[playerInfo.actionNum]].OnUse();
         yield break;
     }
+    private IEnumerator GetResult() //ï¿½ï¿½ï¿½Í´ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ú½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Â¸ï¿½ ï¿½Ù²ï¿½
+    {
+        yield return BuffManager.instance.UseBuff(this);
+        yield break;
+    }
+
 
     public void GetDamage(int dmg)
     {
-        int chance = UnityEngine.Random.Range(0, 100);  //99ÆÛ±îÁö
+        int chance = UnityEngine.Random.Range(0, 100);  //99ï¿½Û±ï¿½ï¿½ï¿½
 
-        if (playerInfo.dodge > chance) return; //È¸ÇÇ
+        if (playerInfo.dodge > chance) return; //È¸ï¿½ï¿½
 
-        dmg = Mathf.Abs(dmg); //µ¥¹ÌÁö´Â Àý´ë°ªÀ¸·Î 
+        dmg = Mathf.Abs(dmg); //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ë°ªï¿½ï¿½ï¿½ï¿½ 
 
         playerInfo.currentHp =
             Mathf.Clamp(playerInfo.currentHp - dmg, 0, playerInfo.maxHp);

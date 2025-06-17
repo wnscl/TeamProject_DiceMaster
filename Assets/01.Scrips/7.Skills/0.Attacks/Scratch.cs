@@ -4,33 +4,15 @@ using NaughtyAttributes;
 using Unity.Collections.LowLevel.Unsafe;
 using UnityEngine;
 using UnityEngine.Rendering.VirtualTexturing;
+using UnityEngine.UIElements;
 
-public class Scratch : MonoBehaviour
+public class Scratch : BaseSkill, IUseableSkill
 {
-    [SerializeField] private SkillManager skillManager;
-    [SerializeField] private GameObject[] effects;
-    [SerializeField] private Animator[] effectAnims;
-
-    IBattleEntity[] entitys;
-
-    [SerializeField] private int[] diceNumber = new int[3];
-
     private int attackCount;
 
     [SerializeField] float moveDuration;
 
-    private void Awake()
-    {
-        //entitys = skillManager.SelectEntitys();
-        entitys = new IBattleEntity[2];
 
-        entitys[0] = skillManager.TestMonster.GetComponent<IBattleEntity>();
-        entitys[1] = skillManager.TestPlayer.GetComponent<IBattleEntity>();
-
-        effects[0].SetActive(false);
-        effects[1].SetActive(false);
-
-    }
     private void SetNums()
     {
         diceNumber = skillManager.RollDice();
@@ -44,22 +26,23 @@ public class Scratch : MonoBehaviour
 
         return result;
     }
-    private void HealEntity(int Amount)
-    {
-
-    }
     [Button]
     private void UseSkill()
     {
         SetNums();
-        StartCoroutine(OnSkill());
+        SetDirection();
+        StartCoroutine(OnUse());
     }
-    private IEnumerator OnSkill()
+    public override IEnumerator OnUse()
     {
+        SetNums();
+        SetDirection();
+
+
         EntityInfo requesterInfo = entitys[0].GetEntityInfo();
+        EntityInfo targetInfo = entitys[1].GetEntityInfo();
         Animator anim = requesterInfo.anim;
 
-        EntityInfo targetInfo = entitys[1].GetEntityInfo();
 
         anim.SetBool("isAction", true);
         anim.SetTrigger("Move");
@@ -67,29 +50,32 @@ public class Scratch : MonoBehaviour
         yield return skillManager.MoveToTarget(entitys, moveDuration);
         anim.SetFloat("AttackSpeed", attackCount);
 
-        effects[0].transform.position = requesterInfo.transform.position;
-        effects[1].transform.position = targetInfo.transform.position;
+        effect[0].transform.position = requesterInfo.transform.position;
+        effect[1].transform.position = targetInfo.transform.position;
 
-
+        targetInfo.anim.SetBool("isHit", true);
         for (int i = 0; i < attackCount; i++)
         {
             OnOffEffect(true);
             anim.SetTrigger("Attack");
+            targetInfo.anim.SetTrigger("Hit");
+            BuffManager.instance.AddBuffToList(BuffType.Bleeding, entitys[1]);
             yield return new WaitForSeconds(((float)1 / (float)attackCount));
             OnOffEffect(false);
             entitys[1].GetDamage(diceNumber[0]);
             requesterInfo.currentHp = Mathf.Clamp(requesterInfo.currentHp + diceNumber[1], 1, requesterInfo.maxHp);
         }
         anim.SetBool("isAction", false);
+        targetInfo.anim.SetBool("isHit", false);
         skillManager.BackToPosition(entitys[0]);
         yield break;
     }
     private void OnOffEffect(bool OnOff)
     {
-        for (int j = 0; j < effects.Length; j++)
+        for (int j = 0; j < effect.Length; j++)
         {
-            effects[j].SetActive(OnOff);
-            effectAnims[j].SetFloat("AttackSpeed", attackCount);
+            effect[j].SetActive(OnOff);
+            effectAnim[j].SetFloat("AttackSpeed", attackCount);
         }
     }
 

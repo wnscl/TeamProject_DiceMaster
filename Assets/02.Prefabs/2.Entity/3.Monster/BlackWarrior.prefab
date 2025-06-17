@@ -74,7 +74,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: 473805592, guid: 799c13c6d75e63b4c9f773c1078ddfc5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 1
@@ -179,7 +179,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: -2046820897, guid: 048a1c51ab00e4d46965b25f9d276590, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -259,6 +259,7 @@ MonoBehaviour:
   def: 0
   dodge: 0
   magicDef: 0
+  skillNumbers: 000000000300000001000000
+  actionNum: 0
   mobType: 0
   mobState: 0
-  actionNum: 0
