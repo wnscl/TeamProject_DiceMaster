@@ -16,11 +16,6 @@ public class SkillManager : MonoBehaviour
     private void Awake()
     {
         instance = this;
-
-        //for (int i = 0; i < baseSkill.Length; i++)
-        //{
-        //    skills[i] = baseSkill[i].GetSkill();
-        //}
     }
     private void Start()
     {

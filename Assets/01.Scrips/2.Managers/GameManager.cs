@@ -31,5 +31,10 @@ public class GameManager : MonoBehaviour
         PlayerInput playerInput = player.GetComponent<PlayerInput>();
         playerInput.DeactivateInput();
     }
+    public void ActionPlayer()
+    {
+        PlayerInput playerInput = player.GetComponent<PlayerInput>();
+        playerInput.ActivateInput();
+    }
 
 }
