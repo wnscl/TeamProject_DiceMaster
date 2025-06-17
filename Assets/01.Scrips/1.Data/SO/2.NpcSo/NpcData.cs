@@ -11,7 +11,9 @@ public class NpcData : ScriptableObject
     [SerializeField] private string npcDescription; // NPC 설명
     [SerializeField] private List<QuestData> npcQuests; // 해당 NPC가 제공하는 퀘스트 컬렉션
     [SerializeField] private TextAsset npcScripts; // NPC용 대화 스크립트 데이터
+    public string NpcName { get { return npcName; } }
     public List<QuestData> NpcQuests { get { return npcQuests; } }
+    public TextAsset NpcScripts { get { return npcScripts; } }
 
 #if UNITY_EDITOR
     // 에디터에서 값이 바뀔 때 자동 호출됨

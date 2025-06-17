@@ -2,12 +2,16 @@
     "Normal": {
         "Conversation": [
             {
-                "Type": "Conversation",
+                "Type": "Greeting",
                 "Message": "안녕하세요! 좋은 아침이네요"
             },
             {
                 "Type": "Conversation",
                 "Message": "슬슬 더워지네요.."
+            },
+            {
+                "Type": "Conversation",
+                "Message": "주변에 불한당들이 너무 많아졌어요."
             },
             {
                 "Type": "Farewell",
@@ -37,7 +41,7 @@
                 {
                     "Type": "CompleteQuest",
                     "Message": "퀘스트를 완료해주셨군요! 정말 감사해요."
-                }
+                },
                 {
                     "Type": "IncompleteQuest",
                     "Message": "급한일은 아니니까 천천히 해주세요."

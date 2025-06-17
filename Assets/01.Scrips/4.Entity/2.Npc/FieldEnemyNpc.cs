@@ -18,6 +18,7 @@ public class FieldEnemyNpc : MonoBehaviour
     }
     private IEnumerator RunToPlayer()
     {
+        yield return new WaitForSeconds(0.5f);
         float timer = 0;
         float t = 0;
 
@@ -29,6 +30,7 @@ public class FieldEnemyNpc : MonoBehaviour
             if (distance <= 1.5f)
             {
                 myCor = null;
+                GameManager.Instance.StartBattle();
                 yield break;
             }
 
@@ -37,7 +39,9 @@ public class FieldEnemyNpc : MonoBehaviour
             timer += Time.deltaTime;
             yield return null;  
         }
+
         myCor = null;
+        GameManager.Instance.StartBattle();
         yield break;
     }
 
@@ -53,8 +57,8 @@ public class FieldEnemyNpc : MonoBehaviour
             {
                 SpriteRenderer sprite = GetComponentInChildren<SpriteRenderer>();
                 sprite.flipX = true;
-            } 
-
+            }
+            GameManager.Instance.StopPlayer();
             NowBattle();
         }
     }

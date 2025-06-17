@@ -32,6 +32,7 @@ public class LightningShot : BaseSkill
     //}
     public override IEnumerator OnUse()
     {
+        entitys = skillManager.SelectEntitys();
         diceNumber = skillManager.RollDice();
         SetDirection();
 
