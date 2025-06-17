@@ -16,6 +16,22 @@ public class SkillSlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
    
     public bool isLocked =true;
 
+    
+    //UI 인터페이스용 필드 
+    private Canvas canvas;
+    private RectTransform rectTransform;
+    private CanvasGroup canvasGroup;
+    private Transform originalParent;
+    
+    private void Awake()
+    {
+        rectTransform = GetComponent<RectTransform>();
+        canvasGroup = GetComponent<CanvasGroup>();
+        canvas = GetComponentInParent<Canvas>();
+
+       
+    }
+    
     public void OnClickInfo()
     {
         if (isLocked)
@@ -75,17 +91,27 @@ public class SkillSlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        throw new System.NotImplementedException();
+        if (isLocked) return;
+
+        originalParent = transform.parent;
+        transform.SetParent(canvas.transform); // 가장 상위로 올려서 다른 UI 위로 올라오게
+        canvasGroup.blocksRaycasts = false;    // 레이캐스트 막기 (슬롯 위로 드래그 통과하게)
     }
 
     public void OnDrag(PointerEventData eventData)
     {
-        throw new System.NotImplementedException();
+        if (isLocked) return;
+
+        rectTransform.anchoredPosition += eventData.delta / canvas.scaleFactor;
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        throw new System.NotImplementedException();
+        if (isLocked) return;
+
+        transform.SetParent(originalParent); // 원래 자리로
+        rectTransform.anchoredPosition = Vector2.zero;
+        canvasGroup.blocksRaycasts = true;
     }
 
     public void OnPointerClick(PointerEventData eventData)
