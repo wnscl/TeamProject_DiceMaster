@@ -59,8 +59,12 @@ public class OneCut : BaseSkill
         requesterInfo.transform.position = Vector2.Lerp(
             startPos[0], startPos[1], 0.8f);
         requesterInfo.anim.SetTrigger("Attack");
+
+        targetInfo.anim.SetBool("isHit", true);
+        targetInfo.anim.SetTrigger("Hit");
         yield return new WaitForSeconds(1f);
 
+        targetInfo.anim.SetBool("isHit", false);
         anim.SetBool("isAction", false);
         MakeDamage(requesterInfo, entitys[1]);
 

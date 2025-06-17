@@ -475,7 +475,7 @@ Transform:
   m_GameObject: {fileID: 242156006}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 30, y: 0, z: 0}
+  m_LocalPosition: {x: 60, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -862,7 +862,7 @@ Transform:
   m_GameObject: {fileID: 351169562}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 30, y: 1.3, z: 0}
+  m_LocalPosition: {x: 60, y: 1.3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1664,9 +1664,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   monsters:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 7639302688918898884, guid: a48b1b05b7775a74b9e9b3b6ed59172b, type: 3}
+  - {fileID: 7737390627959809991, guid: 7f6c42e7e8b58f94c9b996639728c1a2, type: 3}
+  - {fileID: 8136715677343682833, guid: 2b91f1781ee2a7b4d82caac3f2ec7686, type: 3}
   monsterPivot: {fileID: 718684494}
 --- !u!1 &818635280
 GameObject:
@@ -3214,7 +3214,7 @@ Transform:
   m_GameObject: {fileID: 1482960796}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 30, y: 0, z: -10}
+  m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

@@ -11,16 +11,19 @@ public class SkillPanel : MonoBehaviour
     public List<SkillDataSo> skillSOData = new List<SkillDataSo>();
     public List<GameObject> skillPrefabs = new List<GameObject>();
     public List<GameObject> skillSlot = new List<GameObject>();
-
+    public List<GameObject> skillSlotPivot = new List<GameObject>();
     public Dictionary<int, bool> saveSkill = new Dictionary<int, bool>();
+    public GameObject pivotPrefab;
     public GameObject slotPrefab;
     public GameObject content;
-   
+
     private void Start()
     {
         for (int i = 0; i < skillManager.skillDatas.Length; i++)
         {
-            GameObject newSlot = Instantiate(slotPrefab, content.transform);
+            GameObject newPivot = Instantiate(pivotPrefab, content.transform);
+            skillSlotPivot.Add(newPivot);
+           GameObject newSlot = Instantiate(slotPrefab, skillSlotPivot[i].transform); 
 
             SkillSlot ss = newSlot.GetComponent<SkillSlot>();
 
@@ -49,16 +52,12 @@ public class SkillPanel : MonoBehaviour
     [Button]
     public void testGetSkill()
     {
-        
         GetSkill(skillManager.skillDatas[0]);
     }
-    
+
     [Button]
     public void testGetSkill2()
     {
-        
         GetSkill(skillManager.skillDatas[1]);
     }
-    
-    
 }

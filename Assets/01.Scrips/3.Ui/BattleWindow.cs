@@ -20,7 +20,13 @@ public class BattleWindow : MonoBehaviour
 
     private void Awake()
     {
+        
+        monsterInfo =FindObjectOfType<MonsterInfo>().GetComponent<MonsterInfo>();
+        playerInfo =FindObjectOfType<PlayerInfo>().GetComponent<PlayerInfo>();
+        
+        
         playerInput = GameManager.Instance.player.GetComponent<PlayerInput>();
+        
     }
 
     [Button]

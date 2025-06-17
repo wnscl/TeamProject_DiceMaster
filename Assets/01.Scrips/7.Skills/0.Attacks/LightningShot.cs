@@ -19,6 +19,17 @@ public class LightningShot : BaseSkill
         requester.currentHp = Mathf.Clamp(requester.currentHp + diceNumber[1], 0, requester.maxHp);
         target.GetDamage(damage);
     }
+    //private void SetEffectDirection()
+    //{
+    //    float angle = 0;
+    //    EntityInfo info = entitys[0].GetEntityInfo();
+    //    if (info.name == "BattlePlayer") angle = 180f;
+
+    //    for (int i = 0; i < effect.Length; i++)
+    //    {
+    //        effect[i].transform.rotation = Quaternion.Euler(0, angle, 0);
+    //    }
+    //}
     public override IEnumerator OnUse()
     {
         diceNumber = skillManager.RollDice();
@@ -45,8 +56,11 @@ public class LightningShot : BaseSkill
         yield return new WaitForSeconds(1f);
         anim.SetBool("isAction", true);
         anim.SetTrigger("Attack");
+        targetInfo.anim.SetBool("isHit", true);
+        targetInfo.anim.SetTrigger("Hit");
         effect[0].transform.position = startPos[1];
         yield return new WaitForSeconds(1f);
+        targetInfo.anim.SetBool("isHit", false);
         anim.SetBool("isAction", false);
         TurnOffSkill();
         yield break;
