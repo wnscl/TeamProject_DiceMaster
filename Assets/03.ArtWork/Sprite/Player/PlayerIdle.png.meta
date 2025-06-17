@@ -147,10 +147,10 @@ TextureImporter:
       name: PlayerIdle_1
       rect:
         serializedVersion: 2
-        x: 59
+        x: 64
         y: 2
         width: 29
-        height: 35
+        height: 36
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -168,10 +168,10 @@ TextureImporter:
       name: PlayerIdle_2
       rect:
         serializedVersion: 2
-        x: 97
+        x: 99
         y: 2
         width: 29
-        height: 35
+        height: 36
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -189,10 +189,10 @@ TextureImporter:
       name: PlayerIdle_3
       rect:
         serializedVersion: 2
-        x: 134
+        x: 137
         y: 2
         width: 29
-        height: 35
+        height: 36
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -210,7 +210,7 @@ TextureImporter:
       name: PlayerIdle_4
       rect:
         serializedVersion: 2
-        x: 170
+        x: 174
         y: 2
         width: 29
         height: 36
@@ -223,6 +223,48 @@ TextureImporter:
       bones: []
       spriteID: 4e38b0b56bb14e44eabc90e5203bd646
       internalID: 1242352646
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlayerIdle_5
+      rect:
+        serializedVersion: 2
+        x: 213
+        y: 2
+        width: 29
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eae0df63349fcac4eb7e4ce9d04be097
+      internalID: 657228142
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlayerIdle_6
+      rect:
+        serializedVersion: 2
+        x: 250
+        y: 2
+        width: 29
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9f427b79867b82a4cbf495375507d45a
+      internalID: -2041673468
       vertices: []
       indices: 
       edges: []
@@ -243,6 +285,8 @@ TextureImporter:
       PlayerIdle_2: 1163982693
       PlayerIdle_3: 178961996
       PlayerIdle_4: 1242352646
+      PlayerIdle_5: 657228142
+      PlayerIdle_6: -2041673468
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

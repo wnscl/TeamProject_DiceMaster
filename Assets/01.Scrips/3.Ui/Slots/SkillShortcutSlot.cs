@@ -12,16 +12,16 @@ public class SkillShortcutSlot : MonoBehaviour, IDropHandler, IPointerEnterHandl
     
     public void OnDrop(PointerEventData eventData)
     {
-        throw new System.NotImplementedException();
+       eventData.pointerDrag = null;
     }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        throw new System.NotImplementedException();
+        selectMask.gameObject.SetActive(true);
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        throw new System.NotImplementedException();
+        selectMask.gameObject.SetActive(false);
     }
 }

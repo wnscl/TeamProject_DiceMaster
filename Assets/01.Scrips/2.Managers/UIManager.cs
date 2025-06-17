@@ -40,6 +40,7 @@ public class UIManager : MonoBehaviour
     //시스템 메세지용 필드
     public Image systemMessageImage;
     public TextMeshProUGUI systemText;
+    
     private Coroutine systemMessageRoutine;
     [SerializeField] private string dialogCall;
 

@@ -35,13 +35,13 @@ public class ItemSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
             UIManager.Instance.itemInfo.itemSlot = this;
             UIManager.Instance.itemInfo.InitSetInfo();
             
-            
+            return;
         }
         
         UIManager.Instance.itemInfo.itemSlot = this;
         Debug.Log("여기로 나오니?");
         UIManager.Instance.itemInfo.InfoWIndowOnAndOff();
-        return;
+        
         
           
        

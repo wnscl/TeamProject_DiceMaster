@@ -17,6 +17,12 @@ public class Inventory : MonoBehaviour
   {
     SetDefaultSlotCount();
   }
+
+  private void Start()
+  {
+    GetItem("301_DefaultDice");
+  }
+
   public void AddItem(IItem item)
   {
     items.Add(item);
