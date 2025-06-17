@@ -5,11 +5,14 @@ using UnityEngine;
 
 public class SkillPanel : MonoBehaviour
 {
+   
+    
     public List<ScriptableObject> skillSOData = new List<ScriptableObject>();
     public List<GameObject> skillPrefabs = new List<GameObject>();
     public List<GameObject> skillSlot;
+    public Dictionary<int, bool> saveSkill = new Dictionary<int, bool>();
     public GameObject slotPrefab;
-public GameObject content;
+    public GameObject content;
 
     private void Awake()
     {
@@ -17,8 +20,6 @@ public GameObject content;
         {
             GameObject newSlot = Instantiate(slotPrefab, content.transform);
             skillSlot.Add(newSlot);
-            
         }
-
     }
 }
