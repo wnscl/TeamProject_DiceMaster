@@ -50,7 +50,8 @@ public class SFXPool : MonoBehaviour
     public AudioClip[] UISFXClips = new AudioClip[8];
 
     public AudioClip Walk;
-    
+
+    public AudioClip[] battleAudio = new AudioClip[4];
     public AudioClip[] Stage1Audio = new AudioClip[4];
     public AudioClip[] Stage2Audio = new AudioClip[4];
 
