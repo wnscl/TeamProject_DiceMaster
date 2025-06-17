@@ -32,7 +32,7 @@ public class AudioManager : MonoBehaviour
     }
     #endregion
 
-    SFXPool audioPool;
+    public SFXPool audioPool { get; private set;}
     [SerializeField] AudioSource audioSource;
     [SerializeField] AudioSource battleAudioSource;
     [SerializeField] AudioSource reactAudioSource;
@@ -74,6 +74,10 @@ public class AudioManager : MonoBehaviour
     public void PlayBackGroundAudioOnStart(int stage) //배경음악이 처음 시작할때 혹은 정지됐다 다시 시작할때
     {
         StopAllCoroutines();
+        if(backgroundAudioSource2.isPlaying)
+        {
+            backgroundAudioSource2.Stop();
+        }
         IEnumerator loopeAudio;
 
         int randNum = GetRandomClipNum(stage);
@@ -90,12 +94,12 @@ public class AudioManager : MonoBehaviour
         return randNum;
     }
 
-    public void ChangeAudio(AudioClip audio, float convertTime = 2) //배경음악을 중간에 교체할 경우
+    public void ChangeAudio(AudioClip[] audio, float convertTime = 2) //배경음악을 중간에 교체할 경우
     {
         StopAllCoroutines();
         IEnumerator changeAudio;
-
-        changeAudio = ChangeAudioCoroutine(audio, convertTime);
+        int randNum = Random.Range(0, audio.Length);
+        changeAudio = ChangeAudioCoroutine(audio[randNum], convertTime);
         StartCoroutine(changeAudio);
     }
 

@@ -105,6 +105,7 @@ public class Battle : MonoBehaviour
         BattleManager.Instance.IsBattleActive = true;
         Model.battlePhase = BattlePhase.Ready;
 
+        AudioManager.Instance.ChangeAudio(AudioManager.Instance.audioPool.battleAudio, 2);
         StartCoroutine(Combat());
     }
 
@@ -164,6 +165,7 @@ public class Battle : MonoBehaviour
     /// </summary>
     public void EndBattle()
     {
+        AudioManager.Instance.ChangeAudio(AudioManager.Instance.audioPool.BackGroundAudio[StageManager.Instance.currentStage]);
         BattleManager.Instance.IsBattleActive = false;
     }
 

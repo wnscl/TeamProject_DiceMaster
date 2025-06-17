@@ -6,7 +6,8 @@ using UnityEngine;
 
 public enum BuffType
 {
-    Bleeding
+    Bleeding,
+    Healing
 }
 
 public class BuffManager : MonoBehaviour
@@ -16,9 +17,10 @@ public class BuffManager : MonoBehaviour
     private void Awake()
     {
         instance = this;
-
+        
         buffDic = new Dictionary<BuffType, IBuff> ();
         buffDic.Add(BuffType.Bleeding, new Bleeding());
+        buffDic.Add(BuffType.Healing, new Healing());
     }
 
     private Dictionary<BuffType, IBuff> buffDic;
