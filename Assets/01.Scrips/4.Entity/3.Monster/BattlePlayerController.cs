@@ -32,7 +32,7 @@ public class BattlePlayerController : MonoBehaviour, IBattleEntity
     {
         isSelectAction = true;
 
-        playerInfo.actionNum = 0;
+        //playerInfo.actionNum = 0;
     }
 
 
@@ -44,22 +44,12 @@ public class BattlePlayerController : MonoBehaviour, IBattleEntity
 
     private IEnumerator DecideAction() //상태에 따라 어떤 행동을 할지 결정
     {
-        while (!isSelectAction)
-        {
-            yield return null;
-        }
+        playerInfo.actionNum = UnityEngine.Random.Range(0, 3);
         yield break;
     }
     private IEnumerator DoAction() //결정된 행동을 실행
     {
-        isSelectAction = false;
-        playerInfo.anim.SetBool("isAction", true);
-
-        //몬스터 마다 스킬 프리팹은 3개 
-        Instantiate(
-            playerInfo.data._SkillPrefabs[playerInfo.actionNum],
-            transform.position, Quaternion.identity, this.transform);
-
+        yield return SkillManager.instance.skills[playerInfo.skillNumbers[playerInfo.actionNum]].OnUse();
         yield break;
     }
     private IEnumerator GetResult() //몬스터는 버프 디버프에 따른 계산 후 자신의 상태를 바꿈
@@ -67,6 +57,7 @@ public class BattlePlayerController : MonoBehaviour, IBattleEntity
 
         yield break;
     }
+
 
     public void GetDamage(int dmg)
     {

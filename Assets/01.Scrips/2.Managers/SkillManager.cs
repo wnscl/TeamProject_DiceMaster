@@ -1,18 +1,40 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public interface IUseableSkill
+{
+    IEnumerator OnUse();
+}
+
 public class SkillManager : MonoBehaviour
 {
     public static SkillManager instance;
+    [SerializeField] private BaseSkill[] baseSkill;
 
     private void Awake()
     {
-        instance = this;    
+        instance = this;
+
+        //for (int i = 0; i < baseSkill.Length; i++)
+        //{
+        //    skills[i] = baseSkill[i].GetSkill();
+        //}
+    }
+    private void Start()
+    {
+        skills = new IUseableSkill[baseSkill.Length];
+        for (int i = 0; i < baseSkill.Length; i++)
+        {
+            skills[i] = baseSkill[i].GetSkill();
+        }
     }
 
 
     [SerializeField] private BattleModel battleModel;
+
+    public IUseableSkill[] skills;
 
     public GameObject TestPlayer;
     public GameObject TestMonster;
@@ -27,13 +49,12 @@ public class SkillManager : MonoBehaviour
         
         EntityInfo info = battleModel.nowTurnEntity.GetEntityInfo();
 
-        if (info.name == "Player")
+        if (info.name == "BattlePlayer")
             entitys[1] = battleModel.enemy;
         else
             entitys[1] = battleModel.player;
 
         return entitys;
-
     }
 
     public int[] RollDice()

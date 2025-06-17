@@ -45,25 +45,35 @@ public class MonsterController : MonoBehaviour, IBattleEntity
 
     public IEnumerator ActionOnTurn(BattlePhase nowTurn)
     {
-        yield return _fsm[nowTurn];
+        //yield return _fsm[nowTurn];
 
-        yield break;
+        switch (nowTurn)
+        {
+            case BattlePhase.Ready:
+                yield return DecideAction();
+                break;
+
+            case BattlePhase.Action:
+                yield return DoAction();
+                break;
+
+            case BattlePhase.Result:
+                yield return GetResult();
+                break;
+        }
+
+        //yield break;
     }
 
     private IEnumerator DecideAction() //상태에 따라 어떤 행동을 할지 결정
     {
-        monsterInfo.actionNum = ConditionCollection.instance.GetCondition(monsterInfo.mobType);
+        monsterInfo.actionNum = UnityEngine.Random.Range(0, 3);
         yield break;
     }
     private IEnumerator DoAction() //결정된 행동을 실행
     {
-        monsterInfo.anim.SetBool("isAction", true);
-
-        //몬스터 마다 스킬 프리팹은 3개 
-        Instantiate(
-            monsterInfo.data._SkillPrefabs[monsterInfo.actionNum], 
-            transform.position, Quaternion.identity, this.transform);
-
+        //yield return SkillManager.instance.skills[monsterInfo.skillNumbers[monsterInfo.actionNum]].OnUse(); 
+        yield return SkillManager.instance.skills[0].OnUse();
         yield break;
     }
     private IEnumerator GetResult() //몬스터는 버프 디버프에 따른 계산 후 자신의 상태를 바꿈
