@@ -35,6 +35,7 @@ public class SkillManager : MonoBehaviour
     [SerializeField] private BattleModel battleModel;
 
     public IUseableSkill[] skills;
+    public SkillDataSo[] skillDatas;
 
     public GameObject TestPlayer;
     public GameObject TestMonster;

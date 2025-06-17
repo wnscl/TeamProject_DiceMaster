@@ -7,24 +7,12 @@ using UnityEngine;
 public class BattlePlayerController : MonoBehaviour, IBattleEntity
 {
 
-    private Dictionary<BattlePhase, Func<IEnumerator>> _fsm;
-
     [SerializeField] private PlayerInfo playerInfo;
 
     public Coroutine playerCor;
 
     public bool isSelectAction = false;
 
-    private void Awake()
-    {
-        _fsm = new Dictionary<BattlePhase, Func<IEnumerator>>
-        {
-            {BattlePhase.Ready, DecideAction },
-            {BattlePhase.Action, DoAction },
-            {BattlePhase.Result, GetResult }
-        };
-        //지금 딕셔너리는 3개의 값이 있는 것이다.
-    }
 
 
     [Button]
@@ -38,13 +26,27 @@ public class BattlePlayerController : MonoBehaviour, IBattleEntity
 
     public IEnumerator ActionOnTurn(BattlePhase nowTurn)
     {
-        yield return _fsm[nowTurn];
+        switch (nowTurn)
+        {
+            case BattlePhase.Ready:
+                yield return DecideAction();
+                break;
+
+            case BattlePhase.Action:
+                yield return DoAction();
+                break;
+
+            case BattlePhase.Result:
+                yield return GetResult();
+                break;
+        }
         yield break;
     }
 
     private IEnumerator DecideAction() //상태에 따라 어떤 행동을 할지 결정
     {
-        playerInfo.actionNum = UnityEngine.Random.Range(0, 3);
+        playerInfo.actionNum = UnityEngine.Random.Range(0, 3); //actionNum을 지정해 원하는 스킬을 사용
+        //actionNum은 skillNumbers의 인덱스값
         yield break;
     }
     private IEnumerator DoAction() //결정된 행동을 실행
@@ -54,7 +56,7 @@ public class BattlePlayerController : MonoBehaviour, IBattleEntity
     }
     private IEnumerator GetResult() //몬스터는 버프 디버프에 따른 계산 후 자신의 상태를 바꿈
     {
-
+        yield return BuffManager.instance.UseBuff(this);
         yield break;
     }
 

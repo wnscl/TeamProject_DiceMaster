@@ -22,7 +22,7 @@ public class Smash : BaseSkill, IUseableSkill
 
         if (diceNumber[1] > 3) bounes = 2;
 
-        if ((diceNumber[2] * 6) > info.dodge) bounes = 3;
+        if ((diceNumber[2] * 6) > info.def) bounes = 3;
 
         return damage = (diceNumber[0] * bounes);
     }

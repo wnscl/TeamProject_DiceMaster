@@ -59,6 +59,7 @@ public class Scratch : BaseSkill, IUseableSkill
             OnOffEffect(true);
             anim.SetTrigger("Attack");
             targetInfo.anim.SetTrigger("Hit");
+            BuffManager.instance.AddBuffToList(BuffType.Bleeding, entitys[1]);
             yield return new WaitForSeconds(((float)1 / (float)attackCount));
             OnOffEffect(false);
             entitys[1].GetDamage(diceNumber[0]);
