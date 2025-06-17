@@ -11,7 +11,7 @@ public class SkillShortCut : MonoBehaviour
 {
     public GameObject slotsContainer;
     public GameObject slotPrefab;
-    public static List<GameObject> slots = new List<GameObject>();
+    public  List<GameObject> slots = new List<GameObject>();
     public List<Sprite> diceSprites = new List<Sprite>();
 
     private bool isUp = false;
@@ -66,22 +66,35 @@ public class SkillShortCut : MonoBehaviour
             switch (key)
             {
                 case "1":
-                    Debug.Log("1번슬롯 스킬 사용");
+                   if( slots[0].GetComponent<SkillShortcutSlot>().skillData !=null)
+                   {Debug.Log(slots[0].GetComponent<SkillShortcutSlot>().skillData.Name);}
+                   else{Debug.Log("1번슬롯 비어있음");}
                     break;
                 case "2":
-                    Debug.Log("2번슬롯 스킬 사용");
+                    if( slots[1].GetComponent<SkillShortcutSlot>().skillData !=null)
+                    {Debug.Log(slots[1].GetComponent<SkillShortcutSlot>().skillData.Name);}
+                    else{Debug.Log("2번슬롯 비어있음");}
                     break;
                 case "3":
-                    Debug.Log("3번슬롯 스킬 사용");
+                    if( slots[2].GetComponent<SkillShortcutSlot>().skillData !=null)
+                    {Debug.Log(slots[2].GetComponent<SkillShortcutSlot>().skillData.Name);}
+                    else{Debug.Log("3번슬롯 비어있음");}
                     break;
                 case "4":
-                    Debug.Log("4번슬롯 스킬 사용");
+                    if( slots[3].GetComponent<SkillShortcutSlot>().skillData !=null)
+                    {Debug.Log(slots[3].GetComponent<SkillShortcutSlot>().skillData.Name);}
+                    else{Debug.Log("4번슬롯 비어있음");}
                     break;
                 case "5":
-                    Debug.Log("5번슬롯 스킬 사용");
+                    if( slots[4].GetComponent<SkillShortcutSlot>().skillData !=null)
+                    {Debug.Log(slots[4].GetComponent<SkillShortcutSlot>().skillData.Name);}
+                    else{Debug.Log("5번슬롯 비어있음");}
                     break;
                 case "6":
-                    Debug.Log("6번슬롯 스킬 사용");
+                    if( slots[5].GetComponent<SkillShortcutSlot>().skillData !=null)
+                    {Debug.Log(slots[5].GetComponent<SkillShortcutSlot>().skillData.Name);}
+                    else{Debug.Log("6번슬롯 비어있음");}
+                    
                     break;
             }
             

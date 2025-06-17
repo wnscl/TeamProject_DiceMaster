@@ -37,7 +37,7 @@ public class UIManager : MonoBehaviour
     public SkillPanel skillPanel;
     public SkillInfo skillInfo;
     public ItemInfo itemInfo;
-
+    public SkillShortCut skillShortcut;
     public BattleWindow battleWindow;
 
     //시스템 메세지용 필드
