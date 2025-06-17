@@ -3118,7 +3118,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e485d1d3c8d2ea4f96ad60e16d5cbea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerSettingWindow: {fileID: 0}
   inventory: {fileID: 0}
+  statusPanel: {fileID: 0}
+  skillPanel: {fileID: 0}
+  skillInfo: {fileID: 0}
+  itemInfo: {fileID: 0}
+  battleWindow: {fileID: 0}
   systemMessageImage: {fileID: 8883897421770629770}
   systemText: {fileID: 8892532618203202564}
   dialogCall: "\uB300\uD654"

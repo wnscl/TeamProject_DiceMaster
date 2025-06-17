@@ -1,13 +1,39 @@
 using System.Collections;
 using System.Collections.Generic;
 using NaughtyAttributes;
-using Unity.VisualScripting;
 using UnityEngine;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using System.Linq;
+using System;
 
-public class Npc : MonoBehaviour
+/// <summary>
+/// 플레이어와의 상호작용을 정의하는 인터페이스
+/// </summary>
+public interface IInteractable
+{
+    void OnInteract();  // 플레이어와 상호작용하는 메소드
+}
+
+/// <summary>
+/// NPC 대화 유형을 정의
+/// </summary>
+public enum NpcTalkType
+{
+    Greeting,   // 인사말
+    Conversation,   // 회화
+    Farewell,   // 작별 인사
+    AskQuest,   // 퀘스트 수락 요청
+    AcceptQuest,    // 퀘스트 수락 시
+    CompleteQuest,  // 퀘스트 완료 시
+    IncompleteQuest // 퀘스트 미완료 시 해당 퀘스트 대화 요청
+}
+
+public class Npc : MonoBehaviour, IInteractable
 {
     [SerializeField] private NpcData npcData; // NPC 데이터
     private List<QuestData> validQuests; // 수락 가능한 퀘스트 컬렉션
+    private JToken parseNpcScript; // 파싱된 NPC 스크립트 데이터
 
     void Start()
     {
@@ -113,6 +139,49 @@ public class Npc : MonoBehaviour
     }
 
     /// <summary>
+    /// NPC 대화 로직 메소드
+    /// </summary>
+    /// <param name="talkType"></param>
+    public void NormalTalk(NpcTalkType talkType)
+    {
+        if (npcData.NpcScripts != null)
+        {
+            JToken normalTalk = parseNpcScript["Normal"]["Conversation"];   // Normal 타입의 대화 스크립트
+
+            // 인수로 받은 대화 타입의 메세지를 리스트화
+            List<JToken> validScriptList = normalTalk.Where( t => t["Type"].ToString() == talkType.ToString()).ToList();
+
+            if (validScriptList.Count > 0)
+            {
+                // 해당 타입의 대화 메세지가 존재할 경우, 랜덤으로 하나의 메세지를 출력
+                int randomIndex = UnityEngine.Random.Range(0, validScriptList.Count);
+                string message = validScriptList[randomIndex]["Message"]?.ToString();
+
+                Debug.Log($"NPC 대화: {message}");
+            }
+            else
+            {
+                Debug.LogWarning($"NPC 대화 스크립트가 존재하지 않습니다. 대화 유형: {talkType}");
+
+                return; // 해당 대화 유형이 없으면 메소드 종료
+            }
+        }
+        else
+        {
+            Debug.LogWarning($"NPC 대화 스크립트가 존재하지 않습니다. 대화 유형: {talkType}");
+        }
+    }
+
+    /// <summary>
+    /// NPC 스크립트 데이터 파싱 메소드
+    /// memo : 대화할 때마다 스크립트를 파싱하는 것은 비효율적이므로, 최초 대화 시 한 번만 파싱하도록 구현
+    /// </summary>
+    public void ParseNpcScript()
+    {
+        parseNpcScript = JToken.Parse(npcData.NpcScripts.text);
+    }
+
+    /// <summary>
     /// 퀘스트 로직 테스트용 메소드
     /// </summary>
     [Button]
@@ -166,5 +235,47 @@ public class Npc : MonoBehaviour
                 return;
             }
         }
+    }
+
+    [Button]
+    public void TestNormalTalk()
+    {
+        // 테스트를 위한 NPC 스크립트 파싱
+        ParseNpcScript();
+
+        if (npcData.NpcScripts != null)
+        {
+            JToken normalTalk = parseNpcScript["Normal"]["Conversation"];   // Normal 타입의 대화 스크립트
+
+            // 회화 ( Conversation ) 타입의 대화 반환
+            List<JToken> validScriptList = normalTalk.Where(t => t["Type"].ToString() == NpcTalkType.Conversation.ToString()).ToList();
+
+            if (validScriptList.Count > 0)
+            {
+                // 해당 타입의 대화 메세지가 존재할 경우, 랜덤으로 하나의 메세지를 출력
+                int randomIndex = UnityEngine.Random.Range(0, validScriptList.Count);
+                string message = validScriptList[randomIndex]["Message"]?.ToString();
+
+                Debug.Log($"NPC 대화: {message}");
+            }
+            else
+            {
+                Debug.LogWarning($"NPC 대화 스크립트가 존재하지 않습니다.");
+
+                return; // 해당 대화 유형이 없으면 메소드 종료
+            }
+        }
+        else
+        {
+            Debug.LogWarning("NPC 스크립트가 설정되어 있지 않습니다.");
+        }
+    }
+
+    /// <summary>
+    /// 플레이어와 상호작용하는 메소드
+    /// </summary>
+    public void OnInteract()
+    {
+        
     }
 }
