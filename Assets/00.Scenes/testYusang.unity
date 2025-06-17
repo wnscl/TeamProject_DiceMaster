@@ -568,6 +568,10 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 29dbd280c8741de479cf80f0f76aba38, type: 3}
   - {fileID: 8300000, guid: 59aa635d34d7ec54a9452e0b56e1aa12, type: 3}
   - {fileID: 8300000, guid: 06a54ed11635ae24bbd17a4937edfbfe, type: 3}
+  CarSFX:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!114 &1413337723
 MonoBehaviour:
   m_ObjectHideFlags: 0

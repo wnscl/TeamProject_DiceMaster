@@ -40,6 +40,7 @@ public class StageManager : MonoBehaviour
     // 로딩 씬에서 트리거 도달 시 호출
     public void LoadStageAfterLoading()
     {
+        AudioManager.Instance.StopCarScene();
         if (isLoadingNextStage && currentStage < stageSceneNames.Length)
         {
             SceneManager.LoadScene(stageSceneNames[currentStage]);
