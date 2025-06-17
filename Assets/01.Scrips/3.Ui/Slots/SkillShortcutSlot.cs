@@ -28,12 +28,12 @@ public class SkillShortcutSlot : MonoBehaviour, IDropHandler, IPointerEnterHandl
 
     public void OnDrop(PointerEventData eventData)
     {
-        SkillShortcutSlot dragged = eventData.pointerDrag.GetComponent<SkillShortcutSlot>();
+        SkillSlot dragged = eventData.pointerDrag.GetComponent<SkillSlot>();
         if (dragged != null)
         {
-            for (int i = 0; i < SkillShortCut.slots.Count; i++)
+            for (int i = 0; i < UIManager.Instance.skillShortcut.slots.Count; i++)
             {
-                SkillShortcutSlot slot = SkillShortCut.slots[i].GetComponent<SkillShortcutSlot>();
+                SkillShortcutSlot slot = UIManager.Instance.skillShortcut.slots[i].GetComponent<SkillShortcutSlot>();
                 if (slot.skillData == null)
                 {
                     continue;
@@ -44,6 +44,8 @@ public class SkillShortcutSlot : MonoBehaviour, IDropHandler, IPointerEnterHandl
                     UIManager.Instance.SystemMessage("이미 할당 된 스킬입니다.");
                     return;
                 }
+                
+             
             }
 
             dragged.transform.SetParent(transform);

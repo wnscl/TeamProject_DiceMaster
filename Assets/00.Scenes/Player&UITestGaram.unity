@@ -1010,7 +1010,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 2038702471}
   m_Direction: 0
   m_Value: 0
-  m_Size: 1
+  m_Size: 0.99121505
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -5564,6 +5564,8 @@ MonoBehaviour:
   skillSOData: []
   skillPrefabs: []
   skillSlot: []
+  skillSlotPivot: []
+  pivotPrefab: {fileID: 4678750492095716002, guid: 9f759e0287f0889459713c7877a6c709, type: 3}
   slotPrefab: {fileID: 4241482307996869903, guid: 773af006b5433f642be4cede2a3a34ae, type: 3}
   content: {fileID: 1480992240}
 --- !u!1 &1611381165
@@ -8861,6 +8863,7 @@ MonoBehaviour:
   skillPanel: {fileID: 1581353940}
   skillInfo: {fileID: 1676948531}
   itemInfo: {fileID: 297589708}
+  skillShortcut: {fileID: 7289858284825138558}
   battleWindow: {fileID: 8446239842585243926}
   systemMessageImage: {fileID: 3884680679347867513}
   systemText: {fileID: 3875425068446935543}

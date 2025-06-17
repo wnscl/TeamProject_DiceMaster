@@ -11,7 +11,7 @@ public class SkillShortCut : MonoBehaviour
 {
     public GameObject slotsContainer;
     public GameObject slotPrefab;
-    public static List<GameObject> slots = new List<GameObject>();
+    public  List<GameObject> slots = new List<GameObject>();
     public List<Sprite> diceSprites = new List<Sprite>();
 
     private bool isUp = false;
