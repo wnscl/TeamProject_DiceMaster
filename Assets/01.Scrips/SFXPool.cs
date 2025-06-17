@@ -40,6 +40,13 @@ public enum UISFXEnum
     Unpause
 }
 
+public enum Car
+{
+    door,
+    engine,
+    drive
+}
+
 public class SFXPool : MonoBehaviour
 {
     public AudioClip[] MagicSFXClips = new AudioClip[4];
@@ -57,6 +64,8 @@ public class SFXPool : MonoBehaviour
     public AudioClip[] Stage3Audio = new AudioClip[4];
 
     public AudioClip[][] BackGroundAudio = new AudioClip[3][];
+
+    public AudioClip[] CarSFX = new AudioClip[3];
 
     private void Awake()
     {

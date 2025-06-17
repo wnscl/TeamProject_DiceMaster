@@ -29,6 +29,7 @@ public class StageManager : MonoBehaviour
         {
             isLoadingNextStage = true;            
             SceneManager.LoadScene("LoadingScene");
+            AudioManager.Instance.StartCarScene();
         }
         else
         {
