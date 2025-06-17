@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using NaughtyAttributes;
+using Unity.VisualScripting;
 using UnityEngine.InputSystem;
 
 public class BattleWindow : MonoBehaviour
@@ -21,11 +22,17 @@ public class BattleWindow : MonoBehaviour
     private void Awake()
     {
         
-        monsterInfo =FindObjectOfType<MonsterInfo>().GetComponent<MonsterInfo>();
-        playerInfo =FindObjectOfType<BattlePlayerController>().GetComponent<PlayerInfo>();
+     
         
         
         playerInput = GameManager.Instance.player.GetComponent<PlayerInput>();
+        
+    }
+
+    void OnEnable()
+    {
+        monsterInfo =FindObjectOfType<MonsterInfo>().GetComponent<MonsterInfo>();
+        playerInfo =FindObjectOfType<BattlePlayerController>().GetComponent<PlayerInfo>();
         
     }
 
