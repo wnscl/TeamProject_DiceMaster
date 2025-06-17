@@ -17,14 +17,13 @@ public class GameManager : MonoBehaviour
     {
         Instance = this;
     }
-    private void Start()
-    {
-        //battleEvent += 
-    }
+
     public void StartBattle()
     {
         Debug.Log("예이 전투시작!");
         battleEvent?.Invoke();
+        UIManager.Instance.battleWindow.WhenStartBattle();
+        BattleManager.Instance.Battle.Encounter();
     }
 
     public void StopPlayer()
