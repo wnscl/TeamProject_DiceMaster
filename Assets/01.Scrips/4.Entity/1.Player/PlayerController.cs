@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using DG.Tweening;
 
+
 public class PlayerController : MonoBehaviour
 {
     public float stepDistance = 1f; //한번에 이동하는거리 데이터 만들기 전이라 임시로 여기 변수 두었습니다.
