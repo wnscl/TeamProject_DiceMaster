@@ -13,20 +13,37 @@ public class RussianRoulette : BaseSkill, IUseableSkill
 
     public override IEnumerator OnUse()
     {
+        EntityInfo[] entityInfo = new EntityInfo[] 
+        {entitys[0].GetEntityInfo(), entitys[1].GetEntityInfo()};
+
         diceNumber = skillManager.RollDice();
         IBattleEntity entity = diceNumber.Sum() >= 9 ? entitys[1] : entitys[0];
         EntityInfo info = entity.GetEntityInfo();
 
-        //주사위 굴러가는 이펙트
-        yield return new WaitForSeconds(0.4f);
-        //폭발 이펙트
+        effect[0].transform.position = Vector2.Lerp(entityInfo[0].transform.position, entityInfo[1].transform.position, 0.5f);
 
+        foreach (EntityInfo animinfo in entityInfo)
+        {
+            animinfo.anim.SetBool("isAction", true);
+            animinfo.anim.SetTrigger("Attack");
+        }
+        effect[0].SetActive(true);
+        yield return new WaitForSeconds(1f);
+        foreach (EntityInfo animinfo in entityInfo)
+        {
+            animinfo.anim.SetBool("isAction", false);
+        }
+        yield return new WaitForSeconds(0.5f);
+        effect[0].transform.position = info.transform.position;
         info.anim.SetBool("isHit", true);
         info.anim.SetTrigger("Hit");
+        yield return new WaitForSeconds(1f);
+
 
         entity.GetDamage(info.currentHp / 2);
-
-        yield return new WaitForSeconds(0.4f);
         info.anim.SetBool("isHit", false);
+
+        TurnOffSkill();
+        yield break;
     }
 }
