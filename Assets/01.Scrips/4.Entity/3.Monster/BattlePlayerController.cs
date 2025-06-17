@@ -56,7 +56,7 @@ public class BattlePlayerController : MonoBehaviour, IBattleEntity
     }
     private IEnumerator GetResult() //몬스터는 버프 디버프에 따른 계산 후 자신의 상태를 바꿈
     {
-
+        yield return BuffManager.instance.UseBuff(this);
         yield break;
     }
 

@@ -73,12 +73,12 @@ public class MonsterController : MonoBehaviour, IBattleEntity
     private IEnumerator DoAction() //결정된 행동을 실행
     {
         //yield return SkillManager.instance.skills[monsterInfo.skillNumbers[monsterInfo.actionNum]].OnUse(); 
-        yield return SkillManager.instance.skills[0].OnUse();
+        yield return SkillManager.instance.skills[monsterInfo.skillNumbers[monsterInfo.actionNum]].OnUse();
         yield break;
     }
     private IEnumerator GetResult() //몬스터는 버프 디버프에 따른 계산 후 자신의 상태를 바꿈
     {
-
+        yield return BuffManager.instance.UseBuff(this);
         yield break;
     }
 

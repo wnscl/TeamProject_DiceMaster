@@ -37,6 +37,7 @@ public class PlayerInfo : EntityInfo
         magicDef = Gm.GetStat(StatType.MagicalDefense);
         dodge = Gm.GetStat(StatType.Evasion);
 
+        buffList = new List<IBuff>();
     }
     
     
