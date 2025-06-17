@@ -165,7 +165,7 @@ public class Battle : MonoBehaviour
     /// </summary>
     public void EndBattle()
     {
-        AudioManager.Instance.ChangeAudio(AudioManager.Instance.audioPool.BackGroundAudio[StageManager.Instance.currentStage], 2);
+        AudioManager.Instance.ChangeAudio(AudioManager.Instance.audioPool.BackGroundAudio[StageManager.Instance.currentStage]);
         BattleManager.Instance.IsBattleActive = false;
     }
 

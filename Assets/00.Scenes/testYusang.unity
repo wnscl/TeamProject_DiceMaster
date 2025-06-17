@@ -548,6 +548,11 @@ MonoBehaviour:
   - {fileID: 8300000, guid: b83bf8726a7fac349a54389f0c57cda6, type: 3}
   - {fileID: 8300000, guid: e58d8bd078f188a4ba314e933b98528b, type: 3}
   Walk: {fileID: 8300000, guid: 023ea3ddeaa8dd146b7633a0800e5a0e, type: 3}
+  battleAudio:
+  - {fileID: 8300000, guid: 457771d0864a67842a71c2fb0a3fdc1a, type: 3}
+  - {fileID: 8300000, guid: 42473177e27deec47a049056af08c108, type: 3}
+  - {fileID: 8300000, guid: 3743191223aa7884aa5f127d9f41d978, type: 3}
+  - {fileID: 8300000, guid: b7501a20c06ef20469c1419fea37f021, type: 3}
   Stage1Audio:
   - {fileID: 8300000, guid: a4a9494d2f669fb4e94038d684e706f2, type: 3}
   - {fileID: 8300000, guid: 29dbd280c8741de479cf80f0f76aba38, type: 3}
@@ -558,6 +563,11 @@ MonoBehaviour:
   - {fileID: 8300000, guid: cd1035904226cd04097e9f035812aba5, type: 3}
   - {fileID: 8300000, guid: feb4677bed7c73b4ea14f77569dab333, type: 3}
   - {fileID: 8300000, guid: e17eb874ef32c1945b7aa165164a8b7e, type: 3}
+  Stage3Audio:
+  - {fileID: 8300000, guid: a4a9494d2f669fb4e94038d684e706f2, type: 3}
+  - {fileID: 8300000, guid: 29dbd280c8741de479cf80f0f76aba38, type: 3}
+  - {fileID: 8300000, guid: 59aa635d34d7ec54a9452e0b56e1aa12, type: 3}
+  - {fileID: 8300000, guid: 06a54ed11635ae24bbd17a4937edfbfe, type: 3}
 --- !u!114 &1413337723
 MonoBehaviour:
   m_ObjectHideFlags: 0

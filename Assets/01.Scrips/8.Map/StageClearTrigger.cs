@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,7 +8,7 @@ public class StageClearTrigger : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            StageManager.Instance.LoadNextStage(); // ·Îµù ¾ÀÀ¸·Î ÀÌµ¿
+            StageManager.Instance.LoadNextStage(); // ë¡œë”© ì”¬ìœ¼ë¡œ ì´ë™
         }
     }
 }

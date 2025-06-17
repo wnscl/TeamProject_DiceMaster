@@ -1,4 +1,4 @@
-using NaughtyAttributes;
+ï»¿using NaughtyAttributes;
 using System.Collections;
 using System.Linq;
 using UnityEngine;
@@ -17,9 +17,9 @@ public class RussianRoulette : BaseSkill, IUseableSkill
         IBattleEntity entity = diceNumber.Sum() >= 9 ? entitys[1] : entitys[0];
         EntityInfo info = entity.GetEntityInfo();
 
-        //ÁÖ»çÀ§ ±¼·¯°¡´Â ÀÌÆåÆ®
+        //ì£¼ì‚¬ìœ„ êµ´ëŸ¬ê°€ëŠ” ì´í™íŠ¸
         yield return new WaitForSeconds(0.4f);
-        //Æø¹ß ÀÌÆåÆ®
+        //í­ë°œ ì´í™íŠ¸
 
         info.anim.SetBool("isHit", true);
         info.anim.SetTrigger("Hit");

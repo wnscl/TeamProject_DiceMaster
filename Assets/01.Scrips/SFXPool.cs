@@ -54,12 +54,14 @@ public class SFXPool : MonoBehaviour
     public AudioClip[] battleAudio = new AudioClip[4];
     public AudioClip[] Stage1Audio = new AudioClip[4];
     public AudioClip[] Stage2Audio = new AudioClip[4];
+    public AudioClip[] Stage3Audio = new AudioClip[4];
 
-    public AudioClip[][] BackGroundAudio = new AudioClip[2][];
+    public AudioClip[][] BackGroundAudio = new AudioClip[3][];
 
     private void Awake()
     {
         BackGroundAudio[0] = Stage1Audio;
         BackGroundAudio[1] = Stage2Audio;
+        BackGroundAudio[2] = Stage3Audio;
     }
 }
