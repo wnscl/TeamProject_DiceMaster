@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using NaughtyAttributes;
+using TMPro;
 using Unity.IO.LowLevel.Unsafe;
 using Unity.VisualScripting;
 using UnityEditor.Experimental.GraphView;
@@ -68,7 +69,8 @@ public class SwordFlow : BaseSkill, IUseableSkill
         yield return OnMoveSword();
         effect[0].SetActive(true);
         target.anim.SetBool("isHit", true);
-        target.anim.SetTrigger("Hit");
+        //target.anim.SetTrigger("Hit");
+        target.anim.Play("Hit", 0, 0);
         effectAnim[0].SetTrigger("Explode");
         AudioManager.Instance.PlayAudioOnce(MagicSFXEnum.Fire);
         yield return new WaitForSeconds(1f);

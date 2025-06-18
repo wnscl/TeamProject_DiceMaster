@@ -52,7 +52,8 @@ public class Bite : BaseSkill, IUseableSkill
         AudioManager.Instance.PlayAudioOnce(PyhsicsSFXEnum.Bite);
         effect[1].SetActive(true);
         targetInfo.anim.SetBool("isHit", true);
-        targetInfo.anim.SetTrigger("Hit");
+        //targetInfo.anim.SetTrigger("Hit");
+        targetInfo.anim.Play("Hit", 0, 0);
         yield return new WaitForSeconds(1f);
         targetInfo.anim.SetBool("isHit", false);
         requesterInfo.anim.SetTrigger("Buff");

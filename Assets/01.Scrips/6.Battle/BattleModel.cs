@@ -23,6 +23,7 @@ public interface IBattleEntity
 public class BattleModel : MonoBehaviour
 {
     public bool BattleResult;
+    public bool isTurn;
     public List<IBattleEntity> battleEntities = new List<IBattleEntity>(); // 전투에 참가하는 유닛 컬렉션
 
     public IBattleEntity nowTurnEntity;

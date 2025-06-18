@@ -107,18 +107,31 @@ public class BattlePlayerController : MonoBehaviour, IBattleEntity
 
     public void GetDamage(int dmg)
     {
-        int chance = UnityEngine.Random.Range(0, 100);  //99�۱���
+        int chance = UnityEngine.Random.Range(0, 100); //의도된 99까지의 값
 
         if (playerInfo.dodge > chance)
         {
             AudioManager.Instance.PlayAudioOnce(ReactSFXEnum.Evade);
             return;
-        } //ȸ��
+        }
 
-        dmg = Mathf.Abs(dmg); //�������� ���밪���� 
+        float decrease = (float)playerInfo.def / ((float)playerInfo.def + 100f);
+        dmg = (int)((float)dmg * (1 - decrease));
 
         playerInfo.currentHp =
             Mathf.Clamp(playerInfo.currentHp - dmg, 0, playerInfo.maxHp);
+
+        if (playerInfo.currentHp <= 0)
+        {
+            playerInfo.anim.SetBool("isAction", true);
+            playerInfo.anim.SetTrigger("Dead");
+            //자신이 죽었다고 알려야함
+            BattleManager.Instance.Battle.CheckBattleEnd(playerInfo);
+        }
+
+        playerInfo.currentHp =
+            Mathf.Clamp(playerInfo.currentHp - dmg, 0, playerInfo.maxHp);
+
         AudioManager.Instance.PlayAudioOnce(ReactSFXEnum.Hit);
         UIManager.Instance.battleWindow.SetHPBar();
     }

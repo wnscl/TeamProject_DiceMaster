@@ -13,7 +13,9 @@ MonoBehaviour:
   m_Name: TestMonster
   m_EditorClassIdentifier: 
   name: "\uD14C\uC2A4\uD2B8 \uBAAC\uC2A4\uD130"
-  maxHp: 20
+  maxHp: 300
   def: 3
   dodge: 21
+  magicDef: 0
+  mobType: 0
   _skillPrefabs: []

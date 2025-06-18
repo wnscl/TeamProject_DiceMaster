@@ -10,25 +10,21 @@ public class CameraController : MonoBehaviour
     [SerializeField] private CinemachineVirtualCamera[] cams;
     [SerializeField] private int activedCamPriority;
     [SerializeField] private int unactiveCamPriority;
-    [SerializeField] private bool isMainScene;
 
     private void Start()
     {
         GameManager.Instance.battleEvent += ChangeScreen;
     }
 
-    [Button]
-    private void ChangeScreen()
+    private void ChangeScreen(bool isBattleStart)
     {
         int playerCamIndex = 0;
         int battleCamIndex = 1;
 
-        if (isMainScene) isMainScene = false;
-        else
+        if (!isBattleStart)
         {
             playerCamIndex = 1;
             battleCamIndex = 0;
-            isMainScene = true;
         }
 
         cams[playerCamIndex].Priority = unactiveCamPriority;

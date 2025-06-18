@@ -49,7 +49,7 @@ public class Battle : MonoBehaviour
 
         if (player != null)
         {
-            Model.battleEntities.Add(player);
+            model.battleEntities.Add(player);
 
             // model.PlayerInfo = player.GetEntityInfo() as PlayerInfo;
         }
@@ -68,7 +68,7 @@ public class Battle : MonoBehaviour
         // to do : 게임 사양 상 추후 리스트로 받아와야 할 것이다
         IBattleEntity enemies = SkillManager.instance.TestMonster.GetComponent<IBattleEntity>();
 
-        Model.battleEntities.Add(enemies);
+        model.battleEntities.Add(enemies);
         // model.EnemyInfo = enemies.GetEntityInfo() as MonsterInfo;
     }
 
@@ -86,15 +86,10 @@ public class Battle : MonoBehaviour
 
         // 전투 관련 필드 값 전환
         BattleManager.Instance.IsBattleActive = true;
-        Model.battlePhase = BattlePhase.Ready;
+        model.isTurn = true;
+        model.battlePhase = BattlePhase.Ready;
 
         AudioManager.Instance.ChangeAudio(AudioManager.Instance.audioPool.battleAudio, 2);
-
-        if (myCor != null)
-        {
-            Debug.Log("코루틴 중첩");
-            return;
-        }
 
         myCor = StartCoroutine(Combat());
     }
@@ -105,7 +100,7 @@ public class Battle : MonoBehaviour
     public IEnumerator Combat()
     {
         // 전투 참여 중인 각 유닛의 배틀 상태를 활성화
-        while (BattleManager.Instance.IsBattleActive == true)
+        while (BattleManager.Instance.IsBattleActive == true || Model.isTurn)
         {
             switch (Model.battlePhase)
             {
@@ -113,11 +108,11 @@ public class Battle : MonoBehaviour
                     // 각 유닛의 행동을 설정
                     foreach (IBattleEntity entity in Model.battleEntities)
                     {
-                        Model.nowTurnEntity = entity; // 현재 턴을 가진 유닛 설정
+                        model.nowTurnEntity = entity; // 현재 턴을 가진 유닛 설정
                         yield return entity.ActionOnTurn(Model.battlePhase);
                     }
 
-                    Model.battlePhase = BattlePhase.Action;
+                    model.battlePhase = BattlePhase.Action;
 
                     Debug.Log("End Ready Phase");
                     break;
@@ -125,97 +120,55 @@ public class Battle : MonoBehaviour
                     // 설정한 행동 실행
                     foreach (IBattleEntity entity in Model.battleEntities)
                     {
-                        Model.nowTurnEntity = entity; // 현재 턴을 가진 유닛 설정
+                        model.nowTurnEntity = entity; // 현재 턴을 가진 유닛 설정
 
                         yield return entity.ActionOnTurn(Model.battlePhase);
                     }
 
-                    Model.battlePhase = BattlePhase.Result;
+                    model.battlePhase = BattlePhase.Result;
 
                     Debug.Log("End Action Phase");
                     break;
                 case BattlePhase.Result:
                     // 턴 종료 시의 처리
-                    foreach (IBattleEntity entity in Model.battleEntities)
+
+                    if (BattleManager.Instance.IsBattleActive)
                     {
-                        yield return entity.ActionOnTurn(Model.battlePhase);
+                        foreach (IBattleEntity entity in Model.battleEntities)
+                        {
+                            yield return entity.ActionOnTurn(Model.battlePhase);
+                        }
+                    }
+                    else
+                    {
+                        model.isTurn = false;
+                        yield return new WaitForSeconds(1.5f);
                     }
 
                     // 각 유닛의 행동 결과를 처리하고, 배틀 종료 여부를 확인
-                    CheckBattleEnd();
-
+                    RotateTurn();
                     Debug.Log("End Result Phase");
                     break;
             }
         }
     }
 
-    /// <summary>
-    /// 배틀 종료 후, 결과를 처리하는 메소드
-    /// </summary>
-    public void EndBattle()
+    public void CheckBattleEnd(EntityInfo info)
     {
-        AudioManager.Instance.ChangeAudio(AudioManager.Instance.audioPool.BackGroundAudio[StageManager.Instance.currentStage]);
+        Model.BattleResult = false;
+
+        if (info.name == "BattlePlayer") Model.BattleResult = true;
+
         BattleManager.Instance.IsBattleActive = false;
     }
-
-    /// <summary>
-    /// 유닛의 행동을 설정하는 메소드
-    /// </summary>
-    /// <param name="unit"></param>
-    public void SetAction()
-    {
-
-    }
-
-    /// <summary>
-    /// 각 유닛이 선택한 행동에 대한 사전 처리를 하는 메소드
-    /// </summary>
-    public void ProcessAction()
-    {
-
-    }
-
-    /// <summary>
-    /// 유닛의 행동을 실행하는 메소드
-    /// </summary>
-    public void ExcuteAction()
-    {
-
-    }
-
-    /// <summary>
-    /// 공격 턴을 전환하는 메소드
-    /// 기존에 턴 플래그를 가지고 있는 유닛의 턴 플래그를 해제하고, 턴 플래그가 없는 유닛의 턴 플래그를 설정한다
-    /// </summary>
-    public void TurnShift()
-    {
-        
-    }
-
-    /// <summary>
-    /// 배틀 결과를 확인하는 메소드
-    /// </summary>
-    /// <returns></returns>
-    private void CheckBattleEnd()
-    {
-        // to do : 리스트에 플레이어가 없다면 게임 오버시키는 감지 기능을 고려해두자
-        // 배틀에 참여한 유닛 리스트에 플레이어만 남아있을 경우, 배틀을 플레이어의 승리로 처리하고 배틀을 종료한다
-
-        if (Model.battleEntities.Count == 0 || Model.battleEntities.All(entity => entity is Player))
-        {
-            Model.BattleResult = true; // 플레이어 승리
-            EndBattle();
-        }
-        else
-        {
-            // 배틀이 계속 진행 중인 경우, 다음 턴으로 넘어간다
-            RotateTurn();
-        }
-    }
-
     private void RotateTurn()
     {
+        if (!BattleManager.Instance.IsBattleActive)
+        {
+            StopBattle();
+            return;
+        }
+
         Model.battlePhase = BattlePhase.Ready;
         Model.turnCount++;
 
@@ -225,5 +178,9 @@ public class Battle : MonoBehaviour
         Model.battleEntities.Add(first);
 
         Debug.Log($"Turn {Model.turnCount} 시작");
+    }
+    private void StopBattle()
+    {
+        GameManager.Instance.ExcuteBattleEvent(false);
     }
 }

@@ -8,23 +8,36 @@ public class MonsterFactory : MonoBehaviour
 
     [SerializeField] private GameObject monsterPivot;
 
+    [SerializeField] private GameObject newMonster;
+
     private void Start()
     {
-        GameManager.Instance.battleEvent += CreateMonster;
+        GameManager.Instance.battleEvent += SettingMonster;
     }
-    public void CreateMonster()
+    public void SettingMonster(bool isBattleStart)
     {
-        GameObject newMonster = Instantiate(monsters[0]);
-        SetMonsterToSkillManager(newMonster);
-        SetMonsterPosition(newMonster);
-        MonsterInfo newMonsterInfo = newMonster.GetComponent<MonsterInfo>();
-        ConditionCollection.instance.GetMonster(newMonsterInfo);
+        if (!isBattleStart)
+        {
+            Destroy(newMonster);
+            newMonster = null;
+            return;
+        }
+
+        newMonster = Instantiate(monsters[0]);
+        SetMonsterToSkillManager();
+        SetMonsterPosition();
+        SetMonsterToCondition();
     }
-    private void SetMonsterToSkillManager(GameObject newMonster)
+    private void SetMonsterToSkillManager()
     {
         SkillManager.instance.TestMonster = newMonster;
     }
-    private void SetMonsterPosition(GameObject newMonster)
+    private void SetMonsterToCondition()
+    {
+        MonsterInfo newMonsterInfo = newMonster.GetComponent<MonsterInfo>();
+        ConditionCollection.instance.GetMonster(newMonsterInfo);
+    }
+    private void SetMonsterPosition()
     {
         newMonster.transform.parent = monsterPivot.transform;
         newMonster.transform.position = monsterPivot.transform.position;
