@@ -21,12 +21,7 @@ public class BattleWindow : MonoBehaviour
 
     private void Awake()
     {
-        
-     
-        
-        
         playerInput = GameManager.Instance.player.GetComponent<PlayerInput>();
-        
     }
 
     void OnEnable()
