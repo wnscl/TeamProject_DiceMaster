@@ -9,11 +9,12 @@ using DG.Tweening;
 
 public class PlayerController : MonoBehaviour
 {
-  [SerializeField]  private float moveSpeed = 5f; 
+    [SerializeField] private float moveSpeed = 5f;
 
     private Rigidbody2D rb;
     private Vector2 moveInput = Vector2.zero;
     private PlayerAnimationController anim;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -28,7 +29,7 @@ public class PlayerController : MonoBehaviour
             return;
         }
 
-    
+
         rb.velocity = new Vector3(moveInput.x, moveInput.y, 0f) * moveSpeed;
     }
 
@@ -42,12 +43,21 @@ public class PlayerController : MonoBehaviour
 
         if (context.phase == InputActionPhase.Performed || context.phase == InputActionPhase.Started)
         {
+            anim.SetMove(true);
             Vector2 input = context.ReadValue<Vector2>();
 
             // 대각선 입력 방지: 한 축만 허용
             if (Mathf.Abs(input.x) > Mathf.Abs(input.y))
             {
                 moveInput = new Vector2(input.x, 0f).normalized;
+
+
+                if (moveInput.x != 0)
+                {
+                    Vector3 scale = transform.localScale;
+                    scale.x = Mathf.Sign(moveInput.x) * Mathf.Abs(scale.x);
+                    transform.localScale = scale;
+                }
             }
             else
             {
@@ -57,6 +67,7 @@ public class PlayerController : MonoBehaviour
         else if (context.phase == InputActionPhase.Canceled)
         {
             moveInput = Vector2.zero;
+            anim.SetMove(false);
         }
     }
 }

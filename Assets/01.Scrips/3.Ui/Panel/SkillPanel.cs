@@ -35,6 +35,9 @@ public class SkillPanel : MonoBehaviour
             ss.setSetSkillSlot();
             skillSlot.Add(newSlot);
         }
+        
+     GetSkill(skillManager.skillDatas[0]);
+        GetSkill(skillManager.skillDatas[1]);
     }
 
     public void GetSkill(SkillDataSo newSkill)
