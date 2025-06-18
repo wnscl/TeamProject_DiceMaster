@@ -10,12 +10,12 @@ public enum MonsterState
     Angry
 }
 
-//¸ó½ºÅÍµéÀÌ °¡Áú ÀÚ½Å¸¸ÀÇ Á¤º¸µéÀ» ÀúÀåÇÏ´Â Å¬·¡½º
+//ï¿½ï¿½ï¿½Íµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ú½Å¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½
 public class MonsterInfo : EntityInfo
 {
 
     public MonsterType      mobType;
-    public MonsterState     mobState = MonsterState.Normal; //¸ó½ºÅÍÀÇ °¨Á¤ »óÅÂ - °¨Á¤¿¡ µû¶ó »ç¿ëÇÏ´Â ½ºÅ³ ÇÁ¸®ÆÕÀÌ ´Ù¸£°Ô 
+    public MonsterState     mobState = MonsterState.Normal; //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ - ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½Å³ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ù¸ï¿½ï¿½ï¿½ 
 
     public SpriteRenderer feelSprite;
     public Sprite[] feelIcon;
@@ -29,6 +29,7 @@ public class MonsterInfo : EntityInfo
         magicDef    =   data.MagicDef;
 
         mobType     =   data.MonsterType;
+        buffList =  new List<IBuff>();
     }
 
 }
