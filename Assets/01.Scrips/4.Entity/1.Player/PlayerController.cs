@@ -13,10 +13,11 @@ public class PlayerController : MonoBehaviour
 
     private Rigidbody2D rb;
     private Vector2 moveInput = Vector2.zero;
-
+    private PlayerAnimationController anim;
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        anim = GetComponentInChildren<PlayerAnimationController>();
     }
 
     private void FixedUpdate()

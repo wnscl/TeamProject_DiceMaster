@@ -11,10 +11,12 @@ public class Player : MonoBehaviour, IBattleEntity, IInteractable
     public StatHandler statHandler;
     public PlayerInfo playerInfo;
     public GameObject interactableSign;
+   
 
     private void Awake()
     {
         statHandler = GetComponent<StatHandler>();
+       
     }
 
     public IEnumerator ActionOnTurn(BattlePhase phase)
@@ -109,11 +111,10 @@ public class Player : MonoBehaviour, IBattleEntity, IInteractable
 
         if (context.phase == InputActionPhase.Performed)
         {
-           interTrigger = true;
+            interTrigger = true;
         }
     }
 
-    
 
     public void OnInteract()
     {

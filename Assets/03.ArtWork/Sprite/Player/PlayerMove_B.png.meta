@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: fac0c5dbbbb752547849840eeb951339
+guid: 7ef34e90811fed849a26e029cd73fb94
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -123,12 +123,12 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: PlayerMove_L_0
+      name: PlayerMove_B_0
       rect:
         serializedVersion: 2
-        x: 9
+        x: 8
         y: 2
-        width: 28
+        width: 29
         height: 36
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -137,19 +137,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b3ede80ab13815847a44dd49157f8a34
-      internalID: -1631287866
+      spriteID: e4f7b014b88a7c147b89768b6af3c12a
+      internalID: -2092784336
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlayerMove_L_1
+      name: PlayerMove_B_1
       rect:
         serializedVersion: 2
-        x: 51
+        x: 48
         y: 2
-        width: 28
+        width: 29
         height: 36
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -158,19 +158,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bc8afd5dd49335948ab34ea96b875a7a
-      internalID: -1935074244
+      spriteID: 3563ab8f791784e4bb8281d3cdbdd83e
+      internalID: 603442691
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlayerMove_L_2
+      name: PlayerMove_B_2
       rect:
         serializedVersion: 2
         x: 84
         y: 2
-        width: 28
+        width: 29
         height: 36
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -179,19 +179,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7a481c3afb090d941951cff65a2b467e
-      internalID: 1527779204
+      spriteID: 16e15166445a29c49a4483c03f7061c2
+      internalID: 1640250111
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlayerMove_L_3
+      name: PlayerMove_B_3
       rect:
         serializedVersion: 2
-        x: 120
+        x: 132
         y: 2
-        width: 28
+        width: 29
         height: 36
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -200,19 +200,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7a720a6343188f946b1a32c06ed50130
-      internalID: -1998747305
+      spriteID: d7e6e6a7b7866244e9700f9e38a1682c
+      internalID: -837416489
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlayerMove_L_4
+      name: PlayerMove_B_4
       rect:
         serializedVersion: 2
-        x: 155
+        x: 177
         y: 2
-        width: 28
+        width: 29
         height: 36
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -221,19 +221,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 46cd2c3d9e935c14fb16c62f0b99db4e
-      internalID: -283623906
+      spriteID: b20ac0eeabe19dc42bfe018642122ad6
+      internalID: -74285981
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlayerMove_L_5
+      name: PlayerMove_B_5
       rect:
         serializedVersion: 2
-        x: 186
+        x: 215
         y: 2
-        width: 28
+        width: 29
         height: 36
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -242,19 +242,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 35d7260109f6cb649a5e4f98d1d1c214
-      internalID: -1761589833
+      spriteID: 6b1af5e86224a824dac15c883f460408
+      internalID: -1673888286
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlayerMove_L_6
+      name: PlayerMove_B_6
       rect:
         serializedVersion: 2
-        x: 226
+        x: 254
         y: 2
-        width: 28
+        width: 29
         height: 36
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -263,19 +263,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c569688213ced6c4687f4c740b2a4ea5
-      internalID: -1947836989
+      spriteID: d9518962184ad924192e2e5ae3afe504
+      internalID: 896736715
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlayerMove_L_7
+      name: PlayerMove_B_7
       rect:
         serializedVersion: 2
-        x: 259
+        x: 289
         y: 2
-        width: 28
+        width: 29
         height: 36
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -284,8 +284,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ce4ec82895652ca4cada52e870731b65
-      internalID: 421438830
+      spriteID: 13235201ad0dda0458a9277212127f49
+      internalID: 1329227207
       vertices: []
       indices: 
       edges: []
@@ -301,14 +301,14 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      PlayerMove_L_0: -1631287866
-      PlayerMove_L_1: -1935074244
-      PlayerMove_L_2: 1527779204
-      PlayerMove_L_3: -1998747305
-      PlayerMove_L_4: -283623906
-      PlayerMove_L_5: -1761589833
-      PlayerMove_L_6: -1947836989
-      PlayerMove_L_7: 421438830
+      PlayerMove_B_0: -2092784336
+      PlayerMove_B_1: 603442691
+      PlayerMove_B_2: 1640250111
+      PlayerMove_B_3: -837416489
+      PlayerMove_B_4: -74285981
+      PlayerMove_B_5: -1673888286
+      PlayerMove_B_6: 896736715
+      PlayerMove_B_7: 1329227207
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
