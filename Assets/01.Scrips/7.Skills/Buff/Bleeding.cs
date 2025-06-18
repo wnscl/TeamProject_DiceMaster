@@ -24,7 +24,22 @@ public class Bleeding : IBuff
     {
         if(buffCount == 0) return false;
         buffCount--;
+
+
+        BuffManager bm = BuffManager.instance;
         EntityInfo info = entity.GetEntityInfo();
+
+        float x = 1;
+        if (info.gameObject.transform.position.x > SkillManager.instance.transform.position.x) x = -1f;
+
+        bm.buffEffect.SetActive(true);
+        bm.buffEffect.transform.position = 
+            new Vector2(
+                info.gameObject.transform.position.x + x, 
+                info.gameObject.transform.position.y
+                );
+
+        bm.buffAnim.SetTrigger("Bleeding");
 
         info.currentHp = Mathf.Clamp(info.currentHp - damage, 0, info.maxHp);
         AudioManager.Instance.PlayAudioOnce(BuffSFXEnum.Debuff);
