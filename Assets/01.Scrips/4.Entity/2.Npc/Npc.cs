@@ -212,8 +212,8 @@ public class Npc : MonoBehaviour, IInteractable
         {
             Debug.Log("NPC 스크립트 UI 체크");
 
-            npcScriptUI.Show(); // NPC 스크립트 UI 표시
             npcScriptUI.TargetNpcData = npcData; // 현재 NPC 데이터 설정
+            npcScriptUI.Show(); // NPC 스크립트 UI 표시
 
             Debug.Log("NPC 스크립트 UI 데이터 할당 : " + npcScriptUI.TargetNpcData);
         }
