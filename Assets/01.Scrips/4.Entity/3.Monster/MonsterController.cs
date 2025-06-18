@@ -11,11 +11,11 @@ public class MonsterController : MonoBehaviour, IBattleEntity
     [SerializeField] private MonsterInfo monsterInfo;
 
     private Dictionary<BattlePhase, Func<IEnumerator>> _fsm;
-    //ÀÌ·¯ÇÑ ¹æ½ÄÀº func¸¦ ÅëÇØ µ¨¸®°ÔÀÌÆ® a  a += ¸Þ¼­µå Ã³·³ ¸ÖÆ¼Ä³½ºÆ®¸¦
-    //À§ÇÑ µ¨¸®°ÔÀÌÆ®¸¦ ¸¸µå´Â °ÍÀÌ ¾Æ´Ï¶ó
-    //ÇÏ³ªÀÇ ÇÔ¼ö¿¡ ´ëÀÀÇÏ´Â µ¨¸®°ÔÀÌÆ®¸¦ ¸¸µç´Ù.
-    //Áï _fsm.add(Å°°ª, ¸Þ¼­µåÇÑ°³)¿¡ ÇØ´çÇÏ´Â µ¨¸®°ÔÀÌÆ®¸¦
-    //µñ¼Å³Ê¸®¿¡ ½×¾ÆµÎ´Â °Í
+    //ï¿½Ì·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ funcï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® a  a += ï¿½Þ¼ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½ ï¿½ï¿½Æ¼Ä³ï¿½ï¿½Æ®ï¿½ï¿½
+    //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Æ´Ï¶ï¿½
+    //ï¿½Ï³ï¿½ï¿½ï¿½ ï¿½Ô¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½.
+    //ï¿½ï¿½ _fsm.add(Å°ï¿½ï¿½, ï¿½Þ¼ï¿½ï¿½ï¿½ï¿½Ñ°ï¿½)ï¿½ï¿½ ï¿½Ø´ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½
+    //ï¿½ï¿½Å³Ê¸ï¿½ï¿½ï¿½ ï¿½×¾ÆµÎ´ï¿½ ï¿½ï¿½
    
     public BattlePhase testTurn;
 
@@ -30,7 +30,7 @@ public class MonsterController : MonoBehaviour, IBattleEntity
             {BattlePhase.Action, DoAction },
             {BattlePhase.Result, GetResult }
         };
-        //Áö±Ý µñ¼Å³Ê¸®´Â 3°³ÀÇ °ªÀÌ ÀÖ´Â °ÍÀÌ´Ù.
+        //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å³Ê¸ï¿½ï¿½ï¿½ 3ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½Ì´ï¿½.
     }
 
 
@@ -65,18 +65,18 @@ public class MonsterController : MonoBehaviour, IBattleEntity
         //yield break;
     }
 
-    private IEnumerator DecideAction() //»óÅÂ¿¡ µû¶ó ¾î¶² Çàµ¿À» ÇÒÁö °áÁ¤
+    private IEnumerator DecideAction() //ï¿½ï¿½ï¿½Â¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½î¶² ï¿½àµ¿ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     {
         monsterInfo.actionNum = UnityEngine.Random.Range(0, 3);
         yield break;
     }
-    private IEnumerator DoAction() //°áÁ¤µÈ Çàµ¿À» ½ÇÇà
+    private IEnumerator DoAction() //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½àµ¿ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     {
         //yield return SkillManager.instance.skills[monsterInfo.skillNumbers[monsterInfo.actionNum]].OnUse(); 
         yield return SkillManager.instance.skills[monsterInfo.skillNumbers[monsterInfo.actionNum]].OnUse();
         yield break;
     }
-    private IEnumerator GetResult() //¸ó½ºÅÍ´Â ¹öÇÁ µð¹öÇÁ¿¡ µû¸¥ °è»ê ÈÄ ÀÚ½ÅÀÇ »óÅÂ¸¦ ¹Ù²Þ
+    private IEnumerator GetResult() //ï¿½ï¿½ï¿½Í´ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ú½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Â¸ï¿½ ï¿½Ù²ï¿½
     {
         yield return BuffManager.instance.UseBuff(this);
         yield break;
@@ -84,19 +84,20 @@ public class MonsterController : MonoBehaviour, IBattleEntity
 
     public void GetDamage(int dmg)
     {
-        int chance = UnityEngine.Random.Range(0, 100);  //99ÆÛ±îÁö
+        int chance = UnityEngine.Random.Range(0, 100);  //99ï¿½Û±ï¿½ï¿½ï¿½
 
         if (monsterInfo.dodge > chance)
         {
             AudioManager.Instance.PlayAudioOnce(ReactSFXEnum.Evade);
             return;
-        }//È¸ÇÇ
+        }//È¸ï¿½ï¿½
 
-        dmg = Mathf.Abs(dmg); //µ¥¹ÌÁö´Â Àý´ë°ªÀ¸·Î 
+        dmg = Mathf.Abs(dmg); //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ë°ªï¿½ï¿½ï¿½ï¿½ 
 
         monsterInfo.currentHp = 
             Mathf.Clamp(monsterInfo.currentHp - dmg, 0, monsterInfo.maxHp);
         AudioManager.Instance.PlayAudioOnce(ReactSFXEnum.Hit);
+        UIManager.Instance.battleWindow.SetHPBar();
     }
 
     public EntityInfo GetEntityInfo()

@@ -16,8 +16,10 @@ public class SkillShortCut : MonoBehaviour
 
     private bool isUp = false;
 
-    public void OnClickUpDown()
-    {
+    public void OnClickUpDown( InputAction.CallbackContext context )
+    { 
+        if (context.phase != InputActionPhase.Started) return;
+        
         if (!isUp)
         {
             transform.DOLocalMove(Vector3.down * 390f, 0.7f).SetEase(Ease.OutCubic);

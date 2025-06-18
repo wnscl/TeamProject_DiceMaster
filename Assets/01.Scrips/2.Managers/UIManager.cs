@@ -2,6 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.InputSystem;
 
 /// <summary>
 /// ColorText 함수용 컬러
@@ -121,13 +122,13 @@ public class UIManager : MonoBehaviour
     }
 
 
-    public void OnSettingWindow()
+    public void OnSettingWindow(InputAction.CallbackContext context)
     {
+        if (context.phase != InputActionPhase.Started) return;
+
         if (playerSettingWindow.activeInHierarchy)
         {
             playerSettingWindow.SetActive(false);
-
-
             inventory.gameObject.SetActive(true);
             statusPanel.gameObject.SetActive(false);
             skillPanel.gameObject.SetActive(false);
@@ -135,10 +136,12 @@ public class UIManager : MonoBehaviour
             itemInfo.ResetInfo();
             skillInfo.gameObject.SetActive(false);
             skillInfo.ResetInfo();
+            Debug.Log("닫힘");
         }
         else
         {
             playerSettingWindow.SetActive(true);
+            Debug.Log("열림");
         }
     }
 }

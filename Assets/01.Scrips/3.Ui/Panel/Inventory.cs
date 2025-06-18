@@ -20,7 +20,12 @@ public class Inventory : MonoBehaviour
 
   private void Start()
   {
-    GetItem("301_DefaultDice");
+    GetItem("301");
+    GetItem("101");
+    GetItem("102");
+    GetItem("103");
+    GetItem("104");
+    GetItem("201");
   }
 
   public void AddItem(IItem item)
@@ -106,6 +111,10 @@ public class Inventory : MonoBehaviour
     }
 
   }
+  
+  
+
+  
 
   //테스트 아이템 생성용
   [Button]

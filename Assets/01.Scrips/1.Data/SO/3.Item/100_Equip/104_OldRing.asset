@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a0f4575cc306384183fcb0d623d41a7, type: 3}
+  m_Name: 104_OldRing
+  m_EditorClassIdentifier: 
+  itemCode: 104
+  itemName: "\uB0A1\uC740 \uBC18\uC9C0"
+  description: "\uB179\uC774 \uC2AC\uC5C8\uB2E4"
+  requiredLevel: 0
+  grade: 0
+  itemIcon: {fileID: 21300000, guid: 4567be4a636072c4c9b85b6527d78769, type: 3}
+  itemPrefab: {fileID: 0}
+  isEquipped: 0
+  equipType: 2
+  valueAmount: 1

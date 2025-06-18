@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ca4502e08a4dda4294edcfe70d311cf, type: 3}
   m_Name: 403_DirtyDoll
   m_EditorClassIdentifier: 
-  itemCode: 403_DirtyDoll
+  itemCode: 403
   itemName: "\uC9C0\uC800\uBD84\uD55C \uC778\uD615"
   description: "\uB9CE\uC774 \uD5E4\uC9C0\uACE0 \uBC1F\uD78C \uAC83 \uAC19\uB2E4."
   requiredLevel: 0
-  grade: "\uD018\uC2A4\uD2B8"
+  grade: 5
   itemIcon: {fileID: 21300000, guid: c9570d9c604f05b449d00e2a0f0834b8, type: 3}
   itemPrefab: {fileID: 0}

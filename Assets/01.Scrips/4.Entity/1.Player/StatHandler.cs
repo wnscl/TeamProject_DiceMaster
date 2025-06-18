@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-
 using UnityEngine;
 
 
@@ -9,13 +8,12 @@ public class StatHandler : MonoBehaviour
 {
     public StatData statData;
     private Dictionary<StatType, int> currentStats = new Dictionary<StatType, int>();
-    public Dictionary<string, string>  serializeStats = new Dictionary<string, string>();// 세이브용 스탯 저장할 딕셔너리
-    
-   
+    public Dictionary<string, string> serializeStats = new Dictionary<string, string>(); // 세이브용 스탯 저장할 딕셔너리
+
+
     private void Awake()
     {
         InitializeStats();
-       
     }
 
     private void InitializeStats()
@@ -43,20 +41,20 @@ public class StatHandler : MonoBehaviour
         }
     }
 
-    
 
     private IEnumerator RemoveStatAfterDuration(StatType statType, int amount, float duration)
     {
         yield return new WaitForSeconds(duration);
         currentStats[statType] -= amount;
     }
+
     public void SetStat(StatType statType, int setvalue)
     {
         if (!currentStats.ContainsKey(statType)) return;
 
         currentStats[statType] = setvalue;
     }
-    
+
     //죄송해요 애초에 다 스트링으로 해야되는데 잘못만들었습니다. 
     //요기에 만들어둔 스트링 딕셔너리는 사용하셔도되고 안하셔도됩니다. 
     //키값 = 타입 밸류값 = 스탯값 요렇게 들어가게 해두었습니다 .
@@ -69,6 +67,7 @@ public class StatHandler : MonoBehaviour
         {
             dict[stat.ToString()] = GetStat(stat).ToString();
         }
+
         return dict;
     }
 
@@ -86,4 +85,21 @@ public class StatHandler : MonoBehaviour
     /*============================================================================================*/
 
 
+    void LevelUP()
+    {
+       
+        while (GetStat(StatType.Exp) >= GetStat(StatType.RequireExp))
+        {
+            int exp = GetStat(StatType.Exp);
+            int rexp = GetStat(StatType.RequireExp);
+           
+                ModifyStat(StatType.Level, 1);
+                SetStat(StatType.Exp, 0);
+                ModifyStat(StatType.Exp, exp - rexp);
+                ModifyStat(StatType.RequireExp, 10);
+
+             
+            
+        }
+    }
 }
