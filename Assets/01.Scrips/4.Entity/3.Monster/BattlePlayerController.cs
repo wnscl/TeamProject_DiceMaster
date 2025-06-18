@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using NaughtyAttributes;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class BattlePlayerController : MonoBehaviour, IBattleEntity
@@ -12,6 +13,10 @@ public class BattlePlayerController : MonoBehaviour, IBattleEntity
     public Coroutine playerCor;
 
     public bool isSelectAction = false;
+
+    public bool isDoAction = false;
+
+    bool isSelect = false;
 
 
 
@@ -79,7 +84,7 @@ public class BattlePlayerController : MonoBehaviour, IBattleEntity
     }
     private IEnumerator DecideAction() //���¿� ���� � �ൿ�� ���� ����
     {
-        bool isSelect = false;
+        isDoAction = false;
 
         Debug.Log(isSelect);
 
@@ -95,6 +100,12 @@ public class BattlePlayerController : MonoBehaviour, IBattleEntity
     }
     private IEnumerator DoAction() //������ �ൿ�� ����
     {
+        if (isDoAction)
+        {
+            yield break;
+        }
+        isSelect = false;
+        isDoAction = true;   
         yield return SkillManager.instance.skills[playerInfo.skillNumbers[playerInfo.actionNum]].OnUse();
         yield break;
     }

@@ -16,24 +16,7 @@ public class FieldEnemyNpc : MonoBehaviour
 
     [SerializeField] private int monsterIndex;
 
-    private void Update()
-    {
-        if (!GameManager.Instance.isPlayerWin) return;
-
-        GameManager.Instance.isPlayerWin = false;
-        Dead();
-    }
     [Button]
-    private void Dead()
-    {
-        anim.SetBool("isAction", true);
-        anim.SetTrigger("Dead");
-        Invoke(nameof(RemoveThisNpc), 5f);
-    }
-    private void RemoveThisNpc()
-    {
-        Destroy(this.gameObject);
-    }
     private void NowBattle()
     {
         GameManager.Instance.monsterIndex = this.monsterIndex;
