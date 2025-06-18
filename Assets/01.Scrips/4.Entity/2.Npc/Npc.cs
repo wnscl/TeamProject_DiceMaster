@@ -113,7 +113,6 @@ public class Npc : MonoBehaviour, IInteractable
     /// <summary>
     /// 플레이어와 상호작용하는 메소드
     /// </summary>
-    [Button]
     public void OnInteract()
     {
         npcScriptUI = UIManager.Instance.NpcScriptUI;
@@ -128,5 +127,12 @@ public class Npc : MonoBehaviour, IInteractable
         {
             Debug.LogWarning("NPC 스크립트 UI가 설정되어 있지 않습니다.");
         }
+    }
+
+    public bool CheckQuestComplete()
+    {
+        bool result = false;
+
+        return result;
     }
 }
