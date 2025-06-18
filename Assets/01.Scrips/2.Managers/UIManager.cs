@@ -136,12 +136,12 @@ public class UIManager : MonoBehaviour
             itemInfo.ResetInfo();
             skillInfo.gameObject.SetActive(false);
             skillInfo.ResetInfo();
-            Debug.Log("닫힘");
+            AudioManager.Instance.PlayAudioOnce(UISFXEnum.Unpause);            
         }
         else
         {
             playerSettingWindow.SetActive(true);
-            Debug.Log("열림");
+            AudioManager.Instance.PlayAudioOnce(UISFXEnum.Pause);
         }
     }
 }
