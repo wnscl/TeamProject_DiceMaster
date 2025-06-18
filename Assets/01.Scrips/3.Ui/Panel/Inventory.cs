@@ -92,7 +92,7 @@ public class Inventory : MonoBehaviour
   
 
 
-  public void GetItem(String code)
+  public void GetItem(string code)
   {
     ItemData item = ItemDataManager.Instance.ItemDatas[code];
     IItem newItem = ItemManager.Instance.CreateItem(item);

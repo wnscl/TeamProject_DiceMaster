@@ -65,7 +65,7 @@ public class Scratch : BaseSkill, IUseableSkill
             yield return new WaitForSeconds(((float)1 / (float)attackCount));
             OnOffEffect(false);
             entitys[1].GetDamage(diceNumber[0]);
-            requesterInfo.currentHp = Mathf.Clamp(requesterInfo.currentHp + diceNumber[1], 1, requesterInfo.maxHp);
+            //requesterInfo.currentHp = Mathf.Clamp(requesterInfo.currentHp + diceNumber[1], 1, requesterInfo.maxHp);
         }
         anim.SetBool("isAction", false);
         targetInfo.anim.SetBool("isHit", false);

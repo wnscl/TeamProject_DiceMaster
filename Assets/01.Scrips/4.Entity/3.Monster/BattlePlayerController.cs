@@ -120,6 +120,7 @@ public class BattlePlayerController : MonoBehaviour, IBattleEntity
         playerInfo.currentHp =
             Mathf.Clamp(playerInfo.currentHp - dmg, 0, playerInfo.maxHp);
         AudioManager.Instance.PlayAudioOnce(ReactSFXEnum.Hit);
+        UIManager.Instance.battleWindow.SetHPBar();
     }
 
     public EntityInfo GetEntityInfo()

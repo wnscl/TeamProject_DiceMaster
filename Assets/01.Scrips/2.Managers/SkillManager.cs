@@ -46,9 +46,9 @@ public class SkillManager : MonoBehaviour
         EntityInfo info = battleModel.nowTurnEntity.GetEntityInfo();
 
         if (info.name == "BattlePlayer")
-            entitys[1] = battleModel.enemy;
+            entitys[1] = TestMonster.GetComponent<IBattleEntity>();
         else
-            entitys[1] = battleModel.player;
+            entitys[1] = TestPlayer.GetComponent<IBattleEntity>();
 
         return entitys;
     }
