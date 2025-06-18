@@ -26,6 +26,9 @@ public class Inventory : MonoBehaviour
     GetItem("103");
     GetItem("104");
     GetItem("201");
+    GetItem("302");
+   GetItem("301"); 
+   GetItem("101");
   }
 
   public void AddItem(IItem item)

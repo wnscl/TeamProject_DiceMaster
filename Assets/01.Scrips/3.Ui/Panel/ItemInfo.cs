@@ -60,7 +60,7 @@ public class ItemInfo : MonoBehaviour
         {
             equipBtn.gameObject.SetActive(true);
 
-            if (equipInst.isEquipped)
+            if (equipInst.isEqEquipped)
             {
                 equipMark.gameObject.SetActive(true);
                 equipBtnText.text = "장착 해제";
@@ -72,6 +72,8 @@ public class ItemInfo : MonoBehaviour
             }
 
             useBtn.gameObject.SetActive(false);
+            
+            
         }
 
         // 주사위 아이템인 경우
@@ -79,7 +81,7 @@ public class ItemInfo : MonoBehaviour
         {
             equipBtn.gameObject.SetActive(true);
 
-            if (diceInst.isEquipped)
+            if (diceInst.isDcEquipped)
             {
                 equipMark.gameObject.SetActive(true);
                 equipBtnText.text = "장착 해제";
@@ -98,6 +100,7 @@ public class ItemInfo : MonoBehaviour
         {
             equipBtn.gameObject.SetActive(false);
             useBtn.gameObject.SetActive(true);
+            equipMark.gameObject.SetActive(false);
         }
 
         // 퀘스트 아이템
@@ -105,97 +108,148 @@ public class ItemInfo : MonoBehaviour
         {
             equipBtn.gameObject.SetActive(false);
             useBtn.gameObject.SetActive(false);
+            equipMark.gameObject.SetActive(false);
         }
     }
 
 
-
-  public void OnEquip()
-{
-    IItem iitem = itemSlot.item;
-
-    // 장비 아이템 처리
-    if (iitem is EquipItemInstance equipInst)
+    public void OnEquip()
     {
-        var equipSlot = UIManager.Instance.equipSlot;
+        IItem iitem = itemSlot.item;
 
-        // 이미 다른 장비가 장착돼 있고, 현재 장착 중인 것과 다른 경우
-        if (equipSlot.equippedItem != null && equipSlot.equippedItem.ID != iitem.ID)
+        if (iitem is EquipItemInstance EI)
         {
-            if (equipSlot.equippedItem is EquipItemInstance prevEquip)
-                prevEquip.isEquipped = false;
+            var equipSlot = UIManager.Instance.equipSlot;
+            var rItem = equipSlot.ReturnIItem(iitem);
+            if (rItem != null)
+            {
+                if (rItem.ID != iitem.ID)
+                {
+                    if (rItem is EquipItemInstance prevEquip)
+                    {
+                        prevEquip.isEqEquipped = false;
+                        List<GameObject> otherSlot = UIManager.Instance.inventory.slots;
+                        for (int i = 0; i < otherSlot.Count; i++)
+                        {
+                            ItemSlot slot = otherSlot[i].GetComponent<ItemSlot>();
+                            if (slot != null && slot.item != null && slot.item.ID == rItem.ID)
+                            {
+                                otherSlot[i].GetComponent<ItemSlot>().SetSlot(rItem);
+                             
+                            }
+                         
+                        }
 
-            equipSlot.SetEquipSlot(equipSlot.equippedItem).sprite = null;
-            Color offColor = equipSlot.SetEquipSlot(equipSlot.equippedItem).color;
-            offColor.a = 0f;
-            equipSlot.SetEquipSlot(equipSlot.equippedItem).color = offColor;
+                        var slotImage = equipSlot.ReturnImage(rItem);
+                        slotImage.sprite = null;
 
-            equipSlot.equippedItem = null;
+                        Color offColor = slotImage.color;
+                        offColor.a = 0f;
+                        slotImage.color = offColor;
+
+                        equipSlot.ClearIItem(iitem);
+                    }
+                }
+            }
+
+            if (!EI.isEqEquipped)
+            {
+                EI.isEqEquipped = true;
+                equipSlot.SetIItem(iitem);
+
+                Image icon = equipSlot.ReturnImage(iitem);
+                icon.sprite = iitem.itemData.itemIcon;
+                Color color = icon.color;
+                color.a = 1f;
+                icon.color = color;
+            }
+            else
+            {
+                EI.isEqEquipped = false;
+                equipSlot.ClearIItem(iitem);
+
+                Image icon = equipSlot.ReturnImage(iitem);
+                icon.sprite = null;
+                Color color = icon.color;
+                color.a = 0f;
+                icon.color = color;
+            }
         }
 
-        if (!equipInst.isEquipped)
+        // 주사위 아이템 처리
+        else if (iitem is DiceItemInstance DI)
         {
-            equipInst.isEquipped = true;
-            equipSlot.equippedItem = iitem;
+            var equipSlot = UIManager.Instance.equipSlot;
+            var rItem = equipSlot.ReturnIItem(iitem);
 
-            Image icon = equipSlot.SetEquipSlot(iitem);
-            icon.sprite = iitem.itemData.itemIcon;
-            Color color = icon.color;
-            color.a = 1f;
-            icon.color = color;
-        }
-        else
-        {
-            equipInst.isEquipped = false;
-            equipSlot.equippedItem = null;
+            if (rItem != null)
+            {
+                if (rItem.ID != iitem.ID)
+                {
+                    if (rItem is DiceItemInstance prevDice)
+                    {
+                        prevDice.isDcEquipped = false;
 
-            Image icon = equipSlot.SetEquipSlot(iitem);
-            icon.sprite = null;
-            Color color = icon.color;
-            color.a = 0f;
-            icon.color = color;
+                        // 인벤토리 내 동일 ID 슬롯 찾아서 UI 갱신
+                        List<GameObject> otherSlot = UIManager.Instance.inventory.slots;
+                        for (int i = 0; i < otherSlot.Count; i++)
+                        {
+                            ItemSlot slot = otherSlot[i].GetComponent<ItemSlot>();
+                            if (slot != null && slot.item != null && slot.item.ID == rItem.ID)
+                            {
+                                slot.SetSlot(rItem);
+                            }
+                        }
+
+                        var slotImage = equipSlot.ReturnImage(rItem);
+                        slotImage.sprite = null;
+
+                        Color offColor = slotImage.color;
+                        offColor.a = 0f;
+                        slotImage.color = offColor;
+
+                        equipSlot.ClearIItem(iitem);
+                    }
+                }
+            }
+
+            if (!DI.isDcEquipped)
+            {
+                DI.isDcEquipped = true;
+                equipSlot.SetIItem(iitem);
+
+                Image icon = equipSlot.ReturnImage(iitem);
+                icon.sprite = iitem.itemData.itemIcon;
+                Color color = icon.color;
+                color.a = 1f;
+                icon.color = color;
+            }
+            else
+            {
+                DI.isDcEquipped = false;
+                equipSlot.ClearIItem(iitem);
+
+                Image icon = equipSlot.ReturnImage(iitem);
+                icon.sprite = null;
+                Color color = icon.color;
+                color.a = 0f;
+                icon.color = color;
+            }
         }
+
+
+        InitSetInfo(); // 버튼 텍스트 갱신 등
+        UIManager.Instance.inventory.FindSameItem(iitem); // 인스턴스 정보 저장
+        itemSlot.SetSlot(iitem);
     }
 
-    // 주사위 아이템 처리
-    else if (iitem is DiceItemInstance diceInst)
+    public void OnUseHpItem()
     {
-        diceInst.isEquipped = !diceInst.isEquipped;
-
-        Image icon = UIManager.Instance.equipSlot.SetEquipSlot(iitem);
-        if (diceInst.isEquipped)
-        {
-            icon.sprite = iitem.itemData.itemIcon;
-            Color color = icon.color;
-            color.a = 1f;
-            icon.color = color;
-        }
-        else
-        {
-            icon.sprite = null;
-            Color color = icon.color;
-            color.a = 0f;
-            icon.color = color;
+        if (itemSlot.item is ConsumableItemInstance CI)
+        {if(CI.itemData is ConsumableItemData ID)
+           
+            GameManager.Instance.player.statHandler.ModifyStat(StatType.Hp,ID.valueAmount);
+           UIManager.Instance.inventory.RemoveItem(); 
         }
     }
-
-    InitSetInfo(); // 버튼 텍스트 갱신 등
-    UIManager.Instance.inventory.FindSameItem(iitem); // 인스턴스 정보 저장
-}
-
-    public void OnUse()
-    {
-        
-        
-    }
-
-
-
-
-
-
-
-
-
-
 }

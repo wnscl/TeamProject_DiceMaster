@@ -10883,7 +10883,7 @@ MonoBehaviour:
   itemInfo: {fileID: 297589708}
   skillShortcut: {fileID: 7289858284825138558}
   battleWindow: {fileID: 8446239842585243926}
-  equipSlot: {fileID: 0}
+  equipSlot: {fileID: 1295151230}
   systemMessageImage: {fileID: 3884680679347867513}
   systemText: {fileID: 3875425068446935543}
   dialogCall: "\uB300\uD654"

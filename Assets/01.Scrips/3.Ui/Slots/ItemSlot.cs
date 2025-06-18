@@ -56,20 +56,25 @@ public class ItemSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
     public void SetSlot(IItem item)
     {
-        icon.sprite = item.itemData.itemIcon;
+     
 
         this.item = item;
         icon.sprite = item.itemData.itemIcon;
 
         if (item is EquipItemInstance equipInst)
         {
-            equipmentMark.SetActive(equipInst.isEquipped);
+            equipmentMark.SetActive(equipInst.isEqEquipped);
+        }
+       else if (item is DiceItemInstance diceInst)
+        {
+            equipmentMark.SetActive(diceInst.isDcEquipped);
         }
         else
         {
             equipmentMark.SetActive(false);
         }
 
+        
         if (item is ConsumableItemInstance consInst)
         {
             stackAmountMark.SetActive(true);
@@ -79,27 +84,26 @@ public class ItemSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         {
             stackAmountMark.SetActive(false);
         }
-       
-        if (item is DiceItemInstance diceInst)
+
+        if (item is QuestItemInstance questInst)
         {
-            equipmentMark.SetActive(diceInst.isEquipped);
+           stackAmountMark.SetActive(false);
+           equipmentMark.SetActive(false);
         }
-        else
-        {
-            equipmentMark.SetActive(false);
-        }
+
+
     }
 
     public void ONDestroySlot()
     {
-        if (item is EquipItemInstance equipInst && equipInst.isEquipped)
+        if (item is EquipItemInstance equipInst && equipInst.isEqEquipped)
         {
             Debug.Log("아이템 장착을 해제하쇼");
             UIManager.Instance.SystemMessage("먼저 아이템 장착을 해제하세요");
             return;
         }
 
-        if (item is DiceItemInstance diceInst && diceInst.isEquipped)
+        if (item is DiceItemInstance diceInst && diceInst.isDcEquipped)
         {
             Debug.Log("아이템 장착을 해제하쇼");
             UIManager.Instance.SystemMessage("먼저 아이템 장착을 해제하세요");

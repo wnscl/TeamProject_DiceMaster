@@ -9,15 +9,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a0f4575cc306384183fcb0d623d41a7, type: 3}
-  m_Name: 101_OldCloak
+  m_Script: {fileID: 11500000, guid: b4e6de3ed50b6e24f9dd92e354d9eb90, type: 3}
+  m_Name: 302_BronzeDice
   m_EditorClassIdentifier: 
-  itemCode: 101
-  itemName: "\uB0A1\uC740 \uB9DD\uD1A0"
-  description: "\uAD73\uC774 \uC368\uC57C \uD558\uB294\uAC00"
+  itemCode: 
+  itemName: 
+  description: 
   requiredLevel: 0
   grade: 0
-  itemIcon: {fileID: 21300000, guid: cffb8da1073895942add73c38dd212a5, type: 3}
+  itemIcon: {fileID: 0}
   itemPrefab: {fileID: 0}
-  equipType: 0
-  valueAmount: 1
+  startValue: 0
+  endValue: 0
