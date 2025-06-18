@@ -98,4 +98,90 @@ public class ItemInfo : MonoBehaviour
             useBtn.gameObject.SetActive(false);
         }
     }
+
+
+
+    public void OnEquip()
+    {
+
+        IItem iitem = itemSlot.item;
+       
+        Image targetImage = UIManager.Instance.equipSlot.SetEquipSlot(iitem);
+
+
+     
+        
+        
+        if (itemSlot.item.itemData is EquipmentItemData EI)
+        {
+            if (UIManager.Instance.equipSlot.equippedItem != null&&UIManager.Instance.equipSlot.equippedItem.ID!=iitem.ID)
+            {
+                if (UIManager.Instance.equipSlot.equippedItem.itemData is EquipmentItemData prevEI)
+                {
+                    prevEI.isEquipped = false;
+                }
+
+                UIManager.Instance.equipSlot.equippedItem = null;
+                targetImage.sprite = null;
+            } 
+            if (!EI.isEquipped)
+            {
+                UIManager.Instance.equipSlot.equippedItem = itemSlot.item;
+                EI.isEquipped = true;
+                targetImage.sprite = iitem.itemData.itemIcon;
+                Color color = targetImage.color;
+                color.a = 1f;
+                targetImage.color = color;
+            }
+            else
+            {
+                UIManager.Instance.equipSlot.equippedItem = null;
+                EI.isEquipped = false;
+                targetImage.sprite = null;
+                Color color = targetImage.color;
+                color.a = 0f;
+                targetImage.color = color;
+            }
+
+        }
+
+        if (itemSlot.item.itemData is DiceItemData DI)
+        {
+            if (!DI.isEquipped)
+            {
+                DI.isEquipped = true;
+                targetImage.sprite = iitem.itemData.itemIcon;
+                Color color = targetImage.color;
+                color.a = 1f;
+                targetImage.color = color;
+            }
+            else
+            {
+                DI.isEquipped = false;
+                targetImage.sprite = null;
+                Color color = targetImage.color;
+                color.a = 0f;
+                targetImage.color = color;
+            }
+            
+        }
+        InitSetInfo();
+        UIManager.Instance.inventory.FindSameItem(iitem); 
+    }
+
+    public void OnUse()
+    {
+        
+        
+    }
+
+
+
+
+
+
+
+
+
+
 }
