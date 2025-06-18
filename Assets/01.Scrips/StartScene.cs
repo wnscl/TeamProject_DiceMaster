@@ -1,5 +1,6 @@
 using Cinemachine;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class StartScene : MonoBehaviour
@@ -13,14 +14,13 @@ public class StartScene : MonoBehaviour
     [SerializeField] Vector2 startPosition;
     [SerializeField] Vector2 stagePosition;
     [SerializeField] SaveLoad saveLoad;
+
     void Start()
     {
         startCam.Priority = 20;
-        player.transform.position = startPosition;
+        player.transform.position = startPosition;        
     }
-
     
-
     public void OnStart()
     {
         startCam.Priority = 0;
@@ -33,6 +33,6 @@ public class StartScene : MonoBehaviour
     {
         //LoadSlot.gameObject.SetActive(true);
         saveLoad.Load();
-        OnStart();
+        SceneManager.LoadScene(StageManager.Instance.stageSceneNames[StageManager.Instance.currentStage]);
     }
 }

@@ -47,7 +47,7 @@ public class SkillShortCut : MonoBehaviour
     }
 
     private void Start()
-    {
+    {        
         SetupSlots();
     }
 

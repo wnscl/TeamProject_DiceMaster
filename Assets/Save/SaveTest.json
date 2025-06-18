@@ -1,0 +1,90 @@
+{
+  "PlayerStats": {
+    "Hp": "100",
+    "MaxHp": "100",
+    "PhysicalDefense": "1",
+    "MagicalDefense": "1",
+    "Evasion": "1",
+    "MoveSpeed": "1",
+    "Money": "5000000",
+    "Level": "1",
+    "Exp": "0",
+    "RequireExp": "100",
+    "None": "0"
+  },
+  "ItemSaveData": [
+    {
+      "ItemCode": "301",
+      "ID": 0
+    },
+    {
+      "ItemCode": "101",
+      "ID": 1
+    },
+    {
+      "ItemCode": "102",
+      "ID": 2
+    },
+    {
+      "ItemCode": "103",
+      "ID": 3
+    },
+    {
+      "ItemCode": "104",
+      "ID": 4
+    },
+    {
+      "ItemCode": "201",
+      "ID": 5
+    },
+    {
+      "ItemCode": "302",
+      "ID": 6
+    },
+    {
+      "ItemCode": "301",
+      "ID": 7
+    },
+    {
+      "ItemCode": "101",
+      "ID": 8
+    },
+    {
+      "ItemCode": "190",
+      "ID": 9
+    },
+    {
+      "ItemCode": "191",
+      "ID": 10
+    },
+    {
+      "ItemCode": "192",
+      "ID": 11
+    },
+    {
+      "ItemCode": "401",
+      "ID": 12
+    },
+    {
+      "ItemCode": "402",
+      "ID": 13
+    },
+    {
+      "ItemCode": "403",
+      "ID": 14
+    },
+    {
+      "ItemCode": "404",
+      "ID": 15
+    }
+  ],
+  "QuestData": [
+    [],
+    []
+  ],
+  "SaveData": {
+    "CurrentStage": 1,
+    "X": -5.710001,
+    "Y": 6.29999638
+  }
+}
