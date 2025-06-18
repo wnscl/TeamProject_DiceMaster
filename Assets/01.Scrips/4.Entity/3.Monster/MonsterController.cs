@@ -94,7 +94,8 @@ public class MonsterController : MonoBehaviour, IBattleEntity
             return;
         }//ȸ��
 
-        dmg = Mathf.Abs(dmg); //�������� ���밪���� 
+        float decrease = (float)monsterInfo.def / ((float)monsterInfo.def + 100f); 
+        dmg = (int)((float)dmg * (1 - decrease));
 
         monsterInfo.currentHp = 
             Mathf.Clamp(monsterInfo.currentHp - dmg, 0, monsterInfo.maxHp);
