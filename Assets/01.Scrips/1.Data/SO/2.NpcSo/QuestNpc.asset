@@ -10,11 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e67b8cefcd058c6409c9e9d0640600f4, type: 3}
-  m_Name: DummyNpc
+  m_Name: QuestNpc
   m_EditorClassIdentifier: 
-  npcId: ffb431b5-231a-441e-a5fa-2b8463a06e90
-  npcName: "\uB354\uBBF8 NPC"
-  npcDescription: "\uD14C\uC2A4\uD2B8\uC6A9 \uB354\uBBF8 NPC"
+  npcId: 67345748-b0a6-422d-9937-f38d27b5118a
+  npcIcon: {fileID: 714777777, guid: b3c709385b572e6439e7b1af5173bae8, type: 3}
+  npcName: "\uD018\uC2A4\uD2B8 NPC"
+  npcDescription: "\uD018\uC2A4\uD2B8 \uD14C\uC2A4\uD2B8\uC6A9 NPC\uC785\uB2C8\uB2E4."
   npcQuests:
   - {fileID: 11400000, guid: be710b1859b62484cb07d776c1e7845f, type: 2}
   - {fileID: 11400000, guid: ecabb5a71daf828409cad1c384cae215, type: 2}
