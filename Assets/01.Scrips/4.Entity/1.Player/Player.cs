@@ -34,6 +34,7 @@ public class Player : MonoBehaviour,IBattleEntity
         }
 
         playerInfo.currentHp -= dmg;
+        UIManager.Instance.battleWindow.SetHPBar();
         Die();
     }
 
@@ -53,6 +54,8 @@ public class Player : MonoBehaviour,IBattleEntity
     {
         return playerInfo;
     }
+    
+    
 
 
 }

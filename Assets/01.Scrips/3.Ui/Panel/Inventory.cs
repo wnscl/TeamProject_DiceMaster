@@ -20,7 +20,12 @@ public class Inventory : MonoBehaviour
 
   private void Start()
   {
-    GetItem("301_DefaultDice");
+    GetItem("301");
+    GetItem("101");
+    GetItem("102");
+    GetItem("103");
+    GetItem("104");
+    GetItem("201");
   }
 
   public void AddItem(IItem item)
@@ -87,15 +92,30 @@ public class Inventory : MonoBehaviour
   
 
 
-  public void GetItem(String code)
+  public void GetItem(string code)
   {
     ItemData item = ItemDataManager.Instance.ItemDatas[code];
     IItem newItem = ItemManager.Instance.CreateItem(item);
     AddItem(newItem);
   }
+
+
+  void FindSameItem(IItem iitem)//인스턴스가 들고있는 bool값등이 바뀌는 경우 그 시점에 같이 호줄해서 바꾼 상태를 리스트에 넣는 매서드 Save위해서 필요
+  {
+    for (int i = 0; i < items.Count; i++)
+    {
+      if (items[i].ID ==iitem.ID)
+      {
+        items[i] = iitem;
+      }
+    }
+
+  }
   
   
+
   
+
   //테스트 아이템 생성용
   [Button]
   public void TestItem()

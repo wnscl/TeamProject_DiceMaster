@@ -11,6 +11,17 @@ public interface IItem
     
 }
 
+public enum ItemGrade
+{
+   Common,
+   Uncommon,
+   Rare,
+   Unique,
+   Legendary,
+   Quest
+   
+}
+
 
 /// <summary>
 /// 아이템 초기생성 기본 필드 중 공통필드 들고 있는 아이템 SO데이터 부모 클래스 
@@ -21,7 +32,7 @@ public abstract class ItemData : ScriptableObject
    public string itemName;
    public string description;
    public int requiredLevel;
-   public string grade;
+   public ItemGrade grade;
    public Sprite itemIcon;
    public GameObject itemPrefab; 
 }

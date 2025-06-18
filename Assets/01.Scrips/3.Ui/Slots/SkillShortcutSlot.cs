@@ -26,6 +26,10 @@ public class SkillShortcutSlot : MonoBehaviour, IDropHandler, IPointerEnterHandl
             {
                 GameManager.Instance.player.playerInfo.skillNumbers[i] = slots[i].GetComponent<SkillShortcutSlot>().skillData.SkillNumber;
             }
+            else
+            {
+                GameManager.Instance.player.playerInfo.skillNumbers[i] = 999;
+            }
         }
     }
 
@@ -34,6 +38,16 @@ public class SkillShortcutSlot : MonoBehaviour, IDropHandler, IPointerEnterHandl
         skillIcon.sprite = null;
         skillData = null;
         isSkillOnSlot = false;
+       
+        List<GameObject> slots = UIManager.Instance.skillShortcut.slots;
+        for (int i = 0; i < slots.Count; i++)
+        {
+            if (slots[i].GetComponent<SkillShortcutSlot>().skillData == null)
+            {
+                GameManager.Instance.player.playerInfo.skillNumbers[i] = 999;
+            }
+         
+        }
     }
 
     public void OnDrop(PointerEventData eventData)

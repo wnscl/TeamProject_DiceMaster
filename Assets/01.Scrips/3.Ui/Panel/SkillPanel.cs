@@ -12,7 +12,7 @@ public class SkillPanel : MonoBehaviour
     public List<GameObject> skillPrefabs = new List<GameObject>();
     public List<GameObject> skillSlot = new List<GameObject>();
     public List<GameObject> skillSlotPivot = new List<GameObject>();
-    public Dictionary<int, bool> saveSkill = new Dictionary<int, bool>();
+    
     public GameObject pivotPrefab;
     public GameObject slotPrefab;
     public GameObject content;
@@ -60,4 +60,22 @@ public class SkillPanel : MonoBehaviour
     {
         GetSkill(skillManager.skillDatas[1]);
     }
+    
+    
+    public List< bool> saveSkill = new List< bool>();
+
+    public void SaveSkill()
+    {
+      saveSkill.Clear();
+       
+      for (int i = 0; i < skillSlot.Count; i++)
+        {
+            saveSkill[i] = skillSlot[i].GetComponent<SkillSlot>().isLocked;
+            
+            
+        }
+
+    }
+
+
 }

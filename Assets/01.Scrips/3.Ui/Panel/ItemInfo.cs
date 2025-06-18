@@ -71,10 +71,31 @@ public class ItemInfo : MonoBehaviour
 
             useBtn.gameObject.SetActive(false);
         }
-        else if (iData is ConsumableItemData CD)
+       else if (iData is DiceItemData DI)
+        {
+            equipBtn.gameObject.SetActive(true);
+            if (DI.isEquipped)
+            {
+                equipMark.gameObject.SetActive(true);
+                equipBtnText.text = "장착 해제";
+            }
+            else
+            {
+                equipMark.gameObject.SetActive(false);
+                equipBtnText.text = "장착";
+            }
+
+            useBtn.gameObject.SetActive(false);
+        }
+        else if (iData is ConsumableItemData )
         {
             equipBtn.gameObject.SetActive(false);
             useBtn.gameObject.SetActive(true);
+        }
+        else if (iData is QuestItemData)
+        {
+            equipBtn.gameObject.SetActive(false);
+            useBtn.gameObject.SetActive(false);
         }
     }
 }

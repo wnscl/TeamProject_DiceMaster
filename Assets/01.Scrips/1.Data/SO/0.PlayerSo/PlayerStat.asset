@@ -31,4 +31,6 @@ MonoBehaviour:
   - statType: 8
     baseValue: 0
   - statType: 9
-    baseValue: 0
+    baseValue: 100
+  - statType: 6
+    baseValue: 5000000

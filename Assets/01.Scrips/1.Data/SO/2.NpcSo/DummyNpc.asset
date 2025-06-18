@@ -17,4 +17,6 @@ MonoBehaviour:
   npcDescription: "\uD14C\uC2A4\uD2B8\uC6A9 \uB354\uBBF8 NPC"
   npcQuests:
   - {fileID: 11400000, guid: be710b1859b62484cb07d776c1e7845f, type: 2}
+  - {fileID: 11400000, guid: ecabb5a71daf828409cad1c384cae215, type: 2}
+  - {fileID: 11400000, guid: d7bff578e6fabe6438d54e1c86cfbd06, type: 2}
   npcScripts: {fileID: 4900000, guid: 3ee32d313451ce94d9a030bffc33126e, type: 3}

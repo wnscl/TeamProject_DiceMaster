@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ca4502e08a4dda4294edcfe70d311cf, type: 3}
   m_Name: 404_StainedKnife
   m_EditorClassIdentifier: 
-  itemCode: 404_StainedKnife
+  itemCode: 404
   itemName: "\uB179\uC2A8 \uCE7C"
   description: "\uC774\uAC78\uB85C\uB294 \uC0AC\uACFC\uB3C4 \uAE4E\uAE30 \uD798\uB4E4
     \uAC83 \uAC19\uB2E4."
   requiredLevel: 0
-  grade: "\uD018\uC2A4\uD2B8"
+  grade: 5
   itemIcon: {fileID: 21300000, guid: d272110f2b8ec764daf0c27e84100365, type: 3}
   itemPrefab: {fileID: 0}
