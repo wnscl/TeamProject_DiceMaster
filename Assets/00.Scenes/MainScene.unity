@@ -4729,6 +4729,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: NpcScriptUI
       objectReference: {fileID: 0}
+    - target: {fileID: 2314164789902520122, guid: d21662691b2164f41bd06fc34254dfb3, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5494626225983530154, guid: d21662691b2164f41bd06fc34254dfb3, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -4947,7 +4951,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.29, y: 0.36}
+  m_Size: {x: 0.66, y: 0.74}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -19596,8 +19600,13 @@ PrefabInstance:
       propertyPath: skillNumbers.Array.data[5]
       value: 999
       objectReference: {fileID: 0}
+    - target: {fileID: 7374616823608337928, guid: ee7c3535893a39546989f37b82408fdf, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -458660604, guid: 7fe3066c5b989c040890e64e0e34bb77, type: 3}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 8170444888104957227, guid: ee7c3535893a39546989f37b82408fdf, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ee7c3535893a39546989f37b82408fdf, type: 3}
@@ -19682,7 +19691,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!61 &2085384247
 BoxCollider2D:
   m_ObjectHideFlags: 0
