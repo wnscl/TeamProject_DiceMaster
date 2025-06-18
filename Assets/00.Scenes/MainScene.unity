@@ -7704,7 +7704,7 @@ MonoBehaviour:
       - m_Target: {fileID: 1667028582}
         m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
         m_MethodName: OnSettingWindow
-        m_Mode: 1
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -7720,7 +7720,7 @@ MonoBehaviour:
       - m_Target: {fileID: 320671317}
         m_TargetAssemblyTypeName: SkillShortCut, Assembly-CSharp
         m_MethodName: OnClickUpDown
-        m_Mode: 1
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -10651,6 +10651,11 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a781ce8e118bd554fa54807249c7bead, type: 2}
   - {fileID: 11400000, guid: 9e0e1b32f31de2b48b6a7375615a8c47, type: 2}
   - {fileID: 11400000, guid: 8e1324c8988436e45bfebd03518ac91e, type: 2}
+  - {fileID: 11400000, guid: 5d21921c17c03ce4c81cb645fc70cfd1, type: 2}
+  - {fileID: 11400000, guid: b9edc20d7df118d4a9413196d14e4f18, type: 2}
+  - {fileID: 11400000, guid: 7d85e776923f3a84abc6a522d6afbc04, type: 2}
+  - {fileID: 11400000, guid: d7234e1a959a9414ba2a36ca95dc35cf, type: 2}
+  - {fileID: 11400000, guid: 71fa740ca1e0bc54fb35c1a22f319ee8, type: 2}
 --- !u!1 &1448201168
 GameObject:
   m_ObjectHideFlags: 0
@@ -14187,6 +14192,7 @@ MonoBehaviour:
   pivotPrefab: {fileID: 4678750492095716002, guid: 9f759e0287f0889459713c7877a6c709, type: 3}
   slotPrefab: {fileID: 4241482307996869903, guid: 773af006b5433f642be4cede2a3a34ae, type: 3}
   content: {fileID: 1516084564}
+  saveSkill: 
 --- !u!114 &1915080646
 MonoBehaviour:
   m_ObjectHideFlags: 0
