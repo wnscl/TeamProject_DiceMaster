@@ -14,6 +14,10 @@
                 "Message": "주변에 불한당들이 너무 많아졌어요."
             },
             {
+                "Type": "Quest",
+                "Message": "부탁이 있어요."
+            },
+            {
                 "Type": "Farewell",
                 "Message": "또 봐요."
             }

@@ -15,6 +15,7 @@ public class NpcData : ScriptableObject
     [SerializeField] private string npcDescription; // NPC 설명
     [SerializeField] private List<QuestData> npcQuests; // 해당 NPC가 제공하는 퀘스트 컬렉션
     [SerializeField] private TextAsset npcScripts; // NPC용 대화 스크립트 데이터
+    [SerializeField] private Dictionary<NpcMenuType, string> basicMenuDictionary = new Dictionary<NpcMenuType, string>();
     private List<QuestData> validQuests = new List<QuestData>(); // 수락 가능한 퀘스트 컬렉션
     private JToken parsedScript; // 파싱된 NPC 스크립트 데이터
 
@@ -22,6 +23,7 @@ public class NpcData : ScriptableObject
     public string NpcName { get { return npcName; } }
     public List<QuestData> NpcQuests { get { return npcQuests; } }
     public TextAsset NpcScripts { get { return npcScripts; } }
+    public Dictionary<NpcMenuType, string> BasicMenuDictionary { get { return basicMenuDictionary; } }
     public List<QuestData> ValidQuests { get { return validQuests; } }
     public JToken ParsedScript { get { return parsedScript; } }
 
@@ -80,8 +82,6 @@ public class NpcData : ScriptableObject
                 // 해당 타입의 대화 메세지가 존재할 경우, 랜덤으로 하나의 메세지를 출력
                 int randomIndex = UnityEngine.Random.Range(0, validScriptList.Count);
                 message = validScriptList[randomIndex]["Message"]?.ToString();
-
-                Debug.Log($"NPC 대화: {message}");
             }
             else
             {
