@@ -12,7 +12,11 @@ public enum ColorName
     red,
     green,
     blue,
-    cyan
+    cyan,
+    yellow,
+    orange,
+    purple,
+   magenta
 }
 
 public class UIManager : MonoBehaviour
@@ -57,9 +61,7 @@ public class UIManager : MonoBehaviour
         set { npcScriptUI = value; }
     }
 
-    private void Start()
-    {
-    }
+    
 
 
     private static string GetColor(ColorName colorName)
@@ -74,7 +76,16 @@ public class UIManager : MonoBehaviour
                 return ColorName.blue.ToString();
             case ColorName.cyan:
                 return ColorName.cyan.ToString();
-                ;
+           
+             case ColorName.yellow:
+                return "ffffd700";
+             case ColorName.orange:
+                return "ffff8c00";
+             case ColorName.purple:
+                return "ff800080";
+             case ColorName.magenta:
+                 return ColorName.magenta.ToString();
+          
             default:
                 return "black";
         }

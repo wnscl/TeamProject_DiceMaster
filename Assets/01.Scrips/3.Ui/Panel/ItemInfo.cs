@@ -11,10 +11,9 @@ public class ItemInfo : MonoBehaviour
     public Image itemIcon;
     public TextMeshProUGUI itemName;
     public TextMeshProUGUI itemDescription;
-    public TextMeshProUGUI itemValue1;
-    public TextMeshProUGUI itemValue2;
-    public TextMeshProUGUI itemValue3;
-    public TextMeshProUGUI itemValue4;
+    public TextMeshProUGUI gradeText;
+    public TextMeshProUGUI typeText;
+    public TextMeshProUGUI valueText;
     public Image equipBtn;
     public TextMeshProUGUI equipBtnText;
     public Image useBtn;
@@ -45,6 +44,9 @@ public class ItemInfo : MonoBehaviour
         itemIcon.sprite = null;
         itemName.text = string.Empty;
         itemDescription.text = string.Empty;
+        gradeText.text = string.Empty;
+        typeText.text = string.Empty;
+        valueText.text = string.Empty;
     }
 
     public void InitSetInfo()
@@ -72,8 +74,8 @@ public class ItemInfo : MonoBehaviour
             }
 
             useBtn.gameObject.SetActive(false);
-            
-            
+            gradeText.text ="등급 : " + GradeToK(itemSlot.item);
+            typeText.text ="타입 : "+ EquipTypeToK(itemSlot.item);
         }
 
         // 주사위 아이템인 경우
@@ -93,14 +95,22 @@ public class ItemInfo : MonoBehaviour
             }
 
             useBtn.gameObject.SetActive(false);
+            gradeText.text ="등급 : " + GradeToK(itemSlot.item);
+           if (diceInst.itemData is DiceItemData DD)
+           { valueText.text = "주사위 값 : " + DD.minValue+"~"+DD.maxValue; ;}
         }
 
         // 소비 아이템
-        else if (itemSlot.item is ConsumableItemInstance)
+        else if (itemSlot.item is ConsumableItemInstance CI)
         {
             equipBtn.gameObject.SetActive(false);
             useBtn.gameObject.SetActive(true);
             equipMark.gameObject.SetActive(false);
+            gradeText.text ="등급 : " + GradeToK(itemSlot.item);
+            if (itemSlot.item is ConsumableItemData CD)
+            {
+                valueText.text = "회복량 : "+CD.valueAmount.ToString();
+            }
         }
 
         // 퀘스트 아이템
@@ -109,6 +119,7 @@ public class ItemInfo : MonoBehaviour
             equipBtn.gameObject.SetActive(false);
             useBtn.gameObject.SetActive(false);
             equipMark.gameObject.SetActive(false);
+            gradeText.text ="등급 :" + GradeToK(itemSlot.item);
         }
     }
 
@@ -135,9 +146,7 @@ public class ItemInfo : MonoBehaviour
                             if (slot != null && slot.item != null && slot.item.ID == rItem.ID)
                             {
                                 otherSlot[i].GetComponent<ItemSlot>().SetSlot(rItem);
-                             
                             }
-                         
                         }
 
                         var slotImage = equipSlot.ReturnImage(rItem);
@@ -246,10 +255,56 @@ public class ItemInfo : MonoBehaviour
     public void OnUseHpItem()
     {
         if (itemSlot.item is ConsumableItemInstance CI)
-        {if(CI.itemData is ConsumableItemData ID)
-           
-            GameManager.Instance.player.statHandler.ModifyStat(StatType.Hp,ID.valueAmount);
-           UIManager.Instance.inventory.RemoveItem(); 
+        {
+            if (CI.itemData is ConsumableItemData ID)
+
+                GameManager.Instance.player.statHandler.ModifyStat(StatType.Hp, ID.valueAmount);
+            UIManager.Instance.inventory.RemoveItem();
         }
+    }
+
+
+    public string GradeToK(IItem iitem)
+    {
+        switch (iitem.itemData.grade)
+        {
+            case ItemGrade.Common:
+                return "흔함";
+            case ItemGrade.Uncommon:
+                return UIManager.ColorText("보통", ColorName.cyan);
+            case ItemGrade.Rare:
+                return UIManager.ColorText("희귀", ColorName.purple);
+            case ItemGrade.Unique:
+                return UIManager.ColorText("유니크", ColorName.magenta);
+
+            case ItemGrade.Legendary:
+                return UIManager.ColorText("전설", ColorName.yellow);
+
+
+            default:
+                return "";
+        }
+    }
+
+    public string EquipTypeToK(IItem iitem)
+    {
+        if (iitem is EquipItemInstance EI && EI.itemData is EquipmentItemData ED)
+        {
+            switch (ED.equipType)
+            {
+                case EquipType.Cloak:
+                    return "망토";
+                case EquipType.Clothet:
+                    return "옷";
+                case EquipType.Ring:
+                    return "반지";
+                case EquipType.Shoes:
+                    return "신발";
+                default:
+                    return "알 수 없음";
+            }
+        }
+
+        return "장비 아님";
     }
 }
