@@ -139,7 +139,11 @@ public class Battle : MonoBehaviour
                             yield return entity.ActionOnTurn(Model.battlePhase);
                         }
                     }
-                    else model.isTurn = false;
+                    else
+                    {
+                        model.isTurn = false;
+                        yield return new WaitForSeconds(1.5f);
+                    }
 
                     // 각 유닛의 행동 결과를 처리하고, 배틀 종료 여부를 확인
                     RotateTurn();

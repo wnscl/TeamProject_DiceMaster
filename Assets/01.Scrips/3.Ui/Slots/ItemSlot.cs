@@ -31,6 +31,7 @@ public class ItemSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         if (UIManager.Instance.itemInfo.gameObject.activeInHierarchy &&
             UIManager.Instance.itemInfo.itemSlot.item.ID != item.ID)
         {
+            UIManager.Instance.itemInfo.ResetInfo();
             Debug.Log("다른 슬롯 클릭 정보 갱신");
             UIManager.Instance.itemInfo.itemSlot = this;
             UIManager.Instance.itemInfo.InitSetInfo();
@@ -56,65 +57,58 @@ public class ItemSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
     public void SetSlot(IItem item)
     {
+     
+
+        this.item = item;
         icon.sprite = item.itemData.itemIcon;
 
-        if (item.itemData is EquipmentItemData EI)
+        if (item is EquipItemInstance equipInst)
         {
-            if (EI.isEquipped)
-            {
-                equipmentMark.SetActive(true);
-            }
-            else
-            {
-                equipmentMark.SetActive(false);
-            }
+            equipmentMark.SetActive(equipInst.isEqEquipped);
+        }
+       else if (item is DiceItemInstance diceInst)
+        {
+            equipmentMark.SetActive(diceInst.isDcEquipped);
+        }
+        else
+        {
+            equipmentMark.SetActive(false);
         }
 
-        if (item.itemData is ConsumableItemData CI)
+        
+        if (item is ConsumableItemInstance consInst)
         {
-            if (CI.isStackable)
-            {
-                stackAmountMark.SetActive(true);
-                stackAmountText.text = CI.stackAmount.ToString();
-            }
-            else
-            {
-                stackAmountMark.SetActive(false);
-            }
+            stackAmountMark.SetActive(true);
+            stackAmountText.text = consInst.stackAmount.ToString();
+        }
+        else
+        {
+            stackAmountMark.SetActive(false);
         }
 
-        if (item.itemData is DiceItemData DI)
+        if (item is QuestItemInstance questInst)
         {
-            if (DI.isEquipped)
-            {
-                equipmentMark.SetActive(true);
-            }
-            else
-            {
-                equipmentMark.SetActive(false);
-            }
+           stackAmountMark.SetActive(false);
+           equipmentMark.SetActive(false);
         }
+
+
     }
 
     public void ONDestroySlot()
     {
-        if (item.itemData is EquipmentItemData EI)
+        if (item is EquipItemInstance equipInst && equipInst.isEqEquipped)
         {
-            if (EI.isEquipped)
-            {
-                Debug.Log("아이템 장착을 해제하쇼");
-                UIManager.Instance.SystemMessage("먼저 아이템 장착을 해제하세요");
-                return;
-            }
+            Debug.Log("아이템 장착을 해제하쇼");
+            UIManager.Instance.SystemMessage("먼저 아이템 장착을 해제하세요");
+            return;
         }
-        if (item.itemData is DiceItemData DI)
+
+        if (item is DiceItemInstance diceInst && diceInst.isDcEquipped)
         {
-            if (DI.isEquipped)
-            {
-                Debug.Log("아이템 장착을 해제하쇼");
-                UIManager.Instance.SystemMessage("먼저 아이템 장착을 해제하세요");
-                return;
-            }
+            Debug.Log("아이템 장착을 해제하쇼");
+            UIManager.Instance.SystemMessage("먼저 아이템 장착을 해제하세요");
+            return;
         }
 
         UIManager.Instance.itemInfo.InfoWIndowOnAndOff();

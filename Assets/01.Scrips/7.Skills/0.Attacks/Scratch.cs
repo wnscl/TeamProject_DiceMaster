@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using NaughtyAttributes;
+using TMPro;
 using Unity.Collections.LowLevel.Unsafe;
 using UnityEngine;
 using UnityEngine.Rendering.VirtualTexturing;
@@ -59,13 +60,14 @@ public class Scratch : BaseSkill, IUseableSkill
         {
             OnOffEffect(true);
             anim.SetTrigger("Attack");
-            targetInfo.anim.SetTrigger("Hit");
+            //targetInfo.anim.SetTrigger("Hit");
+            targetInfo.anim.Play("Hit", 0, 0);
             BuffManager.instance.AddBuffToList(BuffType.Bleeding, entitys[1]);
             AudioManager.Instance.PlayAudioOnce(PyhsicsSFXEnum.Slash);
             yield return new WaitForSeconds(((float)1 / (float)attackCount));
             OnOffEffect(false);
             entitys[1].GetDamage(diceNumber[0]);
-            //requesterInfo.currentHp = Mathf.Clamp(requesterInfo.currentHp + diceNumber[1], 1, requesterInfo.maxHp);
+            requesterInfo.currentHp = Mathf.Clamp(requesterInfo.currentHp + diceNumber[1], 1, requesterInfo.maxHp);
         }
         anim.SetBool("isAction", false);
         targetInfo.anim.SetBool("isHit", false);

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using NaughtyAttributes;
+using TMPro;
 using UnityEngine;
 
 public class BloodWell : BaseSkill
@@ -38,13 +39,16 @@ public class BloodWell : BaseSkill
         requesterInfo.anim.SetBool("isAction", true);
         requesterInfo.anim.SetTrigger("Attack");
         targetInfo.anim.SetBool("isHit", true);
-        targetInfo.anim.SetTrigger("Hit");
+        //targetInfo.anim.SetTrigger("Hit");
+        targetInfo.anim.Play("Hit", 0, 0);
         AudioManager.Instance.PlayAudioOnce(MagicSFXEnum.Wind);
         yield return new WaitForSeconds(1f);
-        targetInfo.anim.SetTrigger("Hit");
+        //targetInfo.anim.SetTrigger("Hit");
+        targetInfo.anim.Play("Hit", 0, 0);
         requesterInfo.anim.SetBool("isAction", false);
         yield return new WaitForSeconds(1f);
-        targetInfo.anim.SetTrigger("Hit");
+        //targetInfo.anim.SetTrigger("Hit");
+        targetInfo.anim.Play("Hit", 0, 0);
         effect[0].transform.position = new Vector3(targetInfo.gameObject.transform.position.x, targetInfo.gameObject.transform.position.y + 0.5f, 0);
         yield return new WaitForSeconds(1f);
 
@@ -52,7 +56,8 @@ public class BloodWell : BaseSkill
         {
             requesterInfo.anim.SetBool("isAction", true);
             requesterInfo.anim.SetTrigger("Attack");
-            targetInfo.anim.SetTrigger("Hit");
+            //targetInfo.anim.SetTrigger("Hit");
+            targetInfo.anim.Play("Hit", 0, 0);
             yield return new WaitForSeconds(1f);
             requesterInfo.anim.SetBool("isAction", false);
         }

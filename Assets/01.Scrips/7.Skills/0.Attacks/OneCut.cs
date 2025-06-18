@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime;
 using NaughtyAttributes;
+using TMPro;
 using UnityEngine;
 
 public class OneCut : BaseSkill
@@ -62,7 +63,8 @@ public class OneCut : BaseSkill
         requesterInfo.anim.SetTrigger("Attack");
 
         targetInfo.anim.SetBool("isHit", true);
-        targetInfo.anim.SetTrigger("Hit");
+        //targetInfo.anim.SetTrigger("Hit");
+        targetInfo.anim.Play("Hit", 0, 0);
         yield return new WaitForSeconds(1f);
 
         targetInfo.anim.SetBool("isHit", false);

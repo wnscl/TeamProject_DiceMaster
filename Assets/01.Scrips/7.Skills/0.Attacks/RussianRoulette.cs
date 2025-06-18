@@ -1,6 +1,7 @@
 ﻿using NaughtyAttributes;
 using System.Collections;
 using System.Linq;
+using TMPro;
 using UnityEngine;
 
 public class RussianRoulette : BaseSkill, IUseableSkill
@@ -38,7 +39,8 @@ public class RussianRoulette : BaseSkill, IUseableSkill
         yield return new WaitForSeconds(0.5f);
         effect[0].transform.position = info.transform.position;
         info.anim.SetBool("isHit", true);
-        info.anim.SetTrigger("Hit");
+        //info.anim.SetTrigger("Hit");
+        info.anim.Play("Hit", 0, 0);
         yield return new WaitForSeconds(1f);
 
 

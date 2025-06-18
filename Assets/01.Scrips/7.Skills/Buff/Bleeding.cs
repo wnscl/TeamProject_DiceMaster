@@ -40,8 +40,8 @@ public class Bleeding : IBuff
                 );
 
         bm.buffAnim.SetTrigger("Bleeding");
-
-        info.currentHp = Mathf.Clamp(info.currentHp - damage, 0, info.maxHp);
+        info.anim.Play("Hit", 0, 0);
+        entity.GetDamage(damage);
         AudioManager.Instance.PlayAudioOnce(BuffSFXEnum.Debuff);
         return true;
     }

@@ -19,6 +19,5 @@ MonoBehaviour:
   grade: 0
   itemIcon: {fileID: 21300000, guid: cffb8da1073895942add73c38dd212a5, type: 3}
   itemPrefab: {fileID: 0}
-  isEquipped: 0
   equipType: 0
   valueAmount: 1

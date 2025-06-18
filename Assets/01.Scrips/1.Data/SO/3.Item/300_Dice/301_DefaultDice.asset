@@ -19,6 +19,5 @@ MonoBehaviour:
   grade: 0
   itemIcon: {fileID: 203989829, guid: 199ded8472e275a40945e110dabac711, type: 3}
   itemPrefab: {fileID: 0}
-  isEquipped: 0
-  startValue: 1
-  endValue: 6
+  minValue: 1
+  maxValue: 6

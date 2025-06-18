@@ -12,7 +12,11 @@ public enum ColorName
     red,
     green,
     blue,
-    cyan
+    cyan,
+    yellow,
+    orange,
+    purple,
+   magenta
 }
 
 public class UIManager : MonoBehaviour
@@ -57,9 +61,7 @@ public class UIManager : MonoBehaviour
         set { npcScriptUI = value; }
     }
 
-    private void Start()
-    {
-    }
+    
 
 
     private static string GetColor(ColorName colorName)
@@ -67,16 +69,23 @@ public class UIManager : MonoBehaviour
         switch (colorName)
         {
             case ColorName.red:
-                return ColorName.red.ToString();
+                return "#ff0000";         // 빨강
             case ColorName.green:
-                return ColorName.green.ToString();
+                return "#00ff00";         // 초록
             case ColorName.blue:
-                return ColorName.blue.ToString();
+                return "#0000ff";         // 파랑
             case ColorName.cyan:
-                return ColorName.cyan.ToString();
-                ;
+                return "#00ffff";         // 청록
+            case ColorName.yellow:
+                return "#ffd700";         // 노랑 (골드 느낌)
+            case ColorName.orange:
+                return "#ff8c00";         // 주황 (다크 오렌지)
+            case ColorName.purple:
+                return "#800080";         // 보라
+            case ColorName.magenta:
+                return "#ff00ff";         // 마젠타
             default:
-                return "black";
+                return "#000000";         // 기본값: 검정
         }
     }
 

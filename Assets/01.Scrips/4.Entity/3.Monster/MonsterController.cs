@@ -103,7 +103,6 @@ public class MonsterController : MonoBehaviour, IBattleEntity
         {
             monsterInfo.anim.SetBool("isAction", true);
             monsterInfo.anim.SetTrigger("Dead");
-            //자신이 죽었다고 알려야함
             BattleManager.Instance.Battle.CheckBattleEnd(monsterInfo);
         }
 
