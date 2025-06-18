@@ -36,7 +36,6 @@ public class PlayerInfo : EntityInfo
         def = data.Def;
         magicDef = data.MagicDef;
         dodge = data.Dodge;
-
     }
     public void SetInfo()
     {

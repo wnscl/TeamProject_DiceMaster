@@ -17,6 +17,8 @@ public class MonsterInfo : EntityInfo
     public MonsterType      mobType;
     public MonsterState     mobState = MonsterState.Normal; //몬스터의 감정 상태 - 감정에 따라 사용하는 스킬 프리팹이 다르게 
 
+    public SpriteRenderer feelSprite;
+    public Sprite[] feelIcon;
     protected override void Awake()
     {
         name        =   data.name;

@@ -17,6 +17,8 @@ public class MonsterFactory : MonoBehaviour
         GameObject newMonster = Instantiate(monsters[0]);
         SetMonsterToSkillManager(newMonster);
         SetMonsterPosition(newMonster);
+        MonsterInfo newMonsterInfo = newMonster.GetComponent<MonsterInfo>();
+        ConditionCollection.instance.GetMonster(newMonsterInfo);
     }
     private void SetMonsterToSkillManager(GameObject newMonster)
     {

@@ -67,7 +67,8 @@ public class MonsterController : MonoBehaviour, IBattleEntity
 
     private IEnumerator DecideAction() //���¿� ���� � �ൿ�� ���� ����
     {
-        monsterInfo.actionNum = UnityEngine.Random.Range(0, 3);
+        //monsterInfo.actionNum = UnityEngine.Random.Range(0, 3);
+        monsterInfo.actionNum = ConditionCollection.instance.GetActionNumber(monsterInfo.mobState);
         yield break;
     }
     private IEnumerator DoAction() //������ �ൿ�� ����
@@ -79,6 +80,7 @@ public class MonsterController : MonoBehaviour, IBattleEntity
     private IEnumerator GetResult() //���ʹ� ���� ������� ���� ��� �� �ڽ��� ���¸� �ٲ�
     {
         yield return BuffManager.instance.UseBuff(this);
+        ConditionCollection.instance.GetCondition(monsterInfo.mobType);
         yield break;
     }
 
