@@ -12151,6 +12151,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1119392082}
+  isPlayerWin: 0
+  monsterIndex: 0
 --- !u!114 &1448201171
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17195,6 +17197,7 @@ MonoBehaviour:
   moveDuration: 2
   anim: {fileID: 455429404}
   interctionIcon: {fileID: 1856182516}
+  monsterIndex: 0
 --- !u!4 &2085384249
 Transform:
   m_ObjectHideFlags: 0
