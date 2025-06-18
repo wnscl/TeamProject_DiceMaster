@@ -1,29 +1,38 @@
 using System.Collections;
 using System.Collections.Generic;
+using Cinemachine;
 using NaughtyAttributes;
 using UnityEngine;
 
+
 public class CameraController : MonoBehaviour
 {
-    [SerializeField] private GameObject[] camAncher;
-    int camAncherIndex = 1;
+    [SerializeField] private CinemachineVirtualCamera[] cams;
+    [SerializeField] private int activedCamPriority;
+    [SerializeField] private int unactiveCamPriority;
+    [SerializeField] private bool isMainScene;
 
-    private void Awake()
-    {
-        ChangeCam();
-    }
     private void Start()
     {
-        GameManager.Instance.battleEvent += ChangeCam;
+        GameManager.Instance.battleEvent += ChangeScreen;
     }
 
     [Button]
-    private void ChangeCam()
+    private void ChangeScreen()
     {
-        if (camAncherIndex == 0) camAncherIndex = 1;
-        else camAncherIndex = 0;
+        int playerCamIndex = 0;
+        int battleCamIndex = 1;
 
-        this.transform.parent = camAncher[camAncherIndex].transform;
-        this.transform.position = camAncher[camAncherIndex].transform.position;
+        if (isMainScene) isMainScene = false;
+        else
+        {
+            playerCamIndex = 1;
+            battleCamIndex = 0;
+            isMainScene = true;
+        }
+
+        cams[playerCamIndex].Priority = unactiveCamPriority;
+        cams[battleCamIndex].Priority = activedCamPriority;
     }
+
 }
