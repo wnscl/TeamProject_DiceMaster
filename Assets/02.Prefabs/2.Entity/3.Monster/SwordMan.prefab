@@ -260,7 +260,7 @@ MonoBehaviour:
   def: 0
   dodge: 0
   magicDef: 0
-  skillNumbers: 000000000100000002000000
+  skillNumbers: 000000000500000006000000
   actionNum: 0
   mobType: 0
   mobState: 0

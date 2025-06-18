@@ -18,6 +18,7 @@ public class MonsterFactory : MonoBehaviour
     {
         if (!isBattleStart)
         {
+            Destroy(newMonster);
             newMonster = null;
             return;
         }

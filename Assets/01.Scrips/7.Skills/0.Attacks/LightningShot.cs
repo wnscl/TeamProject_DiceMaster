@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using NaughtyAttributes;
+using TMPro;
 using UnityEngine;
 
 public class LightningShot : BaseSkill
@@ -58,7 +59,8 @@ public class LightningShot : BaseSkill
         anim.SetBool("isAction", true);
         anim.SetTrigger("Attack");
         targetInfo.anim.SetBool("isHit", true);
-        targetInfo.anim.SetTrigger("Hit");
+        //targetInfo.anim.SetTrigger("Hit");
+        targetInfo.anim.Play("Hit", 0, 0);
         effect[0].transform.position = startPos[1];
         yield return new WaitForSeconds(1f);
         targetInfo.anim.SetBool("isHit", false);

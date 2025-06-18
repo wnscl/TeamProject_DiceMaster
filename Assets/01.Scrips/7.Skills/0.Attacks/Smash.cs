@@ -49,7 +49,8 @@ public class Smash : BaseSkill, IUseableSkill
         yield return new WaitForSeconds(0.6f);
         effect[0].SetActive(true);
         targetinfo.anim.SetBool("isHit", true);
-        targetinfo.anim.SetTrigger("Hit");
+        //targetinfo.anim.SetTrigger("Hit");
+        targetinfo.anim.Play("Hit", 0, 0);
         entitys[1].GetDamage(MakeDamage(entitys[1].GetEntityInfo()));
         
         yield return new WaitForSeconds(0.4f);

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: BattlePlayer
   m_EditorClassIdentifier: 
   name: Player
-  maxHp: 100
+  maxHp: 200
   def: 5
   dodge: 15
   magicDef: 10
