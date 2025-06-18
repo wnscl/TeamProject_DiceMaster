@@ -61,19 +61,18 @@ public class MonsterController : MonoBehaviour, IBattleEntity
                 yield return GetResult();
                 break;
         }
-
-        //yield break;
+        yield break;
     }
 
     private IEnumerator DecideAction() //���¿� ���� � �ൿ�� ���� ����
     {
-        //monsterInfo.actionNum = UnityEngine.Random.Range(0, 3);
         monsterInfo.actionNum = ConditionCollection.instance.GetActionNumber(monsterInfo.mobState);
         yield break;
     }
     private IEnumerator DoAction() //������ �ൿ�� ����
     {
-        //yield return SkillManager.instance.skills[monsterInfo.skillNumbers[monsterInfo.actionNum]].OnUse(); 
+        if(monsterInfo.currentHp <= 0) yield break;
+
         yield return SkillManager.instance.skills[monsterInfo.skillNumbers[monsterInfo.actionNum]].OnUse();
         yield break;
     }
@@ -92,7 +91,7 @@ public class MonsterController : MonoBehaviour, IBattleEntity
         {
             AudioManager.Instance.PlayAudioOnce(ReactSFXEnum.Evade);
             return;
-        }//ȸ��
+        }
 
         float decrease = (float)monsterInfo.def / ((float)monsterInfo.def + 100f); 
         dmg = (int)((float)dmg * (1 - decrease));
@@ -105,6 +104,7 @@ public class MonsterController : MonoBehaviour, IBattleEntity
             monsterInfo.anim.SetBool("isAction", true);
             monsterInfo.anim.SetTrigger("Dead");
             //자신이 죽었다고 알려야함
+            BattleManager.Instance.Battle.CheckBattleEnd(monsterInfo);
         }
 
         AudioManager.Instance.PlayAudioOnce(ReactSFXEnum.Hit);

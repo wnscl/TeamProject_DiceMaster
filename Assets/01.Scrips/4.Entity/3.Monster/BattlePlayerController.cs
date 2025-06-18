@@ -126,6 +126,7 @@ public class BattlePlayerController : MonoBehaviour, IBattleEntity
             playerInfo.anim.SetBool("isAction", true);
             playerInfo.anim.SetTrigger("Dead");
             //자신이 죽었다고 알려야함
+            BattleManager.Instance.Battle.CheckBattleEnd(playerInfo);
         }
 
         playerInfo.currentHp =
