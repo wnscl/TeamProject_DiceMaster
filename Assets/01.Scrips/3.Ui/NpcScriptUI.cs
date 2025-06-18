@@ -70,7 +70,26 @@ public class NpcScriptUI : MonoBehaviour
                 }
                 else
                 {
-                    targetNpc.AcceptQuest(targetNpcData.ValidQuests[npcScriptMenuUI.SelectedIndex - 1]); // 선택한 퀘스트 수락
+                    QuestData selectedQuestData = targetNpcData.ValidQuests[npcScriptMenuUI.SelectedIndex - 1];
+
+                    if (selectedQuestData.IsAccepted)
+                    {
+                        // QuestList에서 일치하는 QuestData를 가진 Quest 컴포넌트 찾기
+                        foreach (GameObject questObj in targetNpcData.QuestList)
+                        {
+                            Quest quest = questObj.GetComponent<Quest>();
+
+                            if (quest != null && quest.questData == selectedQuestData)
+                            {
+                                quest.CheckCondition();
+                                break;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        targetNpc.AcceptQuest(targetNpcData.ValidQuests[npcScriptMenuUI.SelectedIndex - 1]); // 선택한 퀘스트 수락
+                    }
 
                     Hide(); // UI 비활성화 to do : Json - Quest - AcceptQuest 텍스트를 출력해 몰입도 높여볼 것
                 }
@@ -98,6 +117,11 @@ public class NpcScriptUI : MonoBehaviour
         {
             // 퀘스트 메뉴 플래그를 초기화
             npcScriptMenuUI.IsQuestMenu = false;
+        }
+
+        if (targetNpcData.ValidQuests.Count <= 0)
+        {
+            targetNpcData.GetValidQuest();
         }
 
         TargetNpcData.ParseNpcScript();

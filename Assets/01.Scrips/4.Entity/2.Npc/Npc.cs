@@ -6,6 +6,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System.Linq;
 using System;
+using Unity.VisualScripting;
 
 /// <summary>
 /// 플레이어와의 상호작용을 정의하는 인터페이스
@@ -78,39 +79,6 @@ public class Npc : MonoBehaviour, IInteractable
     }
 
     /// <summary>
-    /// 퀘스트 완료 메소드
-    /// </summary>
-    /// <param name="data"></param>
-    public void CompleteQuest(QuestData data)
-    {
-        if (npcData.ValidQuests != null)
-        {
-            foreach (QuestData quest in npcData.ValidQuests)
-            {
-                // 매개변수 data가 npcData.NpcQuests에 있는 퀘스트인지, 플레이어가 진행중인 퀘스트인지 확인
-                if (quest.QuestId == data.QuestId && quest.IsAccepted)
-                {
-                    // 해당 퀘스트가 유효할 경우, 플레이어 퀘스트 리스트에서 퀘스트 제거
-                    QuestManager.Instance.PlayerQuests.Remove(quest);
-                    QuestManager.Instance.CompletedQuests.Add(quest); // 완료한 퀘스트 목록에 추가
-
-                    // to do : 반복 퀘스트가 생길 경우, isAvailable을 true로 변경하는 처리를 추가할 것
-                    quest.IsAccepted = false;
-                    quest.IsCompleted = true;
-
-                    Debug.Log($"{quest.QuestName} 퀘스트 완료");
-
-                    return;
-                }
-            }
-        }
-        else
-        {
-            Debug.LogWarning("유효하지 않은 퀘스트입니다.");
-        }
-    }
-
-    /// <summary>
     /// 플레이어와 상호작용하는 메소드
     /// </summary>
     public void OnInteract()
@@ -127,12 +95,5 @@ public class Npc : MonoBehaviour, IInteractable
         {
             Debug.LogWarning("NPC 스크립트 UI가 설정되어 있지 않습니다.");
         }
-    }
-
-    public bool CheckQuestComplete()
-    {
-        bool result = false;
-
-        return result;
     }
 }

@@ -15,6 +15,8 @@ public class Player : MonoBehaviour, IBattleEntity, IInteractable
     private void Awake()
     {
         statHandler = GetComponent<StatHandler>();
+
+        GameManager.Instance.player = this;
     }
 
     public IEnumerator ActionOnTurn(BattlePhase phase)

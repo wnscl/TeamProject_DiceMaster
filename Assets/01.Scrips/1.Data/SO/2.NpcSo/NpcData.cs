@@ -13,7 +13,7 @@ public class NpcData : ScriptableObject
     [SerializeField] private Sprite npcIcon; // NPC 아이콘
     [SerializeField] private string npcName; // NPC 이름
     [SerializeField] private string npcDescription; // NPC 설명
-    [SerializeField] private List<QuestData> npcQuests; // 해당 NPC가 제공하는 퀘스트 컬렉션
+    [SerializeField] private List<GameObject> questList;  // Npc가 제공하는 퀘스트 프리팹
     [SerializeField] private TextAsset npcScripts; // NPC용 대화 스크립트 데이터
     [SerializeField] private Dictionary<NpcMenuType, string> basicMenuDictionary = new Dictionary<NpcMenuType, string>();
     private List<QuestData> validQuests = new List<QuestData>(); // 수락 가능한 퀘스트 컬렉션
@@ -21,11 +21,11 @@ public class NpcData : ScriptableObject
 
     public Sprite NpcIcon { get { return npcIcon; } }
     public string NpcName { get { return npcName; } }
-    public List<QuestData> NpcQuests { get { return npcQuests; } }
     public TextAsset NpcScripts { get { return npcScripts; } }
     public Dictionary<NpcMenuType, string> BasicMenuDictionary { get { return basicMenuDictionary; } }
     public List<QuestData> ValidQuests { get { return validQuests; } }
     public JToken ParsedScript { get { return parsedScript; } }
+    public List<GameObject> QuestList { get { return questList; } set { questList = value; } }
 
 #if UNITY_EDITOR
     // 에디터에서 값이 바뀔 때 자동 호출됨
@@ -48,13 +48,16 @@ public class NpcData : ScriptableObject
         validQuests.Clear(); // 기존 퀘스트 목록 초기화
 
         // to do: 플레이어가 npc와 상호작용을 하고, 퀘스트 메뉴를 수락할 때 이 메소드가 실행되도록 구현할 것
-        foreach (QuestData quest in NpcQuests)
+        foreach (GameObject listItem in QuestList)
         {
+            Quest quest = listItem.GetComponent<Quest>();
+
             // 퀘스트가 수락 가능한 상태인지 확인
             // memo : 수락한 퀘스트까지 표시하지만, 완료한 퀘스트는 리스트에서 제거. 수락한 퀘스트의 경우 선택할 시 조건이 만족되어있다면 CompleteQuest 메소드로 이행
-            if (quest.IsAvailable && !quest.IsCompleted)
+            if (quest != null && quest.questData != null && quest.questData.IsAvailable && !quest.questData.IsCompleted)
             {
-                validQuests.Add(quest);
+                validQuests.Add(quest.questData);
+
             }
         }
     }
