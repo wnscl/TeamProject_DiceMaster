@@ -16,17 +16,23 @@ public class NpcScriptUI : MonoBehaviour
 
     private void Awake()
     {
-        UIManager.Instance.NpcScriptUI = this;
-
         npcScriptMenuUI = GetComponent<NpcScriptMenuUI>();
 
+        if (UIManager.Instance != null)
+        {
+            UIManager.Instance.NpcScriptUI = this;
+        }
+        else
+        {
+            Debug.LogWarning("UIManager에 NpcScriptUI를 등록할 수 없습니다.");
+        }
+
         gameObject.SetActive(false); // 초기에는 비활성화
-        Debug.Log("npc scriptUI setActive : " + gameObject.activeSelf);
     }
 
     void Start()
     {
-        
+
     }
 
     void Update()
