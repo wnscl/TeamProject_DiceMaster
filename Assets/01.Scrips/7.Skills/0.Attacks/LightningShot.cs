@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using NaughtyAttributes;
 using TMPro;
 using UnityEngine;
@@ -13,12 +14,9 @@ public class LightningShot : BaseSkill
         SetDirection();
         StartCoroutine(OnUse());
     }
-    private void MakeDamage(EntityInfo requester, IBattleEntity target)
+    private void MakeDamage(IBattleEntity target)
     {
-        int damage = 3 + diceNumber[0];
-        if (diceNumber[2] > 4) diceNumber[1] = diceNumber[1] * 2;
-        requester.currentHp = Mathf.Clamp(requester.currentHp + diceNumber[1], 0, requester.maxHp);
-        target.GetDamage(damage);
+        target.GetDamage(diceNumber.Sum());
     }
     //private void SetEffectDirection()
     //{
@@ -61,6 +59,7 @@ public class LightningShot : BaseSkill
         targetInfo.anim.SetBool("isHit", true);
         //targetInfo.anim.SetTrigger("Hit");
         targetInfo.anim.Play("Hit", 0, 0);
+        MakeDamage(entitys[1]);
         effect[0].transform.position = startPos[1];
         yield return new WaitForSeconds(1f);
         targetInfo.anim.SetBool("isHit", false);
