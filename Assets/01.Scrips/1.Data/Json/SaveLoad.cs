@@ -1,7 +1,6 @@
 using UnityEngine;
 using Newtonsoft.Json;
 using System.IO;
-using Newtonsoft.Json.Bson;
 
 public class SaveLoad : MonoBehaviour
 {
@@ -33,6 +32,12 @@ public class SaveLoad : MonoBehaviour
 
     public void Load()
     {
+        if(File.Exists(filePath) == false)
+        {
+            Debug.LogWarning("저장 데이터 없음");
+            return;
+        }
+
         string encryptedString = File.ReadAllText(filePath);
 
         string jsonString = aes.Decryptor(encryptedString);
