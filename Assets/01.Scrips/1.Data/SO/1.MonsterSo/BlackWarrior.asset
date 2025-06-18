@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6834b9c56360b56408d1977fb0df99c9, type: 3}
-  m_Name: TestMonster
+  m_Name: BlackWarrior
   m_EditorClassIdentifier: 
   name: "\uD14C\uC2A4\uD2B8 \uBAAC\uC2A4\uD130"
-  maxHp: 300
+  maxHp: 120
   def: 3
   dodge: 21
   magicDef: 0

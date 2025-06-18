@@ -10,12 +10,16 @@ public class GameManager : MonoBehaviour
 
     public Player player;
     public IBattleEntity monster;
+    public bool isPlayerWin;
+
+    public int monsterIndex;
 
     public event Action<bool> battleEvent;
 
     private void Awake()
     {
         Instance = this;
+        isPlayerWin = false;
     }
 
     public void ExcuteBattleEvent(bool startOrEnd)
