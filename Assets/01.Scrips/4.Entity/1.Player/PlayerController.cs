@@ -13,7 +13,7 @@ public class PlayerController : MonoBehaviour
 
     private Rigidbody2D rb;
     private Vector2 moveInput = Vector2.zero;
-
+    
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -43,6 +43,8 @@ public class PlayerController : MonoBehaviour
         {
             Vector2 input = context.ReadValue<Vector2>();
 
+            AudioManager.Instance.WalkSound();
+
             // 대각선 입력 방지: 한 축만 허용
             if (Mathf.Abs(input.x) > Mathf.Abs(input.y))
             {
@@ -56,6 +58,9 @@ public class PlayerController : MonoBehaviour
         else if (context.phase == InputActionPhase.Canceled)
         {
             moveInput = Vector2.zero;
+            AudioManager.Instance.WalkSoundStop();
         }
+        
+        
     }
 }

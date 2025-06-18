@@ -2079,7 +2079,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43e3c92b722dcbd42b23bc010d22a005, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Model: {fileID: 289589937}
+  model: {fileID: 0}
 --- !u!1 &303136120
 GameObject:
   m_ObjectHideFlags: 0
@@ -7677,6 +7677,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   statHandler: {fileID: 1119392084}
   playerInfo: {fileID: 1189122533}
+  interactableSign: {fileID: 0}
 --- !u!114 &1119392083
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7812,7 +7813,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da7936ae6aae0cc4c90a2ed3c260258b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stepDistance: 1
+  moveSpeed: 5
 --- !u!4 &1119392087
 Transform:
   m_ObjectHideFlags: 0
@@ -11685,6 +11686,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: abdbbfd33a46f4549987385f85c536b5, type: 3}
   - {fileID: 8300000, guid: b83bf8726a7fac349a54389f0c57cda6, type: 3}
   - {fileID: 8300000, guid: e58d8bd078f188a4ba314e933b98528b, type: 3}
+  - {fileID: 8300000, guid: 1ed8fb76fc64e4e46847348138782234, type: 3}
+  - {fileID: 8300000, guid: 35cf7766e9e2aa542811e896fde57989, type: 3}
   Walk: {fileID: 8300000, guid: 023ea3ddeaa8dd146b7633a0800e5a0e, type: 3}
   battleAudio:
   - {fileID: 8300000, guid: 457771d0864a67842a71c2fb0a3fdc1a, type: 3}
@@ -11727,6 +11730,7 @@ MonoBehaviour:
   reactAudioSource: {fileID: 1510869181}
   backgroundAudioSource1: {fileID: 1994005946}
   backgroundAudioSource2: {fileID: 1607057815}
+  isWalkPlay: 0
 --- !u!1 &1552668181
 GameObject:
   m_ObjectHideFlags: 0
@@ -12625,6 +12629,7 @@ MonoBehaviour:
   itemInfo: {fileID: 1418247821}
   skillShortcut: {fileID: 320671317}
   battleWindow: {fileID: 592425184}
+  equipSlot: {fileID: 0}
   systemMessageImage: {fileID: 2120367630}
   systemText: {fileID: 1940631715}
   dialogCall: "\uB300\uD654"
@@ -15523,6 +15528,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   moveDuration: 1.5
+  anim: {fileID: 0}
+  interctionIcon: {fileID: 0}
 --- !u!4 &2085384249
 Transform:
   m_ObjectHideFlags: 0
