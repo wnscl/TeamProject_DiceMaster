@@ -62,8 +62,8 @@ public class Npc : MonoBehaviour, IInteractable
                     // 해당 퀘스트가 유효할 경우, 플레이어 퀘스트 리스트에 퀘스트 추가
                     QuestManager.Instance.PlayerQuests.Add(quest);
 
+                    // memo : IsAvailable을 false로 하지 않는 이유 => 수락한 퀘스트도 메뉴에 표시하고, 수락한 퀘스트를 다시 선택할 시 퀘스트 완료시키기 위함
                     quest.IsAccepted = true;
-                    quest.IsAvailable = false;  // 퀘스트 복수 수락 방지 플래그 활성화
 
                     Debug.Log($"{quest.QuestName} 퀘스트 수락");
 
@@ -117,6 +117,7 @@ public class Npc : MonoBehaviour, IInteractable
     public void OnInteract()
     {
         npcScriptUI = UIManager.Instance.NpcScriptUI;
+        npcScriptUI.TargetNpc = this; // 현재 NPC 오브젝트 설정
 
         if (npcScriptUI != null)
         {

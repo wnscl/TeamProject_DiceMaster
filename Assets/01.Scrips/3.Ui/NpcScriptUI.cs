@@ -10,7 +10,10 @@ public class NpcScriptUI : MonoBehaviour
     [SerializeField] Image npcIcon; // npc 아이콘 스프라이트
     [SerializeField] TextMeshProUGUI npcNameText; // npc 이름 표시용 텍스트
     [SerializeField] TextMeshProUGUI npcScriptText; // npc 대사 표시용 텍스트
+    private Npc targetNpc; // 이벤트 중인 NPC 오브젝트
     private NpcData targetNpcData; // 이벤트 중인 NPC 데이터
+
+    public Npc TargetNpc { get { return targetNpc; } set { targetNpc = value; } }
     public NpcData TargetNpcData { get { return targetNpcData; } set { targetNpcData = value; } }
 
     private void Awake()
@@ -55,9 +58,27 @@ public class NpcScriptUI : MonoBehaviour
         }
         else if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter))
         {
-            if (npcScriptMenuUI.MenuItemTexts.Count > 0)
+            if (npcScriptMenuUI.MenuItemTexts.Count <= 0)
+                return;
+
+            if (npcScriptMenuUI.IsQuestMenu)
             {
-                // 선택한 인덱스에 해당하는 메뉴 타입을 가져옴
+                // 퀘스트 메뉴 활성화 상태의 메뉴 선택 로직
+                if (npcScriptMenuUI.SelectedIndex == 0)
+                {
+                    Show(); // 뒤로 가기 선택 시, 메인 메뉴로 돌아가기
+                }
+                else
+                {
+                    targetNpc.AcceptQuest(targetNpcData.ValidQuests[npcScriptMenuUI.SelectedIndex - 1]); // 선택한 퀘스트 수락
+
+                    Hide(); // UI 비활성화 to do : Json - Quest - AcceptQuest 텍스트를 출력해 몰입도 높여볼 것
+                }
+            }
+            else
+            {
+                // 일반 메뉴 활성화 상태의 메뉴 선택 로직
+                // 선택한 인덱스에 해당하는 메뉴 타입 취득
                 NpcMenuType selectedMenuType = (NpcMenuType)System.Enum.Parse(typeof(NpcMenuType), npcScriptMenuUI.MenuKeys[npcScriptMenuUI.SelectedIndex]);
 
                 OnSelectEvent(selectedMenuType);
@@ -71,6 +92,12 @@ public class NpcScriptUI : MonoBehaviour
         {
             // UI가 비활성화 상태일 때만 활성화
             gameObject.SetActive(true);
+        }
+
+        if (npcScriptMenuUI.IsQuestMenu)
+        {
+            // 퀘스트 메뉴 플래그를 초기화
+            npcScriptMenuUI.IsQuestMenu = false;
         }
 
         TargetNpcData.ParseNpcScript();
@@ -89,6 +116,7 @@ public class NpcScriptUI : MonoBehaviour
 
         targetNpcData.BasicMenuDictionary.Add(NpcMenuType.Farewell, "작별");
 
+        npcScriptMenuUI.TargetNpcData = targetNpcData; // 현재 NPC 데이터 설정
         npcScriptMenuUI.InitializeMenu(targetNpcData.BasicMenuDictionary); // 기본 메뉴를 표시
     }
 
@@ -113,10 +141,11 @@ public class NpcScriptUI : MonoBehaviour
         npcScriptText.text = TargetNpcData.NormalTalk(talkType); // NPC 스크립트 텍스트 업데이트
     }
 
-    public void QuestMenu()
+    public void ShowQuestMenu()
     {
         targetNpcData.GetValidQuest();
 
+        npcScriptMenuUI.InitializeMenu(targetNpcData.ValidQuests);
         // to do : npcData의 ValidQuests를 이용하여 npcScriptMenuUI.InitializeMenu 함수에 퀘스트 이름으로 리스트 전달
     }
 
@@ -128,15 +157,18 @@ public class NpcScriptUI : MonoBehaviour
         switch (menuType)
         {
             case NpcMenuType.Talk:
-                // 대화 메뉴 선택 시 대화 UI 업데이트
-                // 메뉴 아이템에 NormalTalk메소드를 호출해 내용 추가.
+                // "대화" 선택 시, 메뉴 UI를 비활성화하고 NPC 스크립트를 변경
                 npcScriptMenuUI.TalkFlag = true; // 대화 플래그를 활성화
 
                 npcScriptText.text = targetNpcData.NormalTalk(NpcTalkType.Conversation);
                 break;
             case NpcMenuType.Quest:
                 // 퀘스트 메뉴 선택 시 퀘스트 UI 업데이트
+                npcScriptMenuUI.IsQuestMenu = true; // 퀘스트 플래그 활성화
                 npcScriptText.text = targetNpcData.NormalTalk(NpcTalkType.Quest);
+
+                ClearNpcMenuData(); // 메뉴 데이터 초기화
+                ShowQuestMenu(); // 퀘스트 메뉴 표시
 
                 break;
             case NpcMenuType.Farewell:

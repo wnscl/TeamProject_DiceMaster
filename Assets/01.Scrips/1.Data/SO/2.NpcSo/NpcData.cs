@@ -45,6 +45,8 @@ public class NpcData : ScriptableObject
     /// </summary>
     public void GetValidQuest()
     {
+        validQuests.Clear(); // 기존 퀘스트 목록 초기화
+
         // to do: 플레이어가 npc와 상호작용을 하고, 퀘스트 메뉴를 수락할 때 이 메소드가 실행되도록 구현할 것
         foreach (QuestData quest in NpcQuests)
         {

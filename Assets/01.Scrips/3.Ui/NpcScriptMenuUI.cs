@@ -20,12 +20,15 @@ public class NpcScriptMenuUI : MonoBehaviour
     private List<string> menuKeys = new List<string>();   // 메뉴에 들어갈 텍스트 리스트
     private List<string> menuValues = new List<string>();   // 메뉴에 들어갈 텍스트 리스트
     private List<TextMeshProUGUI> menuItemTexts = new List<TextMeshProUGUI>();
+    private NpcData targetNpcData; // 이벤트 중인 NPC 데이터
     private int selectedIndex = 0;  // 플레이어가 선택한 메뉴의 인덱스
     private bool talkFlag = false; // 현재 대화 중일 경우, 방향키의 입력 이벤트를 제어하기 위한 플래그
+    private bool isQustMenu = false; // 퀘스트 메뉴인지 여부
 
     public List<string> MenuKeys { get { return menuKeys; } set { menuKeys = value; } }
     public List<string> MenuValues { get { return menuValues; } set { menuValues = value; } }
     public List<TextMeshProUGUI> MenuItemTexts { get { return menuItemTexts; } set { menuItemTexts = value; } }
+    public NpcData TargetNpcData { get { return targetNpcData; } set { targetNpcData = value; } }
     public int SelectedIndex { get { return selectedIndex; } set { selectedIndex = value; } }
     public bool TalkFlag { get { return talkFlag; }
         set
@@ -44,10 +47,11 @@ public class NpcScriptMenuUI : MonoBehaviour
             }
         }
     }
+    public bool IsQuestMenu { get { return isQustMenu; } set { isQustMenu = value; } }
 
     private void Start()
     {
-        // UpdateMenuUI();
+
     }
 
     private void Update()
@@ -62,7 +66,7 @@ public class NpcScriptMenuUI : MonoBehaviour
 
         for (int i = 0; i < menuItemTexts.Count; i++)
         {
-            // 선택된 텍스트는 색상을 빨간색으로 변경 후, 기호를 변경한다
+            // 선택된 텍스트는 색상을 빨간색으로 변경
             menuItemTexts[i].text = (i == selectedIndex ? "<color=red> - " : "<color=white> - ") + menuValues[i].TrimStart('-', ' ') + "</color>";
         }
 
@@ -73,21 +77,21 @@ public class NpcScriptMenuUI : MonoBehaviour
         scrollRect.content.anchoredPosition = (Vector2)scrollRect.transform.InverseTransformPoint(scrollRect.content.position) - (Vector2)scrollRect.transform.InverseTransformPoint(selectedItem.position);
     }
 
+    /// <summary>
+    /// 기본 Npc 상호작용 메뉴 구현 메소드
+    /// </summary>
+    /// <param name="menuDict"></param>
     public void InitializeMenu(Dictionary<NpcMenuType, string> menuDict)
     {
         // 기존 항목 제거
         foreach (Transform child in content)
             Destroy(child.gameObject);
 
-        menuKeys.Clear();
-        menuValues.Clear();
-        menuItemTexts.Clear();
+        ClearItemData();
 
         // 새 항목 추가
         foreach (var element in menuDict)
         {
-            Debug.Log(element.Key + " : " + element.Value);
-
             GameObject textPrefab = Instantiate(menuItemPrefab, content);
             TextMeshProUGUI textComp = textPrefab.GetComponent<TextMeshProUGUI>();
             textComp.text = " - " + element.Value;
@@ -99,5 +103,47 @@ public class NpcScriptMenuUI : MonoBehaviour
 
         selectedIndex = 0;
         UpdateMenuUI();
+    }
+
+    /// <summary>
+    /// 퀘스트 메뉴 구현 오버라이드 메소드
+    /// </summary>
+    /// <param name="questList"></param>
+    public void InitializeMenu(List<QuestData> questList)
+    {
+        // 기존 항목 제거
+        foreach (Transform child in content)
+            Destroy(child.gameObject);
+
+        ClearItemData();
+
+        // 뒤로가기 버튼을 가장 앞에 추가
+        GameObject backBtnPrefab = Instantiate(menuItemPrefab, content);
+        TextMeshProUGUI backBtnComp = backBtnPrefab.GetComponent<TextMeshProUGUI>();
+        backBtnComp.text = " - 뒤로가기";
+
+        menuValues.Add("뒤로가기");
+        menuItemTexts.Add(backBtnComp);
+
+        // 새 항목 추가
+        foreach (QuestData quest in questList)
+        {
+            GameObject textPrefab = Instantiate(menuItemPrefab, content);
+            TextMeshProUGUI textComp = textPrefab.GetComponent<TextMeshProUGUI>();
+            textComp.text = $" - {quest.QuestName}";
+
+            menuValues.Add($"{quest.QuestName}{(quest.IsAccepted ? " [ 수락 ]" : "")}"); // 메뉴 표시용으로 퀘스트 이름만 저장
+            menuItemTexts.Add(textComp);    // 텍스트 컴포넌트 저장
+        }
+
+        selectedIndex = 0;
+        UpdateMenuUI();
+    }
+
+    public void ClearItemData()
+    {
+        menuKeys.Clear();
+        menuValues.Clear();
+        menuItemTexts.Clear();
     }
 }
