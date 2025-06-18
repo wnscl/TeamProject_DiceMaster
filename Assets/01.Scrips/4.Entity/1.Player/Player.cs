@@ -68,13 +68,15 @@ public class Player : MonoBehaviour, IBattleEntity, IInteractable
     private bool isInteractable = false;
     private bool interTrigger = false;
 
-    private void OnCollisionEnter2D(Collision2D other)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (other is IInteractable inpc)
+        IInteractable inpc = collision.GetComponent<IInteractable>();
+
+        if (inpc != null)
         {
             interactableSign.SetActive(true);
             isInteractable = true;
-            interCoroutine = interact(inpc);
+
             if (interCoroutine == null)
             {
                 interCoroutine = interact(inpc);
@@ -83,13 +85,16 @@ public class Player : MonoBehaviour, IBattleEntity, IInteractable
         }
     }
 
-    void OnCollisionExit2D(Collision2D other)
+    private void OnTriggerExit2D(Collider2D collision)
     {
-        if (other is IInteractable)
+        IInteractable inpc = collision.GetComponent<IInteractable>();
+
+        if (inpc != null)
         {
             interactableSign.SetActive(false);
             isInteractable = false;
             interTrigger = false;
+
             if (interCoroutine != null)
             {
                 StopCoroutine(interCoroutine);
