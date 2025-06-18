@@ -89,6 +89,7 @@ public class MonsterController : MonoBehaviour, IBattleEntity
 
         if (monsterInfo.dodge > chance)
         {
+            UIManager.Instance.SystemMessage("회 ~ 피!", 0.8f);
             AudioManager.Instance.PlayAudioOnce(ReactSFXEnum.Evade);
             return;
         }
