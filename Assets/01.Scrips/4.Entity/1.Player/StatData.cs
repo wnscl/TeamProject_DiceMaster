@@ -15,6 +15,7 @@ public enum StatType
     Level,
     Exp,
     RequireExp,
+    None
 }
 //메뉴에 스탯 테이터 ScriptableObject로 생성
 [CreateAssetMenu(fileName = "New StatData", menuName = "Stats/Chracter Stats")]

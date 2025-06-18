@@ -82,24 +82,31 @@ public class StatHandler : MonoBehaviour
             i++;
         }
     }
-    /*============================================================================================*/
 
+    /*============================================================================================*/
+    public void ObservingHp()
+    {
+        if (GetStat(StatType.Hp) > GetStat(StatType.MaxHp))
+        {
+            SetStat(StatType.Hp, GetStat(StatType.MaxHp));
+        }
+    }
 
     void LevelUP()
     {
-       
         while (GetStat(StatType.Exp) >= GetStat(StatType.RequireExp))
         {
             int exp = GetStat(StatType.Exp);
             int rexp = GetStat(StatType.RequireExp);
-           
-                ModifyStat(StatType.Level, 1);
-                SetStat(StatType.Exp, 0);
-                ModifyStat(StatType.Exp, exp - rexp);
-                ModifyStat(StatType.RequireExp, 10);
-
-             
-            
+            ModifyStat(StatType.Hp, 10);
+            ModifyStat(StatType.MaxHp, 10);
+            ObservingHp();
+            ModifyStat(StatType.PhysicalDefense, 1);
+            ModifyStat(StatType.MagicalDefense, 1);
+            ModifyStat(StatType.Level, 1);
+            SetStat(StatType.Exp, 0);
+            ModifyStat(StatType.Exp, exp - rexp);
+            ModifyStat(StatType.RequireExp, 10);
         }
     }
 }

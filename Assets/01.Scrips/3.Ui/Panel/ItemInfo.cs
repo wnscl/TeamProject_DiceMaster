@@ -178,6 +178,10 @@ public class ItemInfo : MonoBehaviour
                 Color color = icon.color;
                 color.a = 1f;
                 icon.color = color;
+                if (EI.itemData is EquipmentItemData ED)
+                {
+                    GameManager.Instance.player.statHandler.ModifyStat(EquipTypeToValueType(iitem), ED.valueAmount);
+                }
             }
             else
             {
@@ -189,6 +193,10 @@ public class ItemInfo : MonoBehaviour
                 Color color = icon.color;
                 color.a = 0f;
                 icon.color = color;
+                if (EI.itemData is EquipmentItemData ED)
+                {
+                    GameManager.Instance.player.statHandler.ModifyStat(EquipTypeToValueType(iitem), -ED.valueAmount);
+                }
             }
         }
 
@@ -264,9 +272,11 @@ public class ItemInfo : MonoBehaviour
         if (itemSlot.item is ConsumableItemInstance CI)
         {
             if (CI.itemData is ConsumableItemData ID)
-
+            {
                 GameManager.Instance.player.statHandler.ModifyStat(StatType.Hp, ID.valueAmount);
-            UIManager.Instance.inventory.RemoveItem();
+                GameManager.Instance.player.statHandler.ObservingHp();
+                UIManager.Instance.inventory.RemoveItem();
+            }
         }
     }
 
@@ -315,7 +325,7 @@ public class ItemInfo : MonoBehaviour
 
         return "장비 아님";
     }
-    
+
     public string EquipTypeValueToK(IItem iitem)
     {
         if (iitem is EquipItemInstance EI && EI.itemData is EquipmentItemData ED)
@@ -336,5 +346,28 @@ public class ItemInfo : MonoBehaviour
         }
 
         return "장비 아님";
+    }
+
+
+    public StatType EquipTypeToValueType(IItem iitem)
+    {
+        if (iitem is EquipItemInstance EI && EI.itemData is EquipmentItemData ED)
+        {
+            switch (ED.equipType)
+            {
+                case EquipType.Cloak:
+                    return StatType.PhysicalDefense;
+                case EquipType.Clothet:
+                    return StatType.MaxHp;
+                case EquipType.Ring:
+                    return StatType.MagicalDefense;
+                case EquipType.Shoes:
+                    return StatType.Evasion;
+                default:
+                    return StatType.None;
+            }
+        }
+
+        return StatType.None;
     }
 }

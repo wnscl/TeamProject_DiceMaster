@@ -16,5 +16,5 @@ public class EquipmentItemData : ItemData
     
    
     public EquipType  equipType;
-    public float valueAmount;
+    public int valueAmount;
 }
