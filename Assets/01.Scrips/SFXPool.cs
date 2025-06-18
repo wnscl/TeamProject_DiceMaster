@@ -37,7 +37,9 @@ public enum UISFXEnum
     Unequip,
     BuySell,
     Pause,
-    Unpause
+    Unpause,
+    Fail,
+    Hover
 }
 
 public enum Car
@@ -47,6 +49,11 @@ public enum Car
     drive
 }
 
+public enum PlayerAct
+{
+    walk
+}
+
 public class SFXPool : MonoBehaviour
 {
     public AudioClip[] MagicSFXClips = new AudioClip[4];
@@ -54,7 +61,7 @@ public class SFXPool : MonoBehaviour
     public AudioClip[] PhysicsSFXClips = new AudioClip[2];
     public AudioClip[] ReactSFXClips = new AudioClip[3];
 
-    public AudioClip[] UISFXClips = new AudioClip[8];
+    public AudioClip[] UISFXClips = new AudioClip[10];
 
     public AudioClip Walk;
 

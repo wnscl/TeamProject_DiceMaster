@@ -74,6 +74,11 @@ public class AudioManager : MonoBehaviour
     {
         audioSource.PlayOneShot(audioPool.CarSFX[(int)enumSFX]);
     }
+
+    public void PlayAudioOnce(PlayerAct enumSFX)
+    {
+        audioSource.PlayOneShot(audioPool.CarSFX[(int)enumSFX]);
+    }
     #endregion
 
     public void PlayBackGroundAudioOnStart(int stage) //배경음악이 처음 시작할때 혹은 정지됐다 다시 시작할때
