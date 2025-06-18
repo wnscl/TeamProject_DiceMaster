@@ -3200,63 +3200,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 847441794}
   m_CullTransparentMesh: 1
---- !u!1001 &855208227
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 1299481565864773289, guid: a48b1b05b7775a74b9e9b3b6ed59172b, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1299481565864773289, guid: a48b1b05b7775a74b9e9b3b6ed59172b, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1299481565864773289, guid: a48b1b05b7775a74b9e9b3b6ed59172b, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1299481565864773289, guid: a48b1b05b7775a74b9e9b3b6ed59172b, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1299481565864773289, guid: a48b1b05b7775a74b9e9b3b6ed59172b, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1299481565864773289, guid: a48b1b05b7775a74b9e9b3b6ed59172b, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1299481565864773289, guid: a48b1b05b7775a74b9e9b3b6ed59172b, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1299481565864773289, guid: a48b1b05b7775a74b9e9b3b6ed59172b, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1299481565864773289, guid: a48b1b05b7775a74b9e9b3b6ed59172b, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1299481565864773289, guid: a48b1b05b7775a74b9e9b3b6ed59172b, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7639302688918898884, guid: a48b1b05b7775a74b9e9b3b6ed59172b, type: 3}
-      propertyPath: m_Name
-      value: BlackWarrior
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: a48b1b05b7775a74b9e9b3b6ed59172b, type: 3}
 --- !u!1 &867580676
 GameObject:
   m_ObjectHideFlags: 0
@@ -4211,7 +4154,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 200, y: 50}
+  m_SizeDelta: {x: 80, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1060841891
 MonoBehaviour:
@@ -4235,8 +4178,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\uB9DD\uD1A0"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: a920f7eb40d0f9046b83173455e1431a, type: 2}
+  m_sharedMaterial: {fileID: -5186458206488468716, guid: a920f7eb40d0f9046b83173455e1431a, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -8283,7 +8226,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -11463,5 +11406,4 @@ SceneRoots:
   - {fileID: 294471075}
   - {fileID: 937694448}
   - {fileID: 1262810936}
-  - {fileID: 855208227}
   - {fileID: 1159857958}
