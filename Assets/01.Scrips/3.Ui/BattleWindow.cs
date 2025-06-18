@@ -21,12 +21,7 @@ public class BattleWindow : MonoBehaviour
 
     private void Awake()
     {
-        
-     
-        
-        
         playerInput = GameManager.Instance.player.GetComponent<PlayerInput>();
-        
     }
 
     void OnEnable()
@@ -40,15 +35,15 @@ public class BattleWindow : MonoBehaviour
     public void WhenStartBattle()
     {
         this.gameObject.SetActive(true);
-        playerInfo = FindObjectOfType<PlayerInfo>().GetComponent<PlayerInfo>();
-        monsterInfo = FindObjectOfType<MonsterInfo>().GetComponent<MonsterInfo>();
+        playerInfo = SkillManager.instance.TestPlayer.GetComponent<PlayerInfo>();
+        monsterInfo = SkillManager.instance.TestMonster.GetComponent<MonsterInfo>();
         StartCoroutine(StartText());
     }
 
     public void SetHPBar()
     {
-        playerHpBar.fillAmount = (float)playerInfo.currentHp / playerInfo.maxHp;
-        monsterHpBar.fillAmount = (float)monsterInfo.currentHp / monsterInfo.maxHp;
+        playerHpBar.fillAmount = (float)playerInfo.currentHp / (float)playerInfo.maxHp;
+        monsterHpBar.fillAmount = (float)monsterInfo.currentHp / (float)monsterInfo.maxHp;
     }
 
     [Button]

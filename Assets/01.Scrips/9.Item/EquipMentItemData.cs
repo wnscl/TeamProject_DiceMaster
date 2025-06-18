@@ -4,9 +4,10 @@ using UnityEngine;
 public enum  EquipType
 {
     Cloak,//물방
-    Body,//체력
+    Clothet,//체력
     Ring,//마방
-    Feet, //회피 
+    Shoes, //회피 
+    
 }
 
 [CreateAssetMenu(fileName = "EquipmentItemData", menuName = "ItemData/EquipmentItem")]

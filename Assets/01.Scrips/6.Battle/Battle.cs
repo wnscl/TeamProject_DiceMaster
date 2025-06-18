@@ -31,33 +31,12 @@ using UnityEngine;
 public class Battle : MonoBehaviour
 {
 
-    [SerializeField] private BattleModel Model;
+    [SerializeField] private BattleModel model;
 
     Coroutine myCor;
 
-    //public BattleModel Model
-    //{
-    //    get
-    //    {
-    //        if (model == null)
-    //        {
-    //            model = GetComponent<BattleModel>();
-    //        }
+    public BattleModel Model => model;
 
-    //        return model;
-    //    }
-    //    set => model = value;
-    //}
-
-    void Start()
-    {
-        //model = GetComponent<BattleModel>();
-    }
-
-    void Update()
-    {
-        
-    }
 
     [Button]
     /// <summary>

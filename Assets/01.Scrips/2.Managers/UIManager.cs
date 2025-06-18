@@ -40,6 +40,7 @@ public class UIManager : MonoBehaviour
     public ItemInfo itemInfo;
     public SkillShortCut skillShortcut;
     public BattleWindow battleWindow;
+    public EquipSlot equipSlot;
 
     //시스템 메세지용 필드
     public Image systemMessageImage;
@@ -49,7 +50,12 @@ public class UIManager : MonoBehaviour
     [SerializeField] private string dialogCall;
 
     private NpcScriptUI npcScriptUI;
-    public NpcScriptUI NpcScriptUI { get { return npcScriptUI; } set { npcScriptUI = value; } }
+
+    public NpcScriptUI NpcScriptUI
+    {
+        get { return npcScriptUI; }
+        set { npcScriptUI = value; }
+    }
 
     private void Start()
     {

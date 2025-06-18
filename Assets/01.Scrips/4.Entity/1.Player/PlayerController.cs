@@ -9,18 +9,53 @@ using DG.Tweening;
 
 public class PlayerController : MonoBehaviour
 {
-    public float stepDistance = 1f; //한번에 이동하는거리 데이터 만들기 전이라 임시로 여기 변수 두었습니다.
+  [SerializeField]  private float moveSpeed = 5f; 
 
+    private Rigidbody2D rb;
+    private Vector2 moveInput = Vector2.zero;
+
+    private void Awake()
+    {
+        rb = GetComponent<Rigidbody2D>();
+    }
+
+    private void FixedUpdate()
+    {
+        if (BattleManager.Instance.IsBattleActive)
+        {
+            rb.velocity = Vector3.zero;
+            return;
+        }
+
+    
+        rb.velocity = new Vector3(moveInput.x, moveInput.y, 0f) * moveSpeed;
+    }
 
     public void OnMove(InputAction.CallbackContext context)
     {
-        if(BattleManager.Instance.IsBattleActive)
-        {  return;}
-        
-        if (context.phase == InputActionPhase.Started)
+        if (BattleManager.Instance.IsBattleActive)
         {
-            Vector2 input = context.ReadValue<Vector2>().normalized;
-            transform.position += new Vector3(input.x, input.y, 0f) * stepDistance;
+            moveInput = Vector2.zero;
+            return;
+        }
+
+        if (context.phase == InputActionPhase.Performed || context.phase == InputActionPhase.Started)
+        {
+            Vector2 input = context.ReadValue<Vector2>();
+
+            // 대각선 입력 방지: 한 축만 허용
+            if (Mathf.Abs(input.x) > Mathf.Abs(input.y))
+            {
+                moveInput = new Vector2(input.x, 0f).normalized;
+            }
+            else
+            {
+                moveInput = new Vector2(0f, input.y).normalized;
+            }
+        }
+        else if (context.phase == InputActionPhase.Canceled)
+        {
+            moveInput = Vector2.zero;
         }
     }
 }

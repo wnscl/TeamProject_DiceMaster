@@ -42,7 +42,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "DiceRoll",
+                    "name": "Interaction",
                     "type": "Button",
                     "id": "2c4775f2-d8ce-4ece-a57b-16f30a73249c",
                     "expectedControlType": "Button",
@@ -198,11 +198,11 @@
                 {
                     "name": "",
                     "id": "41f2ae4f-1365-475c-afe5-0244952436cc",
-                    "path": "<Keyboard>/r",
+                    "path": "<Keyboard>/f",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "DiceRoll",
+                    "action": "Interaction",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

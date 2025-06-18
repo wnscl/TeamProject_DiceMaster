@@ -14,6 +14,9 @@ public class BuffManager : MonoBehaviour
 {
     public static BuffManager instance;
 
+    public GameObject buffEffect;
+    public Animator buffAnim;
+
     private void Awake()
     {
         instance = this;
@@ -47,9 +50,13 @@ public class BuffManager : MonoBehaviour
         for (int i = info.buffList.Count - 1; i >= 0; i--)
         {
             bool isUsed = info.buffList[i].Execute(entity);
-            if (!isUsed) info.buffList.RemoveAt(i);
-            else yield return new WaitForSeconds(1f);
 
+            if (!isUsed) 
+                info.buffList.RemoveAt(i);
+            else 
+                yield return new WaitForSeconds(1f);
         }
+
+        buffEffect.transform.position = Vector3.zero;
     }
 }
