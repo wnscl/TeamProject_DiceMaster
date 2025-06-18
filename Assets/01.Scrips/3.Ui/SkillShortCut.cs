@@ -16,15 +16,19 @@ public class SkillShortCut : MonoBehaviour
 
     private bool isUp = false;
 
-    public void OnClickUpDown()
-    {
+    public void OnClickUpDown( InputAction.CallbackContext context )
+    { 
+        if (context.phase != InputActionPhase.Started) return;
+        
         if (!isUp)
         {
+            AudioManager.Instance.PlayAudioOnce(UISFXEnum.Pause);
             transform.DOLocalMove(Vector3.down * 390f, 0.7f).SetEase(Ease.OutCubic);
             isUp = true;
         }
         else
         {
+            AudioManager.Instance.PlayAudioOnce(UISFXEnum.Unpause);
             transform.DOLocalMove(Vector3.down * 690, 0.7f)
                 .SetEase(Ease.OutCubic);
             isUp = false;

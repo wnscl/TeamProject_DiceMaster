@@ -8,6 +8,8 @@ public class ItemManager : MonoBehaviour
     public static ItemManager Instance;
    public List<IItem> allItems = new List<IItem>();
     private int nextID = 0;
+   public int CurrentID {get{return nextID;}}//세이브 할 때 참조
+    
 
     private void Awake()
     {
@@ -25,8 +27,9 @@ public class ItemManager : MonoBehaviour
     public int GetNextID()
     {
         return nextID++;
-    }
-
+    } 
+    
+    
     public IItem CreateItem(ItemData data)
     {
         IItem item = null;

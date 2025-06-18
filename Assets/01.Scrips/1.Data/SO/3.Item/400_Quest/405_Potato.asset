@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ca4502e08a4dda4294edcfe70d311cf, type: 3}
   m_Name: 405_Potato
   m_EditorClassIdentifier: 
-  itemCode: 405_Potato
+  itemCode: 405
   itemName: "\uAC10\uC790"
   description: "\uC774\uB7F0 \uACF3\uC5D0 \uAC10\uC790..? "
   requiredLevel: 0
-  grade: "\uD018\uC2A4\uD2B8"
+  grade: 5
   itemIcon: {fileID: 21300000, guid: 5143e287d793e6a41b894d4955cccb5c, type: 3}
   itemPrefab: {fileID: 0}

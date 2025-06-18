@@ -2,6 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.InputSystem;
 
 /// <summary>
 /// ColorText 함수용 컬러
@@ -47,6 +48,8 @@ public class UIManager : MonoBehaviour
     private Coroutine systemMessageRoutine;
     [SerializeField] private string dialogCall;
 
+    private NpcScriptUI npcScriptUI;
+    public NpcScriptUI NpcScriptUI { get { return npcScriptUI; } set { npcScriptUI = value; } }
 
     private void Start()
     {
@@ -121,13 +124,13 @@ public class UIManager : MonoBehaviour
     }
 
 
-    public void OnSettingWindow()
+    public void OnSettingWindow(InputAction.CallbackContext context)
     {
+        if (context.phase != InputActionPhase.Started) return;
+
         if (playerSettingWindow.activeInHierarchy)
         {
             playerSettingWindow.SetActive(false);
-
-
             inventory.gameObject.SetActive(true);
             statusPanel.gameObject.SetActive(false);
             skillPanel.gameObject.SetActive(false);
@@ -135,10 +138,12 @@ public class UIManager : MonoBehaviour
             itemInfo.ResetInfo();
             skillInfo.gameObject.SetActive(false);
             skillInfo.ResetInfo();
+            AudioManager.Instance.PlayAudioOnce(UISFXEnum.Unpause);            
         }
         else
         {
             playerSettingWindow.SetActive(true);
+            AudioManager.Instance.PlayAudioOnce(UISFXEnum.Pause);
         }
     }
 }

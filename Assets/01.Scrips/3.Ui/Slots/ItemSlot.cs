@@ -131,7 +131,7 @@ public class ItemSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         equipmentMark.SetActive(false);
         stackAmountMark.SetActive(false);
     }
-
+    
 
     public void OnPointerEnter(PointerEventData eventData)
     {
@@ -142,4 +142,17 @@ public class ItemSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
         selectMask.gameObject.SetActive(false);
     }
+  
+    
+    public void OnEquipItem()
+    {
+    
+    
+    
+    }
+
+    public void OnUseItem()
+    {
+    }
+    
 }

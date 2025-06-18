@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4e6de3ed50b6e24f9dd92e354d9eb90, type: 3}
   m_Name: 301_DefaultDice
   m_EditorClassIdentifier: 
-  itemCode: 301_DefaultDice
+  itemCode: 301
   itemName: "\uAE30\uBCF8 \uC8FC\uC0AC\uC704"
   description: "\uBB38\uBC29\uAD6C\uC5D0\uC11C 500\uC6D0 \uC8FC\uACE0 \uC0B0 \uC8FC\uC0AC\uC704"
   requiredLevel: 0
-  grade: "\uC77C\uBC18"
+  grade: 0
   itemIcon: {fileID: 203989829, guid: 199ded8472e275a40945e110dabac711, type: 3}
   itemPrefab: {fileID: 0}
   isEquipped: 0
