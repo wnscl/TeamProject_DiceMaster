@@ -21,19 +21,25 @@ public enum ColorName
 
 public class UIManager : MonoBehaviour
 {
-    public static UIManager Instance;
+    private static UIManager _instance;
+
+public static UIManager Instance
+    {
+        get
+        {
+            if (_instance == null)
+                _instance = FindObjectOfType<UIManager>();
+
+            return _instance;
+        }
+    }
 
     void Awake()
     {
-        if (Instance == null)
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
+        DontDestroyOnLoad(gameObject);
+
+        if (_instance != null && _instance != this)
             Destroy(gameObject);
-        }
     }
 
     public GameObject playerSettingWindow;

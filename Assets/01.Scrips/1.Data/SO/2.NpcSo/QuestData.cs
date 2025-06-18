@@ -27,11 +27,9 @@ public class QuestData : ScriptableObject
     [SerializeField] private QuestType questType;
     [SerializeField] private string questName;   // 표시될 퀘스트 이름
     [SerializeField] private string questDescription;    // 간략하게 표시할 퀘스트 설명
-    [SerializeField] private List<ItemData> questObjectives; // 수집 퀘스트일 경우, 퀘스트 목표 아이템 컬렉션
     public string QuestId { get { return questId; } }
     public string QuestName {get { return questName; } }
     public string QuestDescription { get { return questDescription; } }
-    public List<ItemData> QuestObjectives { get { return questObjectives; } }
 
     [Header("Quest Rewards")]
     [SerializeField] private int questRewardExp;
@@ -44,7 +42,7 @@ public class QuestData : ScriptableObject
     [Header("Quest Status")]
     [SerializeField] private bool isAvailable; // 퀘스트 수락 가능 여부
     [SerializeField] private bool isAccepted;  // 퀘스트 수락 여부
-    [SerializeField] private bool isCompleted;  // 퀘스트 완료 여부
+    [SerializeField] private bool isCompleted;  // 이미 완료된 퀘스트
     public bool IsAvailable
     {
         get { return isAvailable; }

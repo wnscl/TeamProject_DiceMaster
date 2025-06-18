@@ -614,8 +614,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scrollRect: {fileID: 7792444448230844984}
   content: {fileID: 400192606080871598}
-  menuItemPrefab: {fileID: 6052333310134541350, guid: e13eb4a6db2cc41469e733f793119c9b, type: 3}
-  menuItems: []
+  menuItemPrefab: {fileID: 4111849119937612064, guid: ed21ffb4c102c994d97a4458f77c9320, type: 3}
+  menuUI: {fileID: 5553052549322320356}
 --- !u!1 &4502198007979152355
 GameObject:
   m_ObjectHideFlags: 0

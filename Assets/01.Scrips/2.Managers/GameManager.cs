@@ -6,7 +6,19 @@ using UnityEngine.InputSystem;
 
 public class GameManager : MonoBehaviour
 {
-    public static GameManager Instance;
+    private static GameManager _instance;
+    public static GameManager Instance
+    {
+        get
+        {
+            if (_instance == null)
+            {
+                _instance = new GameObject("GameManager").AddComponent<GameManager>();
+            }
+
+            return _instance;
+        }
+    }
 
     public Player player;
     public IBattleEntity monster;
@@ -18,8 +30,17 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        Instance = this;
-        isPlayerWin = false;
+        if (_instance == null)
+        {
+            _instance = this;
+            isPlayerWin = false;
+            
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 
     public void ExcuteBattleEvent(bool startOrEnd)

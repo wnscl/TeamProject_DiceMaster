@@ -16,7 +16,8 @@ public class Player : MonoBehaviour, IBattleEntity, IInteractable
     private void Awake()
     {
         statHandler = GetComponent<StatHandler>();
-       
+
+        GameManager.Instance.player = this;
     }
 
     public IEnumerator ActionOnTurn(BattlePhase phase)
@@ -32,7 +33,7 @@ public class Player : MonoBehaviour, IBattleEntity, IInteractable
 
         if (statHandler.GetStat(StatType.Evasion) > Rd)
         {
-            UIManager.Instance.SystemMessage("ê³µê²©ì„ íšŒí”¼í–ˆìŠµë‹ˆë‹¤.");
+            UIManager.Instance.SystemMessage("ê³µê²©?„ ?šŒ?”¼?–ˆ?Šµ?‹ˆ?‹¤.");
             return;
         }
 
