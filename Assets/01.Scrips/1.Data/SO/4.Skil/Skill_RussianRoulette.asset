@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a9ca57ef0db01a4ca4d697f47febaa0, type: 3}
   m_Name: Skill_RussianRoulette
   m_EditorClassIdentifier: 
-  name: SwordFlow
+  name: RussianRoulette
   discription: "\uBAA8\uB4E0 \uC8FC\uC0AC\uC704 \uD569\uC774 9\uBCF4\uB2E4 \uD06C\uB2E4\uBA74
     \uC801\uC744, \uC791\uB2E4\uBA74 \uC2DC\uC804\uC790\uC758 \uCCB4\uB825\uC744
     \uBC18\uD1A0\uB9C9 \uB0B8\uB2E4."
   icon: {fileID: 21300000, guid: 75747fe9605563743a2fbf57754fb274, type: 3}
-  skillNumber: 1
+  skillNumber: 0

@@ -75,20 +75,16 @@ public class ConditionCollection : MonoBehaviour
         BattleModel bm = BattleManager.Instance.Battle.Model;
         if ((bm.turnCount % 2) == 0)
         {
+            if (mobInfo.buffList != null && mobInfo.buffList.Count > 5) mobInfo.mobState = MonsterState.Sad;
 
+            if (playerInfo.currentHp > monsterInfo.currentHp) mobInfo.mobState = MonsterState.Angry;
         }
         else
         {
+            if(playerInfo.currentHp < monsterInfo.currentHp) mobInfo.mobState = MonsterState.Happy;
 
+            if (mobInfo.buffList == null && playerInfo.currentHp > (playerInfo.maxHp / 2)) mobInfo.mobState = MonsterState.Normal;
         }
-
-        if (playerInfo.currentHp > monsterInfo.currentHp) mobInfo.mobState = MonsterState.Angry;
-        else mobInfo.mobState = MonsterState.Happy;
-
-        if (mobInfo.buffList != null && mobInfo.buffList.Count > 5) mobInfo.mobState = MonsterState.Sad;
-
-        if (mobInfo.buffList == null && playerInfo.currentHp > (playerInfo.maxHp / 3)) mobInfo.mobState = MonsterState.Normal;
-
         mobInfo.feelSprite.sprite = mobInfo.feelIcon[(int)mobInfo.mobState];
     }
 

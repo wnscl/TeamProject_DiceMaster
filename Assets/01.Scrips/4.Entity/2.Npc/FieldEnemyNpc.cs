@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using NaughtyAttributes;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -13,9 +14,29 @@ public class FieldEnemyNpc : MonoBehaviour
     [SerializeField] private Animator anim;
     [SerializeField] private GameObject interctionIcon;
 
+    [SerializeField] private int monsterIndex;
 
+    private void Update()
+    {
+        if (!GameManager.Instance.isPlayerWin) return;
+
+        GameManager.Instance.isPlayerWin = false;
+        Dead();
+    }
+    [Button]
+    private void Dead()
+    {
+        anim.SetBool("isAction", true);
+        anim.SetTrigger("Dead");
+        Invoke(nameof(RemoveThisNpc), 5f);
+    }
+    private void RemoveThisNpc()
+    {
+        Destroy(this.gameObject);
+    }
     private void NowBattle()
     {
+        GameManager.Instance.monsterIndex = this.monsterIndex;
         if(myCor != null) StopCoroutine(myCor);
         myCor = StartCoroutine(RunToPlayer());
     }
@@ -54,7 +75,7 @@ public class FieldEnemyNpc : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log(collision.name);
+
         if (collision.GetComponent<Player>() && !isLookPlayer)
         {
             isLookPlayer = true;

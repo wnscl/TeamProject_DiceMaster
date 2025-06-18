@@ -106,6 +106,8 @@ public class Battle : MonoBehaviour
             {
                 case BattlePhase.Ready:
                     // 각 유닛의 행동을 설정
+                    UIManager.Instance.SystemMessage("선택 턴 시작! - 1~6까지 입력하여 사용할 스킬을 결정하세요!",2f);
+
                     foreach (IBattleEntity entity in Model.battleEntities)
                     {
                         model.nowTurnEntity = entity; // 현재 턴을 가진 유닛 설정
@@ -118,6 +120,8 @@ public class Battle : MonoBehaviour
                     break;
                 case BattlePhase.Action:
                     // 설정한 행동 실행
+                    UIManager.Instance.SystemMessage("전투 턴 시작!");
+
                     foreach (IBattleEntity entity in Model.battleEntities)
                     {
                         model.nowTurnEntity = entity; // 현재 턴을 가진 유닛 설정
@@ -131,9 +135,9 @@ public class Battle : MonoBehaviour
                     break;
                 case BattlePhase.Result:
                     // 턴 종료 시의 처리
-
                     if (BattleManager.Instance.IsBattleActive)
                     {
+                        UIManager.Instance.SystemMessage("버프, 디버프 처리 시작!",1.5f);
                         foreach (IBattleEntity entity in Model.battleEntities)
                         {
                             yield return entity.ActionOnTurn(Model.battlePhase);
@@ -141,6 +145,7 @@ public class Battle : MonoBehaviour
                     }
                     else
                     {
+                        UIManager.Instance.SystemMessage("전투 종료!",1.5f);
                         model.isTurn = false;
                         yield return new WaitForSeconds(1.5f);
                     }
@@ -156,8 +161,14 @@ public class Battle : MonoBehaviour
     public void CheckBattleEnd(EntityInfo info)
     {
         Model.BattleResult = false;
-
-        if (info.name == "BattlePlayer") Model.BattleResult = true;
+        if (info.name == "BattlePlayer")
+        {
+            Model.BattleResult = true;
+        }
+        else
+        {
+            GameManager.Instance.isPlayerWin = true;
+        }
 
         BattleManager.Instance.IsBattleActive = false;
     }

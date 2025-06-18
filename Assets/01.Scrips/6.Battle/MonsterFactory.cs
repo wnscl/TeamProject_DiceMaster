@@ -23,7 +23,7 @@ public class MonsterFactory : MonoBehaviour
             return;
         }
 
-        newMonster = Instantiate(monsters[0]);
+        newMonster = Instantiate(monsters[GameManager.Instance.monsterIndex]);
         SetMonsterToSkillManager();
         SetMonsterPosition();
         SetMonsterToCondition();
