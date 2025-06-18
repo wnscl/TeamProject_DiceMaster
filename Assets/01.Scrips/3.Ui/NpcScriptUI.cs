@@ -45,6 +45,7 @@ public class NpcScriptUI : MonoBehaviour
     {
         gameObject.SetActive(true); // UI 활성화
         npcScriptMenuUI = GetComponent<NpcScriptMenuUI>();  // 테스트용 npcScriptMenuUI 초기화 코드
+        TargetNpcData.ParseNpcScript();
 
         UpdateNpcInfo(NpcTalkType.Greeting); // 상호작용 시 처음 표시할 대화를 인사말으로 설정
         npcScriptMenuUI.MenuItems.Clear(); // 메뉴 아이템 초기화
