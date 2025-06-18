@@ -19,5 +19,5 @@ MonoBehaviour:
   grade: 0
   itemIcon: {fileID: -591655633, guid: 3b864a5abb8585840a78209314f9c2cd, type: 3}
   itemPrefab: {fileID: 0}
-  startValue: 500
-  endValue: 500
+  minValue: 1
+  maxValue: 6

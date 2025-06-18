@@ -31,6 +31,7 @@ public class ItemSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         if (UIManager.Instance.itemInfo.gameObject.activeInHierarchy &&
             UIManager.Instance.itemInfo.itemSlot.item.ID != item.ID)
         {
+            UIManager.Instance.itemInfo.ResetInfo();
             Debug.Log("다른 슬롯 클릭 정보 갱신");
             UIManager.Instance.itemInfo.itemSlot = this;
             UIManager.Instance.itemInfo.InitSetInfo();

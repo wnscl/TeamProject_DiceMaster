@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a0f4575cc306384183fcb0d623d41a7, type: 3}
+  m_Name: 191_testRa
+  m_EditorClassIdentifier: 
+  itemCode: 191
+  itemName: "\uD14C\uC2A4\uD2B8\uC6A9 \uB808\uC5B4\uD15C"
+  description: "\uD14C\uC2A4\uD2B8\uC6A9 \uB808\uC5B4\uD15C"
+  requiredLevel: 0
+  grade: 2
+  itemIcon: {fileID: 1756251302, guid: 3b864a5abb8585840a78209314f9c2cd, type: 3}
+  itemPrefab: {fileID: 0}
+  equipType: 2
+  valueAmount: 50

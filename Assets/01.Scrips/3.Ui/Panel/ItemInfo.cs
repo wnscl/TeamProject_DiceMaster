@@ -74,8 +74,12 @@ public class ItemInfo : MonoBehaviour
             }
 
             useBtn.gameObject.SetActive(false);
-            gradeText.text ="등급 : " + GradeToK(itemSlot.item);
-            typeText.text ="타입 : "+ EquipTypeToK(itemSlot.item);
+            gradeText.text = $"등급 :  {GradeToK(itemSlot.item)}";
+            typeText.text = "타입 : " + EquipTypeToK(itemSlot.item);
+            if (itemSlot.item.itemData is EquipmentItemData ED)
+            {
+                valueText.text = EquipTypeValueToK(itemSlot.item) + ED.valueAmount;
+            }
         }
 
         // 주사위 아이템인 경우
@@ -95,9 +99,12 @@ public class ItemInfo : MonoBehaviour
             }
 
             useBtn.gameObject.SetActive(false);
-            gradeText.text ="등급 : " + GradeToK(itemSlot.item);
-           if (diceInst.itemData is DiceItemData DD)
-           { valueText.text = "주사위 값 : " + DD.minValue+"~"+DD.maxValue; ;}
+            gradeText.text = $"등급 :  {GradeToK(itemSlot.item)}";
+            if (diceInst.itemData is DiceItemData DD)
+            {
+                valueText.text = "주사위 값 : " + DD.minValue + "~" + DD.maxValue;
+                ;
+            }
         }
 
         // 소비 아이템
@@ -106,10 +113,10 @@ public class ItemInfo : MonoBehaviour
             equipBtn.gameObject.SetActive(false);
             useBtn.gameObject.SetActive(true);
             equipMark.gameObject.SetActive(false);
-            gradeText.text ="등급 : " + GradeToK(itemSlot.item);
+            gradeText.text = $"등급 :  {GradeToK(itemSlot.item)}";
             if (itemSlot.item is ConsumableItemData CD)
             {
-                valueText.text = "회복량 : "+CD.valueAmount.ToString();
+                valueText.text = "회복량 : " + CD.valueAmount.ToString();
             }
         }
 
@@ -119,7 +126,7 @@ public class ItemInfo : MonoBehaviour
             equipBtn.gameObject.SetActive(false);
             useBtn.gameObject.SetActive(false);
             equipMark.gameObject.SetActive(false);
-            gradeText.text ="등급 :" + GradeToK(itemSlot.item);
+            gradeText.text = $"등급 :  {GradeToK(itemSlot.item)}";
         }
     }
 
@@ -279,7 +286,8 @@ public class ItemInfo : MonoBehaviour
 
             case ItemGrade.Legendary:
                 return UIManager.ColorText("전설", ColorName.yellow);
-
+            case ItemGrade.Quest:
+                return UIManager.ColorText("퀘스트", ColorName.cyan);
 
             default:
                 return "";
@@ -300,6 +308,28 @@ public class ItemInfo : MonoBehaviour
                     return "반지";
                 case EquipType.Shoes:
                     return "신발";
+                default:
+                    return "알 수 없음";
+            }
+        }
+
+        return "장비 아님";
+    }
+    
+    public string EquipTypeValueToK(IItem iitem)
+    {
+        if (iitem is EquipItemInstance EI && EI.itemData is EquipmentItemData ED)
+        {
+            switch (ED.equipType)
+            {
+                case EquipType.Cloak:
+                    return "물리방어력 : ";
+                case EquipType.Clothet:
+                    return "체력 : ";
+                case EquipType.Ring:
+                    return "마법방어력 : ";
+                case EquipType.Shoes:
+                    return "회피력 : ";
                 default:
                     return "알 수 없음";
             }
