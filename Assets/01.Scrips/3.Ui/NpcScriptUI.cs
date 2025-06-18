@@ -21,6 +21,7 @@ public class NpcScriptUI : MonoBehaviour
         npcScriptMenuUI = GetComponent<NpcScriptMenuUI>();
 
         gameObject.SetActive(false); // 초기에는 비활성화
+        Debug.Log("npc scriptUI setActive : " + gameObject.activeSelf);
     }
 
     void Start()
@@ -46,9 +47,16 @@ public class NpcScriptUI : MonoBehaviour
 
     public void UpdateNpcInfo(NpcTalkType talkType)
     {
-        npcIcon.sprite = targetNpcData.NpcIcon; // NPC 아이콘 업데이트
-        npcNameText.text = targetNpcData.NpcName; // NPC 이름 업데이트
-        npcScriptText.text = targetNpcData.NormalTalk(talkType); // NPC 스크립트 텍스트 업데이트
+        if (TargetNpcData == null)
+        {
+            Debug.LogError("NPC 정보가 유효하지 않습니다.");
+            
+            return;
+        }
+
+        npcIcon.sprite = TargetNpcData.NpcIcon; // NPC 아이콘 업데이트
+        npcNameText.text = TargetNpcData.NpcName; // NPC 이름 업데이트
+        npcScriptText.text = TargetNpcData.NormalTalk(talkType); // NPC 스크립트 텍스트 업데이트
     }
 
     public void QuestMenu()

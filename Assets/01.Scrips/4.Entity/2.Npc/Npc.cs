@@ -37,15 +37,13 @@ public class Npc : MonoBehaviour, IInteractable
 
     void Start()
     {
-        npcData.GetValidQuest();
+
     }
 
     void Update()
     {
         
     }
-
-
 
     /// <summary>
     /// 퀘스트 수락 메소드
@@ -207,8 +205,6 @@ public class Npc : MonoBehaviour, IInteractable
     public void OnInteract()
     {
         npcScriptUI = UIManager.Instance.NpcScriptUI;
-
-        string message = "";
 
         if (npcScriptUI != null)
         {
