@@ -48,6 +48,8 @@ public class UIManager : MonoBehaviour
     private Coroutine systemMessageRoutine;
     [SerializeField] private string dialogCall;
 
+    private NpcScriptUI npcScriptUI;
+    public NpcScriptUI NpcScriptUI { get { return npcScriptUI; } set { npcScriptUI = value; } }
 
     private void Start()
     {
