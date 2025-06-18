@@ -98,6 +98,14 @@ public class MonsterController : MonoBehaviour, IBattleEntity
 
         monsterInfo.currentHp = 
             Mathf.Clamp(monsterInfo.currentHp - dmg, 0, monsterInfo.maxHp);
+
+        if (monsterInfo.currentHp <= 0)
+        {
+            monsterInfo.anim.SetBool("isAction", true);
+            monsterInfo.anim.SetTrigger("Dead");
+            //자신이 죽었다고 알려야함
+        }
+
         AudioManager.Instance.PlayAudioOnce(ReactSFXEnum.Hit);
         UIManager.Instance.battleWindow.SetHPBar();
     }

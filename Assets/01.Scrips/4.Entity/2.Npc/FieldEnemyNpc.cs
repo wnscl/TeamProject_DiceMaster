@@ -10,6 +10,9 @@ public class FieldEnemyNpc : MonoBehaviour
     [SerializeField] private GameObject target;
     private Coroutine myCor;
     public float moveDuration;
+    [SerializeField] private Animator anim;
+    [SerializeField] private GameObject interctionIcon;
+
 
     private void NowBattle()
     {
@@ -18,20 +21,23 @@ public class FieldEnemyNpc : MonoBehaviour
     }
     private IEnumerator RunToPlayer()
     {
-        yield return new WaitForSeconds(0.5f);
+        interctionIcon.SetActive(true);
+        yield return new WaitForSeconds(1f);
+        interctionIcon.SetActive(false);
         float timer = 0;
         float t = 0;
 
         Vector2 startPos = transform.position;
+
+        anim.SetBool("isAction", true);
+        anim.SetTrigger("Move");
 
         while (timer < moveDuration)
         {
             float distance = target.transform.position.GetDistance(this.transform.position, Axis.Z);
             if (distance <= 1.5f)
             {
-                myCor = null;
-                GameManager.Instance.StartBattle();
-                yield break;
+                break;
             }
 
             t = timer / moveDuration;
@@ -41,6 +47,7 @@ public class FieldEnemyNpc : MonoBehaviour
         }
 
         myCor = null;
+        anim.SetBool("isAction", false);
         GameManager.Instance.StartBattle();
         yield break;
     }
