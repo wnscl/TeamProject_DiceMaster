@@ -11,19 +11,28 @@ public class GameManager : MonoBehaviour
     public Player player;
     public IBattleEntity monster;
 
-    public event Action battleEvent;
+    public event Action<bool> battleEvent;
 
     private void Awake()
     {
         Instance = this;
     }
 
-    public void StartBattle()
+    public void ExcuteBattleEvent(bool startOrEnd)
     {
-        Debug.Log("예이 전투시작!");
-        battleEvent?.Invoke();
-        UIManager.Instance.battleWindow.WhenStartBattle();
-        BattleManager.Instance.Battle.Encounter();
+        battleEvent?.Invoke(startOrEnd);
+        switch (startOrEnd)
+        {
+            case true:
+                UIManager.Instance.battleWindow.WhenStartBattle();
+                BattleManager.Instance.Battle.Encounter();
+                break;
+
+            case false:
+                UIManager.Instance.battleWindow.WhenEndBattle();
+                AudioManager.Instance.ChangeAudio(AudioManager.Instance.audioPool.BackGroundAudio[StageManager.Instance.currentStage]);
+                break;
+        }
     }
 
     public void StopPlayer()

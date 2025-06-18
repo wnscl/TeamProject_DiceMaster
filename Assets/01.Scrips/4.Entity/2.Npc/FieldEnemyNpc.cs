@@ -48,7 +48,7 @@ public class FieldEnemyNpc : MonoBehaviour
 
         myCor = null;
         anim.SetBool("isAction", false);
-        GameManager.Instance.StartBattle();
+        GameManager.Instance.ExcuteBattleEvent(true);
         yield break;
     }
 
