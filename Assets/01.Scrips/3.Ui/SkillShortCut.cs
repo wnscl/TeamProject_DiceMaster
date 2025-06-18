@@ -47,7 +47,7 @@ public class SkillShortCut : MonoBehaviour
     }
 
     private void Start()
-    {
+    {        
         SetupSlots();
     }
 
@@ -72,45 +72,42 @@ public class SkillShortCut : MonoBehaviour
                 case "1":
                    if( slots[0].GetComponent<SkillShortcutSlot>().skillData !=null)
                    {Debug.Log(slots[0].GetComponent<SkillShortcutSlot>().skillData.Name);}
-                   else{Debug.Log("1번슬롯 비어있음");}
+                   else{ SlotIsEmpty(1); }
                     break;
                 case "2":
                     if( slots[1].GetComponent<SkillShortcutSlot>().skillData !=null)
                     {Debug.Log(slots[1].GetComponent<SkillShortcutSlot>().skillData.Name);}
-                    else{Debug.Log("2번슬롯 비어있음");}
+                    else{ SlotIsEmpty(2); }
                     break;
                 case "3":
                     if( slots[2].GetComponent<SkillShortcutSlot>().skillData !=null)
                     {Debug.Log(slots[2].GetComponent<SkillShortcutSlot>().skillData.Name);}
-                    else{Debug.Log("3번슬롯 비어있음");}
+                    else { SlotIsEmpty(3); }
                     break;
                 case "4":
                     if( slots[3].GetComponent<SkillShortcutSlot>().skillData !=null)
                     {Debug.Log(slots[3].GetComponent<SkillShortcutSlot>().skillData.Name);}
-                    else{Debug.Log("4번슬롯 비어있음");}
+                    else { SlotIsEmpty(4); }
                     break;
                 case "5":
                     if( slots[4].GetComponent<SkillShortcutSlot>().skillData !=null)
                     {Debug.Log(slots[4].GetComponent<SkillShortcutSlot>().skillData.Name);}
-                    else{Debug.Log("5번슬롯 비어있음");}
+                    else { SlotIsEmpty(5); }
                     break;
                 case "6":
                     if( slots[5].GetComponent<SkillShortcutSlot>().skillData !=null)
                     {Debug.Log(slots[5].GetComponent<SkillShortcutSlot>().skillData.Name);}
-                    else{Debug.Log("6번슬롯 비어있음");}
-                    
+                    else { SlotIsEmpty(6); }
+
                     break;
             }
             
         }
-
-
     }
-    
-    
-    
-    
-    
-    
-    
+
+    private void SlotIsEmpty(int slotNum)
+    {
+        Debug.Log($"{slotNum}번슬롯 비어있음");
+        AudioManager.Instance.PlayAudioOnce(UISFXEnum.Fail);
+    }
 }

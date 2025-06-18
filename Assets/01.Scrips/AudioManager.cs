@@ -38,7 +38,7 @@ public class AudioManager : MonoBehaviour
     [SerializeField] AudioSource reactAudioSource;
     [SerializeField] AudioSource backgroundAudioSource1;
     [SerializeField] AudioSource backgroundAudioSource2;
-
+    public bool isWalkPlay = false;
     private void Start()
     {
         audioPool = GetComponent<SFXPool>();
@@ -76,6 +76,22 @@ public class AudioManager : MonoBehaviour
     }
     #endregion
 
+    public void WalkSound()
+    {
+        if (isWalkPlay == true) return;
+
+        audioSource.clip = audioPool.Walk;
+        audioSource.loop = true;
+        audioSource.Play();
+        isWalkPlay = true;
+    }
+
+    public void WalkSoundStop()
+    {        
+        audioSource.loop = false;
+        audioSource.Stop();
+        isWalkPlay = false;
+    }
     public void PlayBackGroundAudioOnStart(int stage) //배경음악이 처음 시작할때 혹은 정지됐다 다시 시작할때
     {
         StopAllCoroutines();

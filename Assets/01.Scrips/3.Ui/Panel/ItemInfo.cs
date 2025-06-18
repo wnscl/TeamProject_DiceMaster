@@ -27,13 +27,14 @@ public class ItemInfo : MonoBehaviour
             Debug.Log("끈다");
             this.gameObject.SetActive(false);
             ResetInfo();
-
+            AudioManager.Instance.PlayAudioOnce(UISFXEnum.Unpause);
             itemSlot = null;
         }
         else if (!this.gameObject.activeInHierarchy)
         {
             InitSetInfo();
             this.gameObject.SetActive(true);
+            AudioManager.Instance.PlayAudioOnce(UISFXEnum.UseItem);
         }
     }
 
@@ -56,6 +57,7 @@ public class ItemInfo : MonoBehaviour
         itemIcon.sprite = iData.itemIcon;
         itemName.text = iData.itemName;
         itemDescription.text = iData.description;
+        AudioManager.Instance.PlayAudioOnce(UISFXEnum.UseItem);
 
         // 장비 아이템인 경우
         if (itemSlot.item is EquipItemInstance equipInst)

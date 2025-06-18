@@ -18,13 +18,15 @@ public class SkillInfo : MonoBehaviour
         {
             this.gameObject.SetActive(false);
             ResetInfo();
-
+            
             skillSlot = null;
+            AudioManager.Instance.PlayAudioOnce(UISFXEnum.Unpause);
         }
         else if (!this.gameObject.activeInHierarchy)
         {
             InitSetInfo();
             this.gameObject.SetActive(true);
+            AudioManager.Instance.PlayAudioOnce(UISFXEnum.UseItem);
         }
     }
 
@@ -42,5 +44,6 @@ public class SkillInfo : MonoBehaviour
         icon.sprite = skillSlot.skillData.Icon;
         skillName.text = skillSlot.skillData.name;
         skillDescription.text = skillSlot.skillData.Discription;
+        AudioManager.Instance.PlayAudioOnce(UISFXEnum.UseItem);
     }
 }

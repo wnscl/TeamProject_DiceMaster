@@ -7,8 +7,8 @@ public class AESCryptor
 {
     private byte[] key;
     private byte[] iv;
-    private readonly string keyPath = ".\\save\\aeskey.dat";
-    private readonly string ivPath = ".\\save\\aesiv.dat";
+    private readonly string keyPath = Application.dataPath.ToString() + "/save/aeskey.dat";
+    private readonly string ivPath = Application.dataPath.ToString() + "/save/aesiv.dat";
 
     public AESCryptor()
     {
@@ -21,6 +21,8 @@ public class AESCryptor
         {
             key = GenerateRandomBytes(32);
             iv = GenerateRandomBytes(16);
+            File.WriteAllBytes(keyPath, key);
+            File.WriteAllBytes(ivPath, iv);
         }
     }
 
@@ -39,7 +41,7 @@ public class AESCryptor
     public string Encryptor(string plainText)
     {
         byte[] encrypted;
-        using (Aes aesAlg = Aes.Create())
+        using (Rijndael aesAlg = Rijndael.Create())
         {
             aesAlg.KeySize = 256;
             aesAlg.BlockSize = 128;
@@ -70,7 +72,7 @@ public class AESCryptor
     {
         string decrypted;
         byte[] cipher = Convert.FromBase64String(encryptedText);
-        using (Aes aesAlg = Aes.Create())
+        using (Rijndael aesAlg = Rijndael.Create())
         {
             aesAlg.KeySize = 256;
             aesAlg.BlockSize = 128;
@@ -91,7 +93,7 @@ public class AESCryptor
                 }
             }
         }
-
+        
         return decrypted;
     }
 }

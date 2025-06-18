@@ -8,7 +8,7 @@ public class StageManager : MonoBehaviour
     public static StageManager Instance;
 
     public int currentStage = 0; // 0: Level1Scene, 1: Level2Scene, ...
-    private string[] stageSceneNames = { "Level1Scene", "Level2Scene", "Level3Scene" };
+    public string[] stageSceneNames { get; private set; } = { "Level1Scene", "Level2Scene", "Level3Scene" };
 
     public bool isLoadingNextStage = false;
 
