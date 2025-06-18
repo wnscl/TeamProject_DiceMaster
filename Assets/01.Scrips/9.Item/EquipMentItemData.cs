@@ -14,7 +14,7 @@ public enum  EquipType
 public class EquipmentItemData : ItemData
 {
     
-    public bool isEquipped;
+   
     public EquipType  equipType;
     public float valueAmount;
 }

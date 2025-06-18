@@ -34,7 +34,7 @@ public class EquipSlot : MonoBehaviour
 
         if (data is DiceItemData diceData)
         {
-          return   cloakIcon;
+          return   diceIcon;
         }
 
         return null;

@@ -58,63 +58,52 @@ public class ItemSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
         icon.sprite = item.itemData.itemIcon;
 
-        if (item.itemData is EquipmentItemData EI)
+        this.item = item;
+        icon.sprite = item.itemData.itemIcon;
+
+        if (item is EquipItemInstance equipInst)
         {
-            if (EI.isEquipped)
-            {
-                equipmentMark.SetActive(true);
-            }
-            else
-            {
-                equipmentMark.SetActive(false);
-            }
+            equipmentMark.SetActive(equipInst.isEquipped);
+        }
+        else
+        {
+            equipmentMark.SetActive(false);
         }
 
-        if (item.itemData is ConsumableItemData CI)
+        if (item is ConsumableItemInstance consInst)
         {
-            if (CI.isStackable)
-            {
-                stackAmountMark.SetActive(true);
-                stackAmountText.text = CI.stackAmount.ToString();
-            }
-            else
-            {
-                stackAmountMark.SetActive(false);
-            }
+            stackAmountMark.SetActive(true);
+            stackAmountText.text = consInst.stackAmount.ToString();
         }
-
-        if (item.itemData is DiceItemData DI)
+        else
         {
-            if (DI.isEquipped)
-            {
-                equipmentMark.SetActive(true);
-            }
-            else
-            {
-                equipmentMark.SetActive(false);
-            }
+            stackAmountMark.SetActive(false);
+        }
+       
+        if (item is DiceItemInstance diceInst)
+        {
+            equipmentMark.SetActive(diceInst.isEquipped);
+        }
+        else
+        {
+            equipmentMark.SetActive(false);
         }
     }
 
     public void ONDestroySlot()
     {
-        if (item.itemData is EquipmentItemData EI)
+        if (item is EquipItemInstance equipInst && equipInst.isEquipped)
         {
-            if (EI.isEquipped)
-            {
-                Debug.Log("아이템 장착을 해제하쇼");
-                UIManager.Instance.SystemMessage("먼저 아이템 장착을 해제하세요");
-                return;
-            }
+            Debug.Log("아이템 장착을 해제하쇼");
+            UIManager.Instance.SystemMessage("먼저 아이템 장착을 해제하세요");
+            return;
         }
-        if (item.itemData is DiceItemData DI)
+
+        if (item is DiceItemInstance diceInst && diceInst.isEquipped)
         {
-            if (DI.isEquipped)
-            {
-                Debug.Log("아이템 장착을 해제하쇼");
-                UIManager.Instance.SystemMessage("먼저 아이템 장착을 해제하세요");
-                return;
-            }
+            Debug.Log("아이템 장착을 해제하쇼");
+            UIManager.Instance.SystemMessage("먼저 아이템 장착을 해제하세요");
+            return;
         }
 
         UIManager.Instance.itemInfo.InfoWIndowOnAndOff();

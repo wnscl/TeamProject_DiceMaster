@@ -3351,13 +3351,13 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8007084795215297757}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
+      - m_Target: {fileID: 297589708}
+        m_TargetAssemblyTypeName: ItemInfo, Assembly-CSharp
+        m_MethodName: OnEquip
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -3461,7 +3461,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43e3c92b722dcbd42b23bc010d22a005, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Model: {fileID: 809750088}
+  model: {fileID: 0}
 --- !u!1 &813009327
 GameObject:
   m_ObjectHideFlags: 0
@@ -10883,6 +10883,7 @@ MonoBehaviour:
   itemInfo: {fileID: 297589708}
   skillShortcut: {fileID: 7289858284825138558}
   battleWindow: {fileID: 8446239842585243926}
+  equipSlot: {fileID: 0}
   systemMessageImage: {fileID: 3884680679347867513}
   systemText: {fileID: 3875425068446935543}
   dialogCall: "\uB300\uD654"
